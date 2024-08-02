@@ -1,0 +1,124 @@
+body {
+    margin: 0;
+    padding: 0;
+  }
+
+.header-container {
+    display: grid;
+    flex-direction: column;
+    /* flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center; */
+}
+
+.header-container > div {
+    margin: 0;
+}
+
+.header-container2{
+    background-color: #CFD4DA;
+    grid-template-columns: 1fr 1fr;
+    display: flex;
+}
+  
+.social-links {
+    flex-basis: 30%;
+    grid-column: 1;
+}
+
+.social-links ul {
+    list-style: none;
+    display: flex;
+    /* justify-content: space-between; */
+}
+
+.social-links-color-icons{
+    fill:rgb(0, 0, 0);
+}
+
+.search-form {
+    flex-basis: 70%;
+}
+
+.search-input-wrapper {
+    border: 1px solid #4a4a4a;
+}
+
+.search-input-wrapper input {
+    border-radius: 0px;
+}
+
+.search-input-wrapper button {
+    border-radius: 0px;
+}
+
+.site-title {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 48px;
+    /* text-align: center; */
+    grid-column: 3;
+}
+
+
+.site-title-a {
+    position: top;
+    color: rgb(0, 0, 0);
+    text-decoration: none; /* Скасовуємо підкреслення у посилань */
+}
+
+.screen-reader-text{ /*для доступності, прочитати текст дає лише диктору*/
+    clip: rect(0,0,0,0);
+    border: 0;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+.nav-container {
+    background-color: #e3e3f8;
+    /* background-color: var(--wp--preset--color--secondary); */
+    border-top: 1px solid var(--wp--preset--color--secondary);
+    border-bottom: 1px solid var(--wp--preset--color--secondary);
+    margin-top: 1.5rem;
+    padding: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: sticky;
+    font-size: 0.875rem;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-list a{
+    text-decoration: none;
+    padding: 10px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: #476E84;
+    font-size: medium;
+}
+
+.nav-toggle {
+    display: none;
+}
+
+.nav-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.nav-list {
+    list-style: none;
+    display: flex;
+    
+}
