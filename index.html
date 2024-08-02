@@ -5,7 +5,7 @@
     <title>SpeakUp</title>
     <link rel="icon" href="./images/favicon.png" type="image/png">
     <link rel="stylesheet" href="./styles.css">
-    <script href="./Untitled-1.js"></script>
+    <script href="./script.js"></script>
 </head>
 
 <body>
@@ -68,4 +68,25 @@
               </div>
         </div>
     </header>
+    <section>
+            <!-- Slideshow container -->
+      <div class="slideshow-container">
+        <!-- Full-width images with number and caption text -->
+        <div class="mySlides fade">
+          <img src="img1.jpg" alt="Про організацію" style="width:100%">
+        </div>
+        <div class="mySlides fade">
+          <img src="img2.jpg" alt="Про командний склад" style="width:100%">
+        </div>
+        <!-- Next and previous buttons -->
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+      </div>
+      <br>
+      <!-- The dots/circles -->
+      <div style="text-align:center">
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+      </div> 
+    </section>
 </body>
