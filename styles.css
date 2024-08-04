@@ -3,6 +3,12 @@ body {
     padding: 0;
   }
 
+  @media only screen and (max-device-width: 768px) {
+    body {
+      zoom: 1;
+    }
+  }
+
 .header-container {
     display: grid;
     flex-direction: column;
