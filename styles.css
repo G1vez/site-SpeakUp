@@ -101,11 +101,11 @@ body {
 }
 
 .nav-list a{
-    text-decoration: none;
-    padding: 10px;
+    text-decoration: none; /* прибирає підкреслення посилань*/
+    padding: 10px; /* відстань між рядками*/ 
     font-family: Georgia, 'Times New Roman', Times, serif;
     color: #476E84;
-    font-size: medium;
+    font-size: medium; /* розмір шрифту*/
 }
 
 .nav-toggle {
@@ -116,12 +116,21 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
 }
 
 .nav-list {
     list-style: none;
-    display: flex;    
+    display: flex;
 }
+
+@media (max-width: 768px) {
+  .nav-list a {
+    display: block;
+    text-align: center;
+  }
+}
+
 /* ----------------------------------- Slideshow ---------------------------------- */
 * {box-sizing: border-box}
 body {font-family: Verdana, sans-serif; margin:0}
