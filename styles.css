@@ -4,8 +4,12 @@ body {
   }
 
   @media only screen and (max-device-width: 768px) {
-    body {
+    @viewport {
+      width: device-width;
       zoom: 1;
+      min-zoom: 1;
+      max-zoom: 1;
+      user-zoom: fixed;
     }
   }
 
