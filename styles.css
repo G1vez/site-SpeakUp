@@ -100,6 +100,26 @@ body {
     z-index: 100;
 }
 
+.nav-toggle {
+  display: none;
+}
+
+.nav-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+}
+
+.nav-list * {
+  text-align: center;
+}
+
 .nav-list a{
     text-decoration: none; /* прибирає підкреслення посилань*/
     padding: 10px; /* відстань між рядками*/ 
@@ -108,31 +128,11 @@ body {
     font-size: medium; /* розмір шрифту*/
 }
 
-.nav-toggle {
-    display: none;
-}
-
-.nav-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-
-.nav-list {
-    list-style: none;
-    display: flex;
-}
-
 @media (max-width: 768px) {
   .nav-list a {
     display: block;
     text-align: center;
   }
-}
-
-.nav-list * {
-  text-align: center;
 }
 
 /* ----------------------------------- Slideshow ---------------------------------- */
