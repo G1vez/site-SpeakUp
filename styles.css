@@ -3,7 +3,7 @@ body {
   padding: 0;
 }
   
-  
+/*   
 @media only screen and (min-device-width: 360px) {  
   @viewport {
     width: device-width;
@@ -12,7 +12,7 @@ body {
     max-zoom: 1;
     user-zoom: fixed;
   } 
-}
+} */
 
 .header-container {
     display: grid;
