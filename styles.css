@@ -3,13 +3,19 @@ body {
     padding: 0;
   }
 
-  @media only screen and (max-device-width: 768px) {
-    body {
-      transform: scale(1);
-      width: 100vw; /* optional, to ensure the content takes up the full width */
-      height: 100vh; /*  optional, to ensure the content takes up the full height */
-    }
-  }
+body {
+  display: grid;  
+  grid-template-columns: 1fr;  
+  grid-template-rows: 1fr;  
+}
+  
+  
+@media only screen and (min-device-width: 769px) {  
+  body {
+      /* reset the grid layout for desktop devices */
+    display: block;  
+  }  
+}
 
 .header-container {
     display: grid;
