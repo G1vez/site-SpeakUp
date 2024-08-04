@@ -77,7 +77,7 @@ body {
     width: 1px;
 }
 
-/* ----------------------------------- Навігаційне меню --------------------------------------------- */
+/* ----------------------------------- Navigation --------------------------------------------- */
 
 .nav-container {
     background-color: #e3e3f8;
@@ -122,19 +122,26 @@ body {
     list-style: none;
     display: flex;    
 }
-/* ----------------------------------- Слайд-шоу ---------------------------------- */
-* {box-sizing:border-box}
+/* ----------------------------------- Slideshow ---------------------------------- */
+* {box-sizing: border-box}
+body {font-family: Verdana, sans-serif; margin:0}
+.mySlides {display: none}
+img {vertical-align: middle;}
 
 /* Slideshow container */
 .slideshow-container {
   max-width: 1000px;
   position: relative;
   margin: auto;
+  z-index: 1; /* add a z-index to ensure it's on top */
 }
 
-/* Hide the images by default */
 .mySlides {
-  display: none;
+  display: none; /* hide all slides by default */
+}
+
+.mySlides:first-child {
+  display: block; /* show the first slide by default */
 }
 
 /* Next & previous buttons */
@@ -143,14 +150,15 @@ body {
   position: absolute;
   top: 50%;
   width: auto;
-  margin-top: -22px;
   padding: 16px;
-  color: white;
+  margin-top: -22px;
+  color: rgb(0, 0, 0);
   font-weight: bold;
   font-size: 18px;
   transition: 0.6s ease;
   border-radius: 0 3px 3px 0;
   user-select: none;
+  z-index: 2; /* add a z-index to ensure the buttons are clickable */
 }
 
 /* Position the "next button" to the right */
@@ -163,7 +171,6 @@ body {
 .prev:hover, .next:hover {
   background-color: rgba(0,0,0,0.8);
 }
-
 
 /* The dots/bullets/indicators */
 .dot {
@@ -188,6 +195,6 @@ body {
 }
 
 @keyframes fade {
-  from {opacity: .4}
+  from {opacity: .4} 
   to {opacity: 1}
 }
