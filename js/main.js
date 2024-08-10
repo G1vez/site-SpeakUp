@@ -27,6 +27,49 @@ function showSlides(n) {
   dots[slideIndex-1].className += " active";
 } 
 
+let touchStartX = 0;
+let touchEndX = 0;
+
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+  showSlides(slideIndex);
+});
+
+// Add event listeners for touch events
+document.addEventListener("touchstart", function(event) {
+  touchStartX = event.touches[0].clientX;
+});
+
+document.addEventListener("touchend", function(event) {
+  touchEndX = event.changedTouches[0].clientX;
+  let deltaX = touchEndX - touchStartX;
+  if (Math.abs(deltaX) > 50) {
+    if (deltaX > 0) {
+      plusSlides(-1);
+    } else {
+      plusSlides(1);
+    }
+  }
+});
+
+// автопрокручування слайд-шоу
+slideIndex = 0;
+carousel();
+
+function carousel() {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";
+  }
+  slideIndex++;
+  if (slideIndex > x.length) {slideIndex = 1}
+  x[slideIndex-1].style.display = "block";
+  setTimeout(carousel, 15000); // Change image every 2 seconds
+}
 
 // ----------------------------------------------------------------------
 
