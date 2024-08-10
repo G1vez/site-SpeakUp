@@ -4,40 +4,38 @@ body {
 }
 
 /*  ---------------------------------- Все для малих екранів ---------------------------------*/
-@media (max-width: 768px) {
-  .dot-container {
-     margin-top: 5px; /* less space between slideshow and dots */
-   }
-  .dot {
-     margin: 0 2px; /* less space between dots */
-   }
- }
-
+/* Щоб відцентровувався контент */
  body {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
 }
-
+/* reset the grid layout for desktop devices */
 @media only screen and (min-device-width: 768px) {
   body {
-    /* reset the grid layout for desktop devices */
     display: block;
   }
 }
 
-@media (max-width: 768px) {
-  .nav-list a {
-    text-align: center;
+@media only screen and (max-width: 786px) {
+  /* Приховати меню на мобільних пристроях */
+  .nav-list {
+    display: none !important;
   }
+  .nav-list a {
+    text-align: center; 
+  }
+  
   .nav-content {
-    display: none; /* приховати меню за замовчуванням */
+    display: none; /* приховати меню за замовчуванням  */
   }
   .nav-content.open {  
     display: block; /* показати меню при відкритті */  
   }
+
+  /* Відобразити кнопку на мобільних пристроях */
   .nav-toggle {
-    display: block;
+    display: block !important;
   }
 }
 
@@ -140,8 +138,11 @@ body {
     z-index: 100;
 }
 
+/* Стилізація кнопки */
 .nav-toggle {
-  display: none;
+  display: none;  /*Приховати кнопку на великих екранах */
+  border: none;
+  cursor: pointer;
 }
 
 .nav-content {
