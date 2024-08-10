@@ -26,3 +26,16 @@ function showSlides(n) {
   slides[slideIndex-1].style.display = "block";
   dots[slideIndex-1].className += " active";
 } 
+
+
+// ----------------------------------------------------------------------
+
+// Отримати кнопку та контейнер меню
+const navToggle = document.querySelector('.nav-toggle');
+const navContent = document.querySelector('.nav-content');
+
+// Додати обробник події натиску кнопки
+navToggle.addEventListener('click', () => {
+  // Переключити клас 'open' на контейнері меню
+  navContent.classList.toggle('open');
+});
