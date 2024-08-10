@@ -37,6 +37,9 @@ body {
   .nav-toggle {
     display: block !important;
   }
+  .controls {
+    display: none;
+  }
 }
 
 /* ------------------------------ Header/Над меню, шапка ----------------------*/
@@ -143,6 +146,9 @@ body {
   display: none;  /*Приховати кнопку на великих екранах */
   border: none;
   cursor: pointer;
+  background: none;
+  position: absolute;
+  left: 0;
 }
 
 .nav-content {
@@ -195,6 +201,7 @@ img {
   margin-top: 2.5%;
   z-index: 1; /* add a z-index to ensure it's on top */
   overflow: hidden; /* add this to prevent horizontal scrolling */
+  touch-action: pan-y; /* Add this to enable dragging on mobile devices */
 }
 
 .mySlides {
@@ -241,7 +248,7 @@ img {
   cursor: pointer;
   height: 10px;
   width: 10px;
-  margin: 0 2px;
+  margin: 0.2px;
   background-color: #bbb;
   border-radius: 50%;
   display: inline-block;
