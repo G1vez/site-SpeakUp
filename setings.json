@@ -1,0 +1,6 @@
+{
+    "python.pythonPath": "python",
+    "flask.enabled": true,
+    "flask.app": "app",
+    "flask.env": "development"
+}
