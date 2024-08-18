@@ -6,39 +6,50 @@
     <title>SpeakUp</title>
     <link rel="icon" href="./images/favicon.png" type="image/png">
     <link href="https://fonts.googleapis.com/css?family=Cookie:regular&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,regular&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="./styles.css">
     <script defer src="./js/main.js"></script><!-- 'defer' робить так що наш код виконується після завантаження сторінки. -->
 </head>
 <body>
   <header>   
     <nav class="nav" aria-label="Navigation">
-      <a class="site-title" href="#">SpeakUp</a>
-      <ul class="nav-list">
-        <li><a href="">Про нас</a></li>
-        <li><a href="">Історії</a></li>
-        <li><a href="">Статті</a>
-          <button class="nav-toggle">
-            <svg width="13" height="8" viewBox="0 0 13 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path class="svg-icon", d="M5.84442 7.2437C6.20702 7.58543 6.79588 7.58543 7.15848 7.2437L12.728 1.99473C13.0907 1.653 13.0907 1.09803 12.728 0.756297C12.3654 0.414567 11.7766 0.414567 11.414 0.756297L6.5 5.38742L1.58602 0.759031C1.22342 0.417301 0.634553 0.417301 0.271951 0.759031C-0.0906504 1.10076 -0.0906504 1.65573 0.271951 1.99746L5.84151 7.24644L5.84442 7.2437Z" fill="black"/>
-            </svg>
-            <span class="screen-reader-text">drop-down menu</span>
-          </button>
-        </li>
-        <!-- <li><a href="">Вплив війни</a></li>
-        <li><a href="">Мотивація</a></li>
-        <li><a href="">Ментальне здоров’я</a></li> -->
-        <li><a href="">Корисні посилання</a></li>
-      </ul>
+      <a class="logo-text" href="#">SpeakUp</a>
+      <div class="nav-toggle-container">
+        <ul class="nav-list">
+          <li><a href="">Про нас</a></li>
+          <li><a href="">Історії</a></li>
+          <li class="item-dropdown-menu">
+            <a href="">Статті</a>
+            <button class="toggle-dropdown-menu">
+              <svg width="13" height="8" viewBox="0 0 13 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path class="svg-icon", d="M5.84442 7.2437C6.20702 7.58543 6.79588 7.58543 7.15848 7.2437L12.728 1.99473C13.0907 1.653 13.0907 1.09803 12.728 0.756297C12.3654 0.414567 11.7766 0.414567 11.414 0.756297L6.5 5.38742L1.58602 0.759031C1.22342 0.417301 0.634553 0.417301 0.271951 0.759031C-0.0906504 1.10076 -0.0906504 1.65573 0.271951 1.99746L5.84151 7.24644L5.84442 7.2437Z" fill="black"/>
+              </svg>
+              <span class="screen-reader-text">dropdown menu</span>
+            </button>
+            <ul class="dropdown-menu">
+              <li><a href="">Вплив війни</a></li>
+              <li><a href="">Мотивація</a></li>
+              <li><a href="">Ментальне здоров’я</a></li>
+            </ul>
+          </li>
+          <li><a href="">Корисні посилання</a></li>
+        </ul>
+        <li><a class="ua-en" href="">UA</a>|<a href="" class="ua-en">EN</a></li>
+        <button class="nav-toggle" aria-label="Open menu">
+          <svg focusable="false" width="2.75rem" height="2.75rem" viewBox="0 0 44 44" aria-hidden="true">
+            <path d="M12 29h21v-2.333H12V29zm0-5.833h21v-2.334H12v2.334zM12 15v2.333h21V15H12z"></path>
+          </svg>
+        </button>
+      </div>
     </nav>
   </header>
   <section>
     <div class="slideshow-container">
       <div class="mySlides fade">
-        <img src="./images/img1.jpg" alt="Про організацію">
+        <img src="./img/slide1.png" alt="Про організацію">
       </div>        
       <div class="mySlides fade">
-        <img src="./images/img2.jpg" alt="Про командий склад">
+        <img src="./img/slide2.png" alt="Про командий склад">
       </div>
       <div class="controls">
         <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
