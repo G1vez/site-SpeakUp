@@ -1,0 +1,70 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-content);
+  background-color: var(--color-background);
+}
+:root {
+  --font-family-primary: 'Montserrat', sans-serif;
+  --font-family-logo: 'Cookie', cursive;
+
+  --font-size-logo: 48px;
+  --font-size-h1: 56px;
+  --font-size-h2: 48px;
+  --font-size-h3: 32px;
+  --font-size-subtitle: 24px;
+  --font-size-content: 18px;
+  --font-size-article: 22px;
+  --font-size-link: 28px;
+
+  --spacing-small: 2.5px;
+  --spacing-medium: 15px;
+  --border-radius: 16px;
+
+  --color-background: var(--color-beige-100); /* background color */
+  --color-menu: var(--color-beige-400); /* primary color */
+  --color-text: var(--color-black); /* text color */
+
+  --color-beige-100: #F7F3F0;
+  --color-beige-400: #EEE4DB;
+  --color-beige-800: #F1DFCE;
+  --color-brown-100: #d9cabe;
+  --color-brown-400: #c2a085;
+  --color-brown-800: #a06d44;
+  --color-brown-900: #2a1707;
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-gray: #5E5E5E;
+   
+}
+
+h1 {
+  font-size: var(--font-size-h1);
+  font-weight: 600;
+}
+h2 {
+  font-size: var(--font-size-h2);
+  font-weight: 500;
+}
+h3 {
+  font-size: var(--font-size-h3);
+  font-weight: 500;
+}
+.subtitle-bold{
+  font-size: var(--font-size-subtitle);
+  font-weight: 600;
+}
+.content-text-bold {
+  font-size: var(--font-size-content);
+  font-weight: 500;
+}
+.link {
+  font-size: var(--font-size-link);
+  font-weight: 500;
+}
+.logo-text {
+  font-family: var(--font-family-logo);
+  font-size: var(--font-size-logo);
+  color: rgb(0, 0, 0);
+}

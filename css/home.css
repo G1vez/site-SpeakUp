@@ -1,0 +1,195 @@
+header {
+    background-color: var(--color-beige-400);
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    margin: auto;
+  }
+  
+  .svg-icon{
+    fill: var(--color-black);
+  }
+  
+  .screen-reader-text{
+    clip: rect(0,0,0,0);
+    border: 0;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+  
+  .nav {
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .nav a{
+    text-decoration: none;
+  }
+  
+  .nav-toggle-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;  
+    list-style: none;
+  }
+  
+  .ua-en {
+    margin: 4px; /* 8/2, бо space-between*/
+  }
+  
+  .ua-en:first-child{
+    font-weight: 500;
+    color: var(--color-text);
+  }
+  
+  .ua-en:last-child{
+    font-weight: 400;
+    color: var(--color-gray);
+  }
+  
+  .nav-list {
+    list-style: none;
+    display: flex;
+  }
+  
+  .nav-list a{
+    padding: var(--spacing-medium);
+    color: var(--color-black);
+  }
+  
+  .nav-toggle {
+    display: none;  /*Приховати кнопку на великих екранах */
+    border: none;
+    cursor: pointer;
+    background: none;
+  }
+  
+  .toggle-dropdown-menu {
+    margin-left: -17px;
+    margin-right: 11px;
+    border: none;
+    background: none;
+  }
+  
+  .dropdown-menu {
+    position: absolute;
+    list-style: none;
+    background-color: #EEE4DB;
+    padding: 13px;
+    border-radius: 16px;
+    margin-top: 16px;
+    display: none;
+    transform: translateX(var(--spacing-small));
+  }
+  
+  .dropdown-menu li:not(:last-child) {
+    margin-bottom: 8px;
+  }
+  
+  .dropdown-menu li a {
+    text-decoration: none;
+    padding: 0px;
+  }
+  
+  .item-dropdown-menu:hover .dropdown-menu {display: block;}
+  
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    max-width: 1000px;
+    margin: 40px auto;
+  }
+  
+  .text-container {
+    flex-basis: 45%;
+    margin-right: 20px;
+  }
+  
+  .subtitle{
+    font-size: var(--font-size-subtitle);
+    color: var(--color-gray);
+  }
+  
+  .slideshow-container {
+    flex-basis: 57.1%;
+    max-width: 571px;
+    position: relative;
+    margin: auto;
+    /* margin-top: 2.5%; */
+    z-index: 1;
+    overflow: hidden;
+    touch-action: pan-y;
+    border-radius: var(--border-radius);
+  }
+  
+  .mySlides {
+    display: inline-block;
+    width: 100%;
+    height: 400px; /* add a fixed height */
+    transition: transform 0.6s ease;
+    vertical-align: top;
+  }
+  
+  .mySlides img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* add object-fit property */
+    vertical-align: middle;
+  }
+  
+  .prev,.next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    z-index: 2;
+  }
+  
+  .next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+  }
+  
+  .prev:hover,.next:hover {
+    background-color: var(--color-black);
+    color: rgb(255, 255, 255);
+  }
+  
+  /*  ---------------------------------- Все для малих екранів ---------------------------------*/
+  @media only screen and (max-width: 736px) {
+    .nav-list {
+      display: none;
+    }
+    .nav-list .ua-en {
+      display: block;
+      position: absolute;
+      top: 0;
+      right: 40px; /* відстань від кнопки nav-toggle */
+    }
+    .nav-toggle{
+      display: block;
+    }
+    .nav-list {
+      display: none; /* приховати меню за замовчуванням */
+    }  
+    .nav-toggle-container.open .nav-list {
+      display: block; /* показати меню при відкритті */
+    }
+    .nav-toggle:focus + .nav-list {
+      display: block; /* показати меню при фокусі на кнопці */
+    }
+  }
+  
