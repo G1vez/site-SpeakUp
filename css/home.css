@@ -310,6 +310,10 @@ header {
 .social-icons {
   grid-column: 2;
   justify-self: center;
+  margin-top: -350px;
+}
+.item-social-icon{
+  margin: 28px;
 }
 
 .list {
@@ -328,10 +332,6 @@ header {
 
 .list a {
   text-decoration: none;
-}
-
-.social-icons a {
-  /* margin-left: 10px; */
 }
 
 footer a{  
@@ -403,5 +403,8 @@ footer a{
   .nav-end {
     display: grid;
     grid-template-columns: 1fr 1fr;
+  }
+  .social-icons {
+    margin-top: 0;
   }
 }
