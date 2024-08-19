@@ -81,6 +81,7 @@ header {
   padding: 13px;
   border-radius: 16px;
   margin-top: 16px;
+  margin-left: 5px;
   display: none;
   transform: translateX(var(--spacing-small));
 }
@@ -309,7 +310,6 @@ header {
 }
 .social-icons {
   grid-column: 2;
-  justify-self: center;
   margin-top: -350px;
 }
 .item-social-icon{
@@ -395,8 +395,11 @@ footer a{
     margin: 20px auto; /* add some margin to the top and bottom */
     width: 98vw;
   }
+  .item-social-icon{
+    margin: 5px;
+  }
 }
-@media only screen and (max-width: 1014px) {
+@media only screen and (max-width: 1020px) {
   .list{
     display: none;
   }
