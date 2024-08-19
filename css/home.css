@@ -104,7 +104,6 @@ header {
   align-items: center; /* add this to center vertically */
   max-width: 1000px; /* add this to set a maximum width */
   margin: 40px auto; /* add this to center horizontally */
-  font-size: 1.25rem; /* add this to set a font size */
 }
 .subtitle {
   font-size: var(--font-size-subtitle);
@@ -268,7 +267,7 @@ header {
 }
 
 .insta{
-  margin-right: 35px;
+  margin-right: 25.5px;
 }
 
 .clipbait a{
@@ -276,11 +275,19 @@ header {
   color: var(--color-brown-900);
 }
 .clipbait{
-  margin-top: -13px;
+  margin-top: -51px;
   list-style: none;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.clipbait-container{
+  margin-bottom: 75px;
+  margin-top: 125px;
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
+  padding-left: 12.291667%; /* 177px/1440 */
+  padding-right: 12.291667%;
 }
 
 .nav-end {
