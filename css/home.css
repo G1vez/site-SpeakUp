@@ -146,6 +146,9 @@ header {
   vertical-align: middle;
 }
 
+.svg-arrow{
+  fill: var(--color-black);
+}
 
 .prev,.next {
   cursor: pointer;
@@ -154,25 +157,20 @@ header {
   width: auto;
   padding: 16px;
   margin-top: -22px;
-  color: rgb(0, 0, 0);
   font-weight: bold;
   font-size: 18px;
-  transition: 0.6s ease;
-  border-radius: 0 3px 3px 0;
   user-select: none;
   z-index: 2;
+  fill: var(--color-gray);
 }
 
 .next {
   right: 0;
-  border-radius: 3px 0 0 3px;
-}
+} 
 
-.prev:hover,.next:hover {
-  background-color: var(--color-black);
-  color: rgb(255, 255, 255);
+.next .svg-arrow {
+  fill: var(--color-gray);
 }
-  
   /*  ---------------------------------- Все для малих екранів --------------736---------------*/
 @media only screen and (max-width: 775px) {
   .nav-list {

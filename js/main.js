@@ -14,13 +14,26 @@ function currentSlide(n) {
 function showSlides(n) {
   let i;
   let slides = document.getElementsByClassName("mySlides");
+  let prevArrow = document.querySelector('.prev .svg-arrow');
+  let nextArrow = document.querySelector('.next .svg-arrow');
+
   if (n > slides.length) {slideIndex = 1}
   if (n < 1) {slideIndex = slides.length}
+
   for (i = 0; i < slides.length; i++) {
     slides[i].style.display = "none";
   }
   slides[slideIndex-1].style.display = "block";
-} 
+
+  // Update arrow fill colors based on current slide index
+  if (slideIndex === 1) {
+    prevArrow.style.fill = 'var(--color-gray)';
+    nextArrow.style.fill = 'var(--color-black)';
+  } else if (slideIndex === 2) {
+    prevArrow.style.fill = 'var(--color-black)';
+    nextArrow.style.fill = 'var(--color-gray)';
+  }
+}
 
 let touchStartX = 0;
 let touchEndX = 0;
@@ -49,23 +62,3 @@ document.addEventListener("touchend", function(event) {
     }
   }
 });
-
-// автопрокручування слайд-шоу
-// slideIndex = 0;
-// carousel();
-
-// function carousel() {
-//   var i;
-//   var x = document.getElementsByClassName("mySlides");
-//   for (i = 0; i < x.length; i++) {
-//     x[i].style.display = "none";
-//   }
-//   slideIndex++;
-//   if (slideIndex > x.length) {slideIndex = 1}
-//   x[slideIndex-1].style.display = "block";
-//   setTimeout(carousel, 15000); // Change image every 2 seconds
-// }
-
-
-
-// ----------------------------------------------------------------------
