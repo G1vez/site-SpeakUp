@@ -1,5 +1,5 @@
 header {
-  background-color: var(--color-beige-400);
+  background-color: var(--color-menu);
   padding-top: 2rem;
   padding-bottom: 2rem;
   margin: auto;
@@ -125,6 +125,7 @@ header {
   overflow: hidden;
   touch-action: pan-y;
   border-radius: var(--border-radius);
+  margin-top: 49px;
 }
 
 .text-container, .slideshow-container {
@@ -253,6 +254,84 @@ header {
 .lightbox-slide img:active {
   transform: scale(1.1);
 }
+
+.grid-container {
+  margin-top: 125px;
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
+  padding-left: 12.291667%; /* 177px/1440 */
+  padding-right: 12.291667%;
+}
+
+.svg-insta{
+  fill: var(--color-brown-900);
+}
+
+.insta{
+  margin-right: 35px;
+}
+
+.clipbait a{
+  text-decoration: none;
+  color: var(--color-brown-900);
+}
+.clipbait{
+  margin-top: -13px;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-end {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+  align-items: center;
+  padding-left: 12.291667%; /* 177px/1440 */
+  padding-right: 12.291667%;
+  background-color: var(--color-menu);
+  height: 282px;
+}
+
+.logo-text {
+  grid-column: 1;
+}
+#logo-end{
+  margin-bottom: 21px;
+}
+.social-icons {
+  grid-column: 2;
+  justify-self: center;
+}
+
+.list {
+  grid-column: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin: 25px;
+  padding: 0;
+  list-style: none;
+}
+
+.list li {
+  margin-bottom: 20px;
+}
+
+.list a {
+  text-decoration: none;
+}
+
+.social-icons a {
+  /* margin-left: 10px; */
+}
+
+footer a{  
+  text-decoration: none;
+  color: var(--color-black);
+}
+
 /* Add this to make the lightbox container take up the full screen on mobile devices in landscape orientation */
 @media only screen and (max-width: 768px) and (orientation: landscape) {
   .lightbox-container {
@@ -292,6 +371,9 @@ header {
   .nav-toggle:focus + .nav-list {
     display: block; /* показати меню при фокусі на кнопці */
   }
+  .list{
+    display: none;
+  }
 }
 @media only screen and (max-width: 820px) {
   .container {
@@ -306,4 +388,13 @@ header {
     margin: 20px auto; /* add some margin to the top and bottom */
     width: 98vw;
   }
+}
+@media only screen and (max-width: 1014px) {
+  .list{
+    display: none;
+  }
+  .nav-end {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    
 }
