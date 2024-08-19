@@ -62,3 +62,69 @@ document.addEventListener("touchend", function(event) {
     }
   }
 });
+
+// ----------------------------
+let lightboxIndex = 1;
+
+// Show lightbox when clicking on a slide
+document.querySelectorAll('.mySlides').forEach((slide, index) => {
+  slide.addEventListener('click', () => {
+    lightboxIndex = index + 1;
+    showLightbox();
+  });
+});
+
+// Lightbox functions
+function showLightbox() {
+  const lightboxContainer = document.querySelector('.lightbox-container');
+  const lightboxSlides = document.querySelector('.lightbox-slides');
+  const slides = document.querySelectorAll('.mySlides');
+
+  lightboxContainer.style.display = 'block';
+  lightboxSlides.innerHTML = '';
+
+  slides.forEach((slide, index) => {
+    const lightboxSlide = document.createElement('div');
+    lightboxSlide.className = 'lightbox-slide';
+    lightboxSlide.innerHTML = slide.innerHTML;
+    lightboxSlides.appendChild(lightboxSlide);
+  });
+
+  showLightboxSlide(lightboxIndex);
+}
+
+function showLightboxSlide(n) {
+  const lightboxSlides = document.querySelectorAll('.lightbox-slide');
+  const lightboxPrev = document.querySelector('.lightbox-prev');
+  const lightboxNext = document.querySelector('.lightbox-next');
+
+  if (n > lightboxSlides.length) { lightboxIndex = 1 }
+  if (n < 1) { lightboxIndex = lightboxSlides.length }
+
+  for (let i = 0; i < lightboxSlides.length; i++) {
+    lightboxSlides[i].style.display = 'none';
+  }
+  lightboxSlides[lightboxIndex - 1].style.display = 'block';
+
+  lightboxPrev.style.display = lightboxIndex === 1 ? 'none' : 'block';
+  lightboxNext.style.display = lightboxIndex === lightboxSlides.length ? 'none' : 'block';
+}
+
+function lightboxPrev() {
+  showLightboxSlide(lightboxIndex -= 1);
+}
+
+function lightboxNext() {
+  showLightboxSlide(lightboxIndex += 1);
+}
+
+// Close lightbox when clicking on the close button or outside the lightbox
+document.querySelector('.lightbox-close').addEventListener('click', () => {
+  document.querySelector('.lightbox-container').style.display = 'none';
+});
+
+document.addEventListener('click', (e) => {
+  if (e.target === document.querySelector('.lightbox-container')) {
+    document.querySelector('.lightbox-container').style.display = 'none';
+  }
+});
