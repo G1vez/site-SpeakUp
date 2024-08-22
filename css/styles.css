@@ -70,3 +70,18 @@ h3 {
   color: rgb(0, 0, 0);
   text-decoration: none;
 }
+.article-text{
+  font-size: var(--font-size-article);
+}
+.gray{
+  color: var(--color-gray);
+}
+.black{
+  color: var(--color-black);
+}
+.blue{
+  color: #214A9C;
+}
+.fw-500{
+  font-weight: 500;
+}

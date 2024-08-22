@@ -1,3 +1,7 @@
+body a{
+  text-decoration: none;
+}
+
 header {
   background-color: var(--color-menu);
   padding-top: 2rem;
@@ -25,10 +29,6 @@ header {
   justify-content: space-around;
 }
 
-.nav a{
-  text-decoration: none;
-}
-
 .nav-toggle-container {
   display: flex;
   justify-content: space-between;
@@ -38,16 +38,6 @@ header {
 
 .ua-en {
   margin: 4px; /* 8/2, бо space-between*/
-}
-
-.ua-en:first-child{
-  font-weight: 500;
-  color: var(--color-text);
-}
-
-.ua-en:last-child{
-  font-weight: 400;
-  color: var(--color-gray);
 }
 
 .nav-list {
@@ -91,14 +81,13 @@ header {
 }
 
 .dropdown-menu li a {
-  text-decoration: none;
   padding: 0px;
 }
 
 .item-dropdown-menu:hover .dropdown-menu {display: block;}
   
 .container {
-  margin-top: 89px;
+  margin-top: 40px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
@@ -109,7 +98,6 @@ header {
 }
 .subtitle {
   font-size: var(--font-size-subtitle);
-  color: var(--color-gray);
   margin-top: -26px;
 }
 .text-container {
@@ -168,10 +156,6 @@ header {
 .next {
   right: 0;
 } 
-
-.next .svg-arrow {
-  fill: var(--color-gray);
-}
 
 .lightbox-container {
   position: fixed;
@@ -257,13 +241,29 @@ header {
 }
 
 .grid-container {
-  margin-top: 125px;
   display: grid;
-  grid-template-rows: repeat(2, 1fr);
-  padding-left: 12.291667%; /* 177px/1440 */
-  padding-right: 12.291667%;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
 }
 
+.card figure {
+  margin: 0;
+  padding-bottom: 16px;
+}
+
+.card img {
+  width: 100%;
+  object-fit: cover;
+  border-radius: var(--border-radius);
+}
+
+.small-card figure {
+  margin: 0;
+}
+
+.text-card{
+  margin-top: 18px;
+}
 .svg-insta{
   fill: var(--color-brown-900);
 }
@@ -273,7 +273,6 @@ header {
 }
 
 .clipbait a{
-  text-decoration: none;
   color: var(--color-brown-900);
 }
 .clipbait{
@@ -295,7 +294,7 @@ header {
 .nav-end {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 20px;
+  /* gap: 20px; */
   align-items: center;
   padding-left: 12.291667%; /* 177px/1440 */
   padding-right: 12.291667%;
@@ -331,12 +330,7 @@ header {
   margin-bottom: 20px;
 }
 
-.list a {
-  text-decoration: none;
-}
-
 footer a{  
-  text-decoration: none;
   color: var(--color-black);
 }
 
