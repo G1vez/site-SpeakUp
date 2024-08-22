@@ -128,3 +128,18 @@ document.addEventListener('click', (e) => {
     document.querySelector('.lightbox-container').style.display = 'none';
   }
 });
+
+const tooltip = document.querySelector('.tooltip');
+const closeBtn = document.querySelector('.close-btn');
+
+setTimeout(() => {
+  tooltip.classList.add('show');
+}, 1000); // show tooltip after 1 second
+
+closeBtn.addEventListener('click', () => {
+  tooltip.style.opacity = 0;
+  tooltip.style.transform = 'scale(0)';
+  setTimeout(() => {
+    tooltip.style.display = 'none';
+  }, 300);
+});
