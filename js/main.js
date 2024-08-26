@@ -136,10 +136,44 @@ setTimeout(() => {
   tooltip.classList.add('show');
 }, 1000); // show tooltip after 1 second
 
-closeBtn.addEventListener('click', () => {
-  tooltip.style.opacity = 0;
-  tooltip.style.transform = 'scale(0)';
-  setTimeout(() => {
-    tooltip.style.display = 'none';
-  }, 300);
+const images = document.querySelectorAll('.lightbox-slide img');
+
+images.forEach((image) => {
+  let initialScale = 1;
+  let currentScale = 1;
+  let startX = 0;
+  let startY = 0;
+  let startDistance = 0;
+
+  image.addEventListener('touchstart', (event) => {
+    if (event.touches.length === 2) {
+      startX = (event.touches[0].clientX + event.touches[1].clientX) / 2;
+      startY = (event.touches[0].clientY + event.touches[1].clientY) / 2;
+      startDistance = Math.sqrt(Math.pow(event.touches[0].clientX - event.touches[1].clientX, 2) + Math.pow(event.touches[0].clientY - event.touches[1].clientY, 2));
+    }
+  });
+
+  image.addEventListener('touchmove', (event) => {
+    if (event.touches.length === 2) {
+      const currentX = (event.touches[0].clientX + event.touches[1].clientX) / 2;
+      const currentY = (event.touches[0].clientY + event.touches[1].clientY) / 2;
+      const currentDistance = Math.sqrt(Math.pow(event.touches[0].clientX - event.touches[1].clientX, 2) + Math.pow(event.touches[0].clientY - event.touches[1].clientY, 2));
+
+      if (currentDistance > startDistance) {
+        currentScale = initialScale * (currentDistance / startDistance);
+        image.style.transform = `scale(${currentScale})`;
+      } else if (currentDistance < startDistance) {
+        currentScale = initialScale * (currentDistance / startDistance);
+        image.style.transform = `scale(${currentScale})`;
+      }
+    }
+  });
+
+  image.addEventListener('touchend', () => {
+    initialScale = currentScale;
+  });
+
+  image.addEventListener('click', (event) => {
+    event.preventDefault();
+  });
 });
