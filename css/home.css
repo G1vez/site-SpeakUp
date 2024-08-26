@@ -250,7 +250,9 @@ header {
   margin: 0;
   padding-bottom: 16px;
 }
-
+#square {
+  aspect-ratio: 1/1;
+}
 .card img {
   width: 100%;
   object-fit: cover;
