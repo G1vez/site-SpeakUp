@@ -190,21 +190,12 @@ header {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  transition: transform 0.3s ease-in-out;
 }
 
 .lightbox-slide img {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  transition: transform 0.3s ease-in-out;
-  touch-action: pinch-zoom;
-  user-select: none;
-  -webkit-user-drag: none;
-}
-
-.lightbox-slide img.zoomed {
-  transform: scale(1.5);
 }
 
 .lightbox-prev, .lightbox-next {
@@ -231,12 +222,6 @@ header {
   font-size: 32px;
   cursor: pointer;
   z-index: 1;
-}
-/* Add this to enable zooming */
-.lightbox-slide img {
-  touch-action: pinch-zoom;
-  user-select: none;
-  -webkit-user-drag: none;
 }
 
 .grid-container {
