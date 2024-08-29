@@ -224,6 +224,18 @@ header {
   z-index: 1;
 }
 
+hr {
+  border: none;
+  border-top: 2px solid var(--color-brown-400);
+  margin-top: calc(-42px + 11px);
+}
+.online-travel {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
+  gap: 23px;
+  margin-top: 36px;
+}
+
 .grid-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -241,10 +253,6 @@ header {
   width: 100%;
   object-fit: cover;
   border-radius: var(--border-radius);
-}
-
-.small-card figure {
-  margin: 0;
 }
 
 .text-card{
