@@ -1,0 +1,68 @@
+header  {
+  background-color:  var(--color-menu);
+  padding-top:  2rem;
+  padding-bottom:  2rem;
+  margin:  auto;
+}
+
+.nav  {
+  display:  flex;
+  justify-content:  space-around;
+}
+
+.nav-toggle-container  {
+  display:  flex;
+  justify-content:  space-between;
+  align-items:  center;
+  list-style:  none;
+}
+
+.ua-en  {
+  margin:  4px;  /*  8/2,  бо  space-between*/
+}
+
+.nav-list  {
+  list-style:  none;
+  display:  flex;
+}
+
+.nav-list  a{
+  padding:  var(--spacing-medium);
+  color:  var(--color-black);
+}
+
+.nav-toggle  {
+  display:  none;/*Приховати  кнопку  на  великих  екранах  */
+  border:  none;
+  cursor:  pointer;
+  background:  none;
+}
+
+.toggle-dropdown-menu  {
+  margin-left:  -17px;
+  margin-right:  11px;
+  border:  none;
+  background:  none;
+}
+
+.dropdown-menu  {
+  position:  absolute;
+  list-style:  none;
+  background-color:  #EEE4DB;
+  padding:  13px;
+  border-radius:  16px;
+  margin-top:  16px;
+  margin-left:  5px;
+  display:  none;
+  transform:  translateX(var(--spacing-small));
+}
+
+.dropdown-menu  li:not(:last-child)  {
+  margin-bottom:  8px;
+}
+
+.dropdown-menu  li  a  {
+  padding:  0px;
+}
+
+.item-dropdown-menu:hover  .dropdown-menu  {display:  block;}
