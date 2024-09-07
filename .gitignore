@@ -1,0 +1,13 @@
+### Python ###
+__pycache__/
+*.py[cod]
+
+venv/
+### Django ###
+*.log
+*.pot
+*.pyc
+__pycache__/
+
+SpeakUp/.env
+SpeakUp/db.sqlite3
