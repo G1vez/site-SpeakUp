@@ -10,14 +10,14 @@ header  {
   justify-content:  space-around;
 }
 
-.nav-toggle-container  {
+.nav-header  {
   display:  flex;
   justify-content:  space-between;
   align-items:  center;
   list-style:  none;
 }
 
-.ua-en  {
+.lang-switcher  {
   margin:  4px;  /*  8/2,  бо  space-between*/
 }
 
@@ -38,14 +38,14 @@ header  {
   background:  none;
 }
 
-.toggle-dropdown-menu  {
+.submenu-toggle  {
   margin-left:  -17px;
   margin-right:  11px;
   border:  none;
   background:  none;
 }
 
-.dropdown-menu  {
+.submenu  {
   position:  absolute;
   list-style:  none;
   background-color:  #EEE4DB;
@@ -57,12 +57,12 @@ header  {
   transform:  translateX(var(--spacing-small));
 }
 
-.dropdown-menu  li:not(:last-child)  {
+.submenu  li:not(:last-child)  {
   margin-bottom:  8px;
 }
 
-.dropdown-menu  li  a  {
+.submenu  li  a  {
   padding:  0px;
 }
 
-.item-dropdown-menu:hover  .dropdown-menu  {display:  block;}
+.submenu-item:hover  .submenu  {display:  block;}
