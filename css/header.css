@@ -66,3 +66,24 @@ header  {
 }
 
 .submenu-item:hover  .submenu  {display:  block;}
+
+@media only screen and (max-width: 775px) {
+  .nav-list {
+    display: none;
+  }
+  .nav-list .lang-switcher {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 40px; /* відстань від кнопки nav-toggle */
+  }
+  .nav-toggle{
+    display: block;
+  } 
+  .nav-header.open .nav-list {
+    display: block; /* показати меню при відкритті */
+  }
+  .nav-toggle:focus + .nav-list {
+    display: block; /* показати меню при фокусі на кнопці */
+  }
+}
