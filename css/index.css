@@ -313,6 +313,31 @@ footer a{
   opacity: 1;
 }
 
+.loading-placeholder {
+  background-color: #ccc; /* Gray background */
+  padding: 20px;
+}
+
+
+.card-image-placeholder {
+  width: 100px;
+  height: 100px;
+  background-color: #ccc;
+}
+
+
+.card-title-placeholder {
+  font-size: 18px;
+  font-weight: bold;
+  color: #ccc;
+}
+
+
+.card-description-placeholder {
+  font-size: 14px;
+  color: #ccc;
+}
+
   /*  ---------------------------------- Все для малих екранів --------------736---------------*/
 @media only screen and (max-width: 775px) {
   .nav-list {
