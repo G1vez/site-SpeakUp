@@ -4,7 +4,6 @@ $.ajax({
   dataType: 'json',
   success: function(data) {
     console.log(data);
-    const numLoadingPlaceholders = $('.loading-placeholder').length;
     const numDataItems = data.length;
     const numItemsToProcess = Math.min(numLoadingPlaceholders, numDataItems);
 
@@ -22,18 +21,12 @@ $.ajax({
           </div>
         `;
       
-        const loadingPlaceholder = $(`#cards-container > .loading-placeholder:eq(${i})`);
+        $('#cards-container').append(cardHTML);
         if (i === 0) {
-          loadingPlaceholder.attr('id', 'square');
+          $('#cards-container > :eq(0)').attr('id', 'square');
         }
-        loadingPlaceholder.html(cardHTML);
-    }
-
-    // Remove any remaining loading placeholders
-    for (let i = numItemsToProcess; i < numLoadingPlaceholders; i++) {
-      $(`#cards-container > .loading-placeholder:eq(${i})`).remove();
-    }
-  },
+      }
+    },
   error: function(xhr, status, error) {
     console.error('Error:', error);
   }
