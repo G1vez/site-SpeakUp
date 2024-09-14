@@ -1,0 +1,164 @@
+[
+
+  {
+
+    "model": "journal.Category",
+
+    "pk": 1,
+
+    "fields": {
+
+      "name": "Категорія 1",
+
+      "slug": "kategorya-1"
+
+    }
+
+  },
+
+  {
+
+    "model": "journal.Category",
+
+    "pk": 2,
+
+    "fields": {
+
+      "name": "Категорія 2",
+
+      "slug": "kategorya-2"
+
+    }
+
+  },
+
+  {
+
+    "model": "journal.Category",
+
+    "pk": 3,
+
+    "fields": {
+
+      "name": "Категорія 3",
+
+      "slug": "kategorya-3"
+
+    }
+
+  },
+
+  {
+
+    "model": "journal.Category",
+
+    "pk": 4,
+
+    "fields": {
+
+      "name": "Категорія 4",
+
+      "slug": "kategorya-4"
+
+    }
+
+  },
+
+  {
+
+    "model": "journal.Category",
+
+    "pk": 5,
+
+    "fields": {
+
+      "name": "Категорія 5",
+
+      "slug": "kategorya-5"
+
+    }
+
+  },
+
+  {
+
+    "model": "journal.Category",
+
+    "pk": 6,
+
+    "fields": {
+
+      "name": "Категорія 6",
+
+      "slug": "kategorya-6"
+
+    }
+
+  },
+
+  {
+
+    "model": "journal.Category",
+
+    "pk": 7,
+
+    "fields": {
+
+      "name": "Категорія 7",
+
+      "slug": "kategorya-7"
+
+    }
+
+  },
+
+  {
+
+    "model": "journal.Category",
+
+    "pk": 8,
+
+    "fields": {
+
+      "name": "Категорія 8",
+
+      "slug": "kategorya-8"
+
+    }
+
+  },
+
+  {
+
+    "model": "journal.Category",
+
+    "pk": 9,
+
+    "fields": {
+
+      "name": "Категорія 9",
+
+      "slug": "kategorya-9"
+
+    }
+
+  },
+
+  {
+
+    "model": "journal.Category",
+
+    "pk": 10,
+
+    "fields": {
+
+      "name": "Категорія 10",
+
+      "slug": "kategorya-10"
+
+    }
+
+  }
+
+]
+

@@ -4,6 +4,7 @@ from django_summernote.admin import SummernoteModelAdmin
 
 
 class ArticleAdmin(SummernoteModelAdmin):
+    readonly_fields = ['views']
     summernote_fields = ('body',)
     prepopulated_fields = {'slug': ('title',)}
 

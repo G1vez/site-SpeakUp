@@ -1,0 +1,323 @@
+[
+
+  {
+
+    "model": "auth.user",
+
+    "pk": 1,
+
+    "fields": {
+
+      "username": "author1",
+
+      "first_name": "Ім'я 1",
+
+      "last_name": "Прізвище 1",
+
+      "email": "author1@example.com",
+
+      "password": "pbkdf2_sha256$150000$7h5Ys5+hr6VYViNih8G2wC$HQ7yR5Z5xFbd5o5H63Y5TZ9tMAdcCh/3Z+DsUqFGZ7A=",
+
+      "is_staff": false,
+
+      "is_active": true,
+
+      "is_superuser": false,
+
+      "last_login": null,
+
+      "date_joined": "2023-09-01T00:00:00Z"
+
+    }
+
+  },
+
+  {
+
+    "model": "auth.user",
+
+    "pk": 2,
+
+    "fields": {
+
+      "username": "author2",
+
+      "first_name": "Ім'я 2",
+
+      "last_name": "Прізвище 2",
+
+      "email": "author2@example.com",
+
+      "password": "pbkdf2_sha256$150000$Dea0A+kMskdRTdnE9a8ibC$A2rZQ8om1J/Rg4ZH6VfG00sj8Dk9xJk2rcSZtZX5C+A=",
+
+      "is_staff": false,
+
+      "is_active": true,
+
+      "is_superuser": false,
+
+      "last_login": null,
+
+      "date_joined": "2023-09-02T00:00:00Z"
+
+    }
+
+  },
+
+  {
+
+    "model": "auth.user",
+
+    "pk": 3,
+
+    "fields": {
+
+      "username": "author3",
+
+      "first_name": "Ім'я 3",
+
+      "last_name": "Прізвище 3",
+
+      "email": "author3@example.com",
+
+      "password": "pbkdf2_sha256$150000$Pbg3QH4aAfPvGRdJjTFeZ0$Y4UQhslbMD3RxYw5ViGfkKSKed7B9mLTpP4X9Z88fNw=",
+
+      "is_staff": false,
+
+      "is_active": true,
+
+      "is_superuser": false,
+
+      "last_login": null,
+
+      "date_joined": "2023-09-03T00:00:00Z"
+
+    }
+
+  },
+
+  {
+
+    "model": "auth.user",
+
+    "pk": 4,
+
+    "fields": {
+
+      "username": "author4",
+
+      "first_name": "Ім'я 4",
+
+      "last_name": "Прізвище 4",
+
+      "email": "author4@example.com",
+
+      "password": "pbkdf2_sha256$150000$0Q4dShYIcF9P3bIqRWUe9c$Lo5hctwyFk8el8e0fI3KwT4HMnWsJbcD6vZjFq5Jq7I=",
+
+      "is_staff": false,
+
+      "is_active": true,
+
+      "is_superuser": false,
+
+      "last_login": null,
+
+      "date_joined": "2023-09-04T00:00:00Z"
+
+    }
+
+  },
+
+  {
+
+    "model": "auth.user",
+
+    "pk": 5,
+
+    "fields": {
+
+      "username": "author5",
+
+      "first_name": "Ім'я 5",
+
+      "last_name": "Прізвище 5",
+
+      "email": "author5@example.com",
+
+      "password": "pbkdf2_sha256$150000$Qx3Ay3RXQG5G1cK2A1F+Hb$6eRXvvH6kqT06MjD2RQxjF1Fhv4FA+GT5CCHIG5AtmQ=",
+
+      "is_staff": false,
+
+      "is_active": true,
+
+      "is_superuser": false,
+
+      "last_login": null,
+
+      "date_joined": "2023-09-05T00:00:00Z"
+
+    }
+
+  },
+
+  {
+
+    "model": "auth.user",
+
+    "pk": 6,
+
+    "fields": {
+
+      "username": "author6",
+
+      "first_name": "Ім'я 6",
+
+      "last_name": "Прізвище 6",
+
+      "email": "author6@example.com",
+
+      "password": "pbkdf2_sha256$150000$SpTq2KoEdrx03oCeu4SywF$9Fyz7oCBwbyT6mS7KK/ZnJ0nOtrE3/XcB2Hfhtrkn3M=",
+
+      "is_staff": false,
+
+      "is_active": true,
+
+      "is_superuser": false,
+
+      "last_login": null,
+
+      "date_joined": "2023-09-06T00:00:00Z"
+
+    }
+
+  },
+
+  {
+
+    "model": "auth.user",
+
+    "pk": 7,
+
+    "fields": {
+
+      "username": "author7",
+
+      "first_name": "Ім'я 7",
+
+      "last_name": "Прізвище 7",
+
+      "email": "author7@example.com",
+
+      "password": "pbkdf2_sha256$150000$wQKzvnICjql3FiHZ5o8F0i$1Puv0eq1PrDCeHsnznh7qkNp1Rm5R60q6S7S3bbNAt8=",
+
+      "is_staff": false,
+
+      "is_active": true,
+
+      "is_superuser": false,
+
+      "last_login": null,
+
+      "date_joined": "2023-09-07T00:00:00Z"
+
+    }
+
+  },
+
+  {
+
+    "model": "auth.user",
+
+    "pk": 8,
+
+    "fields": {
+
+      "username": "author8",
+
+      "first_name": "Ім'я 8",
+
+      "last_name": "Прізвище 8",
+
+      "email": "author8@example.com",
+
+      "password": "pbkdf2_sha256$150000$2Y4gZ4TSuNYEhnwLK4I3+X$14eJmZJqQ3YeH65+qktqJD8cmBAz+zU4t3c6TAmdm9U=",
+
+      "is_staff": false,
+
+      "is_active": true,
+
+      "is_superuser": false,
+
+      "last_login": null,
+
+      "date_joined": "2023-09-08T00:00:00Z"
+
+    }
+
+  },
+
+  {
+
+    "model": "auth.user",
+
+    "pk": 9,
+
+    "fields": {
+
+      "username": "author9",
+
+      "first_name": "Ім'я 9",
+
+      "last_name": "Прізвище 9",
+
+      "email": "author9@example.com",
+
+      "password": "pbkdf2_sha256$150000$y8N0NkXJ7iUJ2Fh4PZ5Ho$JsWSh9zeyyL0c5RdU9Pgs/r5A1qg/PnH1+aKOkSTq1g=",
+
+      "is_staff": false,
+
+      "is_active": true,
+
+      "is_superuser": false,
+
+      "last_login": null,
+
+      "date_joined": "2023-09-09T00:00:00Z"
+
+    }
+
+  },
+
+  {
+
+    "model": "auth.user",
+
+    "pk": 10,
+
+    "fields": {
+
+      "username": "author10",
+
+      "first_name": "Ім'я 10",
+
+      "last_name": "Прізвище 10",
+
+      "email": "author10@example.com",
+
+      "password": "pbkdf2_sha256$150000$zwJwxR6Sa9MbWb0mnMA5Wc$V2e/F7lGh9foXk+FhftTDz/jf0WUJZJm7XPuXfx9WJY=",
+
+      "is_staff": false,
+
+      "is_active": true,
+
+      "is_superuser": false,
+
+      "last_login": null,
+
+      "date_joined": "2023-09-10T00:00:00Z"
+
+    }
+
+  }
+
+]

@@ -1,0 +1,382 @@
+[
+  {
+    "model": "journal.Article",
+    "pk": 1,
+    "fields": {
+      "title": "Стаття 1",
+      "slug": "stattya-1",
+      "image_url": "http://example.com/image1.jpg",
+      "author": 1,
+      "intro": "Це вступ до статті 1",
+      "body": "Це тіло статті 1",
+      "category": 1,
+      "tags": [],
+      "publish_at": "2023-09-01T00:00:00Z",
+      "created_at": "2023-09-01T00:00:00Z",
+      "updated_at": "2023-09-01T00:00:00Z",
+      "views": 100,
+      "status": "DR"
+    }
+  },
+  {
+    "model": "journal.Article",
+    "pk": 2,
+    "fields": {
+      "title": "Стаття 2",
+      "slug": "stattya-2",
+      "image_url": "http://example.com/image2.jpg",
+      "author": 1,
+      "intro": "Це вступ до статті 2",
+      "body": "Це тіло статті 2",
+      "category": 1,
+      "tags": [],
+      "publish_at": "2023-09-02T00:00:00Z",
+      "created_at": "2023-09-02T00:00:00Z",
+      "updated_at": "2023-09-02T00:00:00Z",
+      "views": 150,
+      "status": "PB"
+    }
+  },
+  {
+    "model": "journal.Article",
+    "pk": 3,
+    "fields": {
+      "title": "Стаття 3",
+      "slug": "stattya-3",
+      "image_url": "http://example.com/image3.jpg",
+      "author": 2,
+      "intro": "Це вступ до статті 3",
+      "body": "Це тіло статті 3",
+      "category": 1,
+      "tags": [],
+      "publish_at": "2023-09-03T00:00:00Z",
+      "created_at": "2023-09-03T00:00:00Z",
+      "updated_at": "2023-09-03T00:00:00Z",
+      "views": 200,
+      "status": "DR"
+    }
+  },
+  {
+    "model": "journal.Article",
+    "pk": 4,
+    "fields": {
+      "title": "Стаття 4",
+      "slug": "stattya-4",
+      "image_url": "http://example.com/image4.jpg",
+      "author": 2,
+      "intro": "Це вступ до статті 4",
+      "body": "Це тіло статті 4",
+      "category": 2,
+      "tags": [],
+      "publish_at": "2023-09-04T00:00:00Z",
+      "created_at": "2023-09-04T00:00:00Z",
+      "updated_at": "2023-09-04T00:00:00Z",
+      "views": 250,
+      "status": "PB"
+    }
+  },
+  {
+    "model": "journal.Article",
+    "pk": 5,
+    "fields": {
+      "title": "Стаття 5",
+      "slug": "stattya-5",
+      "image_url": "http://example.com/image5.jpg",
+      "author": 3,
+      "intro": "Це вступ до статті 5",
+      "body": "Це тіло статті 5",
+      "category": 2,
+      "tags": [],
+      "publish_at": "2023-09-05T00:00:00Z",
+      "created_at": "2023-09-05T00:00:00Z",
+      "updated_at": "2023-09-05T00:00:00Z",
+      "views": 300,
+      "status": "DR"
+    }
+  },
+  {
+    "model": "journal.Article",
+    "pk": 6,
+    "fields": {
+      "title": "Стаття 6",
+      "slug": "stattya-6",
+      "image_url": "http://example.com/image6.jpg",
+      "author": 3,
+      "intro": "Це вступ до статті 6",
+      "body": "Це тіло статті 6",
+      "category": 3,
+      "tags": [],
+      "publish_at": "2023-09-06T00:00:00Z",
+      "created_at": "2023-09-06T00:00:00Z",
+      "updated_at": "2023-09-06T00:00:00Z",
+      "views": 350,
+      "status": "PB"
+    }
+  },
+  {
+    "model": "journal.Article",
+    "pk": 7,
+    "fields": {
+      "title": "Стаття 7",
+      "slug": "stattya-7",
+      "image_url": "http://example.com/image7.jpg",
+      "author": 4,
+      "intro": "Це вступ до статті 7",
+      "body": "Це тіло статті 7",
+      "category": 3,
+      "tags": [],
+      "publish_at": "2023-09-07T00:00:00Z",
+      "created_at": "2023-09-07T00:00:00Z",
+      "updated_at": "2023-09-07T00:00:00Z",
+      "views": 400,
+      "status": "DR"
+    }
+  },
+  {
+    "model": "journal.Article",
+    "pk": 8,
+    "fields": {
+      "title": "Стаття 8",
+      "slug": "stattya-8",
+      "image_url": "http://example.com/image8.jpg",
+      "author": 4,
+      "intro": "Це вступ до статті 8",
+      "body": "Це тіло статті 8",
+      "category": 4,
+      "tags": [],
+      "publish_at": "2023-09-08T00:00:00Z",
+      "created_at": "2023-09-08T00:00:00Z",
+      "updated_at": "2023-09-08T00:00:00Z",
+      "views": 450,
+      "status": "PB"
+    }
+  },
+  {
+    "model": "journal.Article",
+    "pk": 9,
+    "fields": {
+      "title": "Стаття 9",
+      "slug": "stattya-9",
+      "image_url": "http://example.com/image9.jpg",
+      "author": 5,
+      "intro": "Це вступ до статті 9",
+      "body": "Це тіло статті 9",
+      "category": 4,
+      "tags": [],
+      "publish_at": "2023-09-09T00:00:00Z",
+      "created_at": "2023-09-09T00:00:00Z",
+      "updated_at": "2023-09-09T00:00:00Z",
+      "views": 500,
+      "status": "DR"
+    }
+  },
+  {
+    "model": "journal.Article",
+    "pk": 10,
+    "fields": {
+      "title": "Стаття 10",
+      "slug": "stattya-10",
+      "image_url": "http://example.com/image10.jpg",
+      "author": 5,
+      "intro": "Це вступ до статті 10",
+      "body": "Це тіло статті 10",
+      "category": 5,
+      "tags": [],
+      "publish_at": "2023-09-10T00:00:00Z",
+      "created_at": "2023-09-10T00:00:00Z",
+      "updated_at": "2023-09-10T00:00:00Z",
+      "views": 550,
+      "status": "PB"
+    }
+  },
+  {
+    "model": "journal.Article",
+    "pk": 11,
+    "fields": {
+      "title": "Стаття 11",
+      "slug": "stattya-11",
+      "image_url": "http://example.com/image11.jpg",
+      "author": 6,
+      "intro": "Це вступ до статті 11",
+      "body": "Це тіло статті 11",
+      "category": 5,
+      "tags": [],
+      "publish_at": "2023-09-11T00:00:00Z",
+      "created_at": "2023-09-11T00:00:00Z",
+      "updated_at": "2023-09-11T00:00:00Z",
+      "views": 600,
+      "status": "DR"
+    }
+  },
+  {
+    "model": "journal.Article",
+    "pk": 12,
+    "fields": {
+      "title": "Стаття 12",
+      "slug": "stattya-12",
+      "image_url": "http://example.com/image12.jpg",
+      "author": 6,
+      "intro": "Це вступ до статті 12",
+      "body": "Це тіло статті 12",
+      "category": 6,
+      "tags": [],
+      "publish_at": "2023-09-12T00:00:00Z",
+      "created_at": "2023-09-12T00:00:00Z",
+      "updated_at": "2023-09-12T00:00:00Z",
+      "views": 650,
+      "status": "PB"
+    }
+  },
+  {
+    "model": "journal.Article",
+    "pk": 13,
+    "fields": {
+      "title": "Стаття 13",
+      "slug": "stattya-13",
+      "image_url": "http://example.com/image13.jpg",
+      "author": 7,
+      "intro": "Це вступ до статті 13",
+      "body": "Це тіло статті 13",
+      "category": 6,
+      "tags": [],
+      "publish_at": "2023-09-13T00:00:00Z",
+      "created_at": "2023-09-13T00:00:00Z",
+      "updated_at": "2023-09-13T00:00:00Z",
+      "views": 700,
+      "status": "DR"
+    }
+  },
+  {
+    "model": "journal.Article",
+    "pk": 14,
+    "fields": {
+      "title": "Стаття 14",
+      "slug": "stattya-14",
+      "image_url": "http://example.com/image14.jpg",
+      "author": 7,
+      "intro": "Це вступ до статті 14",
+      "body": "Це тіло статті 14",
+      "category": 7,
+      "tags": [],
+      "publish_at": "2023-09-14T00:00:00Z",
+      "created_at": "2023-09-14T00:00:00Z",
+      "updated_at": "2023-09-14T00:00:00Z",
+      "views": 750,
+      "status": "PB"
+    }
+  },
+  {
+    "model": "journal.Article",
+    "pk": 15,
+    "fields": {
+      "title": "Стаття 15",
+      "slug": "stattya-15",
+      "image_url": "http://example.com/image15.jpg",
+      "author": 8,
+      "intro": "Це вступ до статті 15",
+      "body": "Це тіло статті 15",
+      "category": 7,
+      "tags": [],
+      "publish_at": "2023-09-15T00:00:00Z",
+      "created_at": "2023-09-15T00:00:00Z",
+      "updated_at": "2023-09-15T00:00:00Z",
+      "views": 800,
+      "status": "DR"
+    }
+  },
+  {
+    "model": "journal.Article",
+    "pk": 16,
+    "fields": {
+      "title": "Стаття 16",
+      "slug": "stattya-16",
+      "image_url": "http://example.com/image16.jpg",
+      "author": 8,
+      "intro": "Це вступ до статті 16",
+      "body": "Це тіло статті 16",
+      "category": 8,
+      "tags": [],
+      "publish_at": "2023-09-16T00:00:00Z",
+      "created_at": "2023-09-16T00:00:00Z",
+      "updated_at": "2023-09-16T00:00:00Z",
+      "views": 850,
+      "status": "PB"
+    }
+  },
+  {
+    "model": "journal.Article",
+    "pk": 17,
+    "fields": {
+      "title": "Стаття 17",
+      "slug": "stattya-17",
+      "image_url": "http://example.com/image17.jpg",
+      "author": 9,
+      "intro": "Це вступ до статті 17",
+      "body": "Це тіло статті 17",
+      "category": 8,
+      "tags": [],
+      "publish_at": "2023-09-17T00:00:00Z",
+      "created_at": "2023-09-17T00:00:00Z",
+      "updated_at": "2023-09-17T00:00:00Z",
+      "views": 900,
+      "status": "DR"
+    }
+  },
+  {
+    "model": "journal.Article",
+    "pk": 18,
+    "fields": {
+      "title": "Стаття 18",
+      "slug": "stattya-18",
+      "image_url": "http://example.com/image18.jpg",
+      "author": 9,
+      "intro": "Це вступ до статті 18",
+      "body": "Це тіло статті 18",
+      "category": 9,
+      "tags": [],
+      "publish_at": "2023-09-18T00:00:00Z",
+      "created_at": "2023-09-18T00:00:00Z",
+      "updated_at": "2023-09-18T00:00:00Z",
+      "views": 950,
+      "status": "PB"
+    }
+  },
+  {
+    "model": "journal.Article",
+    "pk": 19,
+    "fields": {
+      "title": "Стаття 19",
+      "slug": "stattya-19",
+      "image_url": "http://example.com/image19.jpg",
+      "author": 10,
+      "intro": "Це вступ до статті 19",
+      "body": "Це тіло статті 19",
+      "category": 9,
+      "tags": [],
+      "publish_at": "2023-09-19T00:00:00Z",
+      "created_at": "2023-09-19T00:00:00Z",
+      "updated_at": "2023-09-19T00:00:00Z",
+      "views": 1000,
+      "status": "DR"
+    }
+  },
+  {
+    "model": "journal.Article",
+    "pk": 20,
+    "fields": {
+      "title": "Стаття 20",
+      "slug": "stattya-20",
+      "image_url": "http://example.com/image20.jpg",
+      "author": 10,
+      "intro": "Це вступ до статті 20",
+      "body": "Це тіло статті 20",
+      "category": 10,
+      "tags": [],
+      "publish_at": "2023-09-20T00:00:00Z",
+      "created_at": "2023-09-20T00:00:00Z",
+      "updated_at": "2023-09-20T00:00:00Z",
+      "views": 1050,
+      "status": "PB"
+    }
+  }
+]

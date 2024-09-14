@@ -38,6 +38,8 @@ class Article(models.Model):
     publish_at = models.DateTimeField(default=timezone.now)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    views = models.PositiveIntegerField(default=0)
+
     status = models.CharField(
             max_length=2,
             choices=Status,
@@ -45,9 +47,9 @@ class Article(models.Model):
     )
 
     class Meta:
-        ordering = ['-publish_at']
+        ordering = ['-views']
         indexes = [
-                models.Index(fields=['-publish_at']),
+                models.Index(fields=['-views']),
         ]
 
     def save(self, *args, **kwargs):

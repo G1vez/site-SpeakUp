@@ -32,6 +32,7 @@ class ArticleListSerializer(serializers.ModelSerializer):
                 'title',
                 'image_url',
                 'intro',
+                'views',
                 'publish_at',
                 'detail_url',
         ]
@@ -51,6 +52,7 @@ class ArticleDetailSerializer(TaggitSerializer, serializers.ModelSerializer):
                 'category_name',
                 'body',
                 'tags',
+                'views',
                 'publish_at',
         ]
 
