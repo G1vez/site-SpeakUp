@@ -32,5 +32,9 @@ class ArticleAdmin(SummernoteModelAdmin, TranslationAdmin):
     prepopulated_fields = {'slug': ('title',)}
 
 
+class CategoryAdmin(TranslationAdmin):
+    prepopulated_fields = {'slug': ('name',)}
+
+
 admin.site.register(Article, ArticleAdmin)
-admin.site.register(Category)
+admin.site.register(Category, CategoryAdmin)
