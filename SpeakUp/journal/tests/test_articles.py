@@ -1,4 +1,4 @@
-from django.test import TestCase
+from rest_framework.test import APITestCase
 from rest_framework import status
 from django.urls import reverse
 from journal.models import Article
@@ -8,7 +8,7 @@ from SpeakUp.settings import REST_FRAMEWORK
 PAGE_SIZE = REST_FRAMEWORK.get('PAGE_SIZE')
 
 
-class ArticleTests(TestCase):
+class ArticleTests(APITestCase):
 
     def setUp(self):
         self.article_count = 20
