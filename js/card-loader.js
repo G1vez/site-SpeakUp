@@ -12,38 +12,23 @@ function createCardHTML(item) {
   `;
 }
 
-const cardsContainer = document.getElementById('cards-container');
-
-// Перевірка основного сервера
-fetch('http://127.0.0.1:8000/articles/')
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-    return response.json();
-  })
-  .then(data => {
-    data.forEach(item => {
-      cardsContainer.innerHTML += createCardHTML(item);
-    });
-  })
-  .catch(error => {
-    console.error('Error fetching articles:', error);
-
-    // Резервний запит до локального JSON-файлу
-    fetch('http://localhost:8000/podojg.json') // Тепер використовуємо HTTP сервер
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Failed to fetch local JSON');
-        }
-        return response.json();
-      })
-      .then(json => {
-        json.forEach(item => {
-          cardsContainer.innerHTML += createCardHTML(item);
-        });
-      })
-      .catch(localError => {
-        console.error('Error fetching local JSON:', localError);
-      });
+fetch({
+  type: 'GET',
+  url: 'http://127.0.0.1:8000/articles/',
+  dataType: 'json'
+})
+.then(response => response.json())
+.then(data => {
+  data.forEach(item => {
+    cardsContainer.innerHTML += createCardHTML(item);
   });
+})
+.catch(error => {
+  fetch('http://[::]:8000/podojg.json')
+    .then(response => response.json())
+    .then(json => {
+      json.forEach(item => {
+        cardsContainer.innerHTML += createCardHTML(item);
+      });
+    });
+});
