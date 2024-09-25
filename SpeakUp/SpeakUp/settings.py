@@ -27,7 +27,9 @@ SECRET_KEY = 'django-insecure-ueequ(ng!ruimbtpgyg8+d!sjjro7kaj&grgaxm6dm31)h_(*+
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-
+INTERNAL_IPS = [
+    '127.0.0.1',
+]
 
 # Application definition
 
@@ -43,6 +45,7 @@ INSTALLED_APPS = [
 
 
     # Thrird parthy apps
+    'debug_toolbar',
     'rest_framework',
     'django_summernote',
     'taggit',
@@ -61,6 +64,7 @@ REST_FRAMEWORK = {
 }
 
 MIDDLEWARE = [
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     "django.middleware.locale.LocaleMiddleware",
