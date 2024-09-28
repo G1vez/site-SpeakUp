@@ -13,6 +13,13 @@ class Category(models.Model):
         return self.name
 
 
+class PublishedManager(models.Manager):
+    def get_queryset(self):
+        return (
+            super().get_queryset().filter(status=Article.Status.PUBLISHED)
+        )
+
+
 class Article(models.Model):
 
     class Status(models.TextChoices):
@@ -39,6 +46,9 @@ class Article(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     views = models.PositiveIntegerField(default=0)
+
+    objects = models.Manager()
+    published = PublishedManager()
 
     status = models.CharField(
             max_length=2,

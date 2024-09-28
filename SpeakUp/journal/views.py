@@ -11,7 +11,7 @@ from journal.api.serializers import (
 
 class ArticleViewSet(ReadOnlyModelViewSet):
     queryset = (
-        Article.objects
+        Article.published
         .select_related('author', 'category')
         .prefetch_related('tags')
         .all()
@@ -37,7 +37,7 @@ class ArticleViewSet(ReadOnlyModelViewSet):
             )
     def articles_by_tag(self, request, tag_slug=None):
         articles = (
-            Article.objects
+            Article.published
             .filter(tags__slug=tag_slug)
             .select_related('author', 'category')
             .prefetch_related('tags')
