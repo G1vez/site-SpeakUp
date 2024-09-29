@@ -64,6 +64,18 @@ class ArticleDetailSerializer(TaggitSerializer, serializers.ModelSerializer):
 
 
 class CategorySerializer(serializers.ModelSerializer):
+    articles_url = serializers.SerializerMethodField()
+
     class Meta:
         model = Category
-        fields = '__all__'
+        fields = ['name', 'slug', 'articles_url']
+
+    def get_articles_url(self, obj):
+        requset = self.context.get('request')
+        if requset is None:
+            return None
+        relative_url = reverse(
+            'article-list-by-category',
+            kwargs={'category_slug': obj.slug}
+        )
+        return requset.build_absolute_uri(relative_url)
