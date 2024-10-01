@@ -24,7 +24,7 @@ fetch({
   });
 })
 .catch(error => {
-  fetch('http://[::]:8000/podojg.json')
+  fetch('http://localhost:8000/podojg.json')
     .then(response => response.json())
     .then(json => {
       json.forEach(item => {
