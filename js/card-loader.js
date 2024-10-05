@@ -11,7 +11,7 @@ function createCardHTML(item) {
     </div>
   `;
 }
-
+const cardsContainer = document.getElementById('cards-container');
 fetch({
   type: 'GET',
   url: 'http://127.0.0.1:8000/articles/',
@@ -19,16 +19,18 @@ fetch({
 })
 .then(response => response.json())
 .then(data => {
-  data.forEach(item => {
+  cardsContainer.innerHTML = ''; // clear the container
+  data.results.forEach(item => {
     cardsContainer.innerHTML += createCardHTML(item);
   });
 })
 .catch(error => {
-  fetch('http://localhost:8000/podojg.json')
+  fetch('http://127.0.0.1:5500/locally/podojg.json')
     .then(response => response.json())
     .then(json => {
-      json.forEach(item => {
+      cardsContainer.innerHTML = ''; // clear the container
+      json.results.forEach(item => {
         cardsContainer.innerHTML += createCardHTML(item);
       });
-    });
+    })
 });
