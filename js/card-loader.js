@@ -1,13 +1,15 @@
 function createCardHTML(item) {
   return `
-    <figure>
-      <a href=" ">
-        <img src="${item.image_url}" alt="${item.title}">
-      </a>
-    </figure>
-    <div>
-      <a href=" " class="article-text black">${item.title}</a>
-      <div class="gray text-card">${item.intro}</div>
+    <div class="card">
+      <figure>
+        <a href="">
+          <img src="${item.image_url}" alt="${item.title}">
+        </a>
+      </figure>
+      <div>
+        <a href="" class="article-text black">${item.title}</a>
+        <div class="gray text-card">${item.intro}</div>
+      </div>
     </div>
   `;
 }
