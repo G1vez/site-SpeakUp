@@ -1,9 +1,9 @@
-function createCardHTML(item) {
+function createCardHTML(item, index) {
   return `
     <div class="card">
       <figure>
         <a href="">
-          <img src="${item.image_url}" alt="${item.title}">
+          <img ${index === 0 ? 'id="square"' : ''} src="${item.image_url}" alt="${item.title}">
         </a>
       </figure>
       <div>
@@ -22,8 +22,8 @@ fetch({
 .then(response => response.json())
 .then(data => {
   cardsContainer.innerHTML = ''; // clear the container
-  data.results.forEach(item => {
-    cardsContainer.innerHTML += createCardHTML(item);
+  data.results.forEach((item, index) => {
+    cardsContainer.innerHTML += createCardHTML(item, index);
   });
 })
 .catch(error => {
@@ -31,8 +31,8 @@ fetch({
     .then(response => response.json())
     .then(json => {
       cardsContainer.innerHTML = ''; // clear the container
-      json.results.forEach(item => {
-        cardsContainer.innerHTML += createCardHTML(item);
+      json.results.forEach((item, index) => {
+        cardsContainer.innerHTML += createCardHTML(item, index);
       });
     })
 });
