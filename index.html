@@ -9,41 +9,13 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="./css/global.css">
     <link rel="stylesheet" href="./css/index.css">
-    <script defer src="./js/main.js"></script><!-- 'defer' робить так що наш код виконується після завантаження сторінки. -->
+    <link rel="stylesheet" href="./css/header.css">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script defer src="./js/main.js"></script>
+    <script defer src="./js/card-loader.js"></script>    
 </head>
 <body>
-  <header>
-    <nav class="nav" aria-label="Navigation">
-      <a class="logo-text" href="#">SpeakUp</a>
-      <div class="nav-header">
-        <ul class="nav-list">
-          <li><a href="">Про нас</a></li>
-          <li><a href="">Історії</a></li>
-          <li class="submenu-item">
-            <a href="">Статті</a>
-            <button class="submenu-toggle">
-              <svg width="13" height="8" viewBox="0 0 13 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path class="svg-icon", d="M5.84442 7.2437C6.20702 7.58543 6.79588 7.58543 7.15848 7.2437L12.728 1.99473C13.0907 1.653 13.0907 1.09803 12.728 0.756297C12.3654 0.414567 11.7766 0.414567 11.414 0.756297L6.5 5.38742L1.58602 0.759031C1.22342 0.417301 0.634553 0.417301 0.271951 0.759031C-0.0906504 1.10076 -0.0906504 1.65573 0.271951 1.99746L5.84151 7.24644L5.84442 7.2437Z" fill="black"/>
-              </svg>
-              <span class="screen-reader-text">dropdown menu</span>
-            </button>
-            <ul class="submenu">
-              <li><a href="">Онлайн-подорож</a></li>
-              <li><a href="">Мотивація</a></li>
-              <li><a href="">Ментальне здоров’я</a></li>
-            </ul>
-          </li>
-          <li><a href="">Корисні посилання</a></li>
-        </ul>
-        <li><a class="lang-switcher black fw-500" href="">UA</a>|<a href="" class="lang-switcher gray">EN</a></li>
-        <button class="nav-toggle" aria-label="Open menu">
-          <svg focusable="false" width="2.75rem" height="2.75rem" viewBox="0 0 44 44" aria-hidden="true">
-            <path d="M12 29h21v-2.333H12V29zm0-5.833h21v-2.334H12v2.334zM12 15v2.333h21V15H12z"></path>
-          </svg>
-        </button>
-      </div>
-    </nav>
-  </header>
+  <div id="header"></div>
   <div class="tooltip">
     Це тиждень Італії!<a href=""><br><span style="text-decoration: underline;" class="blue">Гляньте нові статті</span></a>
     <button class="close-btn">×</button>
@@ -112,41 +84,7 @@
   </section>
   <section style="padding-left: 12.291667%; /* 177px/1440 */  padding-right: 12.291667%;   margin-top: 113px;">
     <h2>Наші статті</h2>
-    <div class="grid-container">
-      <div class="card">
-        <figure>
-          <a href="">
-            <img id="square" src="./img/article2.jpg" alt="">
-          </a>
-        </figure>
-        <div>
-          <a href="" class="article-text black">Заголовок статті</a>
-          <div class="gray text-card">Опис статті. Сірого кольору, котрий повинен займати хоча б мати декілька рядків, бажано більше двох.</div>
-        </div>
-      </div>
-      <div class="card">
-        <figure>
-          <a href="">
-            <img src="./img/article2.jpg" alt="">
-          </a>
-        </figure>
-        <div>
-          <a href="" class="article-text black">Заголовок статті</a>
-          <div class="gray text-card">Опис статті. Сірого кольору, котрий повинен займати хоча б мати декілька рядків, бажано більше двох.</div>
-        </div>
-      </div>
-      <div class="card">
-        <figure>
-          <a href="">
-            <img src="./img/article2.jpg" alt="">
-          </a>
-        </figure>
-        <div>
-          <a href="" class="article-text black">Заголовок статті</a>
-          <div class="gray text-card">Опис статті. Сірого кольору, котрий повинен займати хоча б мати декілька рядків, бажано більше двох.</div>
-        </div>
-      </div>
-    </div>
+    <div id="cards-container"></div>
     <p class="link blue" style="margin-top: 40px;">Переглянути всі статті...</p>
   </section>
   <section class="call-to-action">
@@ -196,4 +134,8 @@
       </div>
     </div>
   </footer>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $('#header').load('header.html');
+  </script>
 </body>
