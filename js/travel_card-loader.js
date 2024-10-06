@@ -16,7 +16,7 @@ function createCardHTML(item) {
 const cardsContainer = document.getElementById('cards-container');
 fetch({
   type: 'GET',
-  url: 'http://127.0.0.1:8000/articles/',
+  url: 'http://127.0.0.1:8000/articles/by-category/online-journey/',
   dataType: 'json'
 })
 .then(response => response.json())
