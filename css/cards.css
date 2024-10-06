@@ -1,0 +1,24 @@
+#cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+#cards-container a{
+    text-decoration: none;
+}
+.card figure {
+    margin: 0;
+    padding-bottom: 16px;
+}
+#square {
+    aspect-ratio: 1/1;
+}
+.card img {
+    width: 100%;
+    object-fit: cover;
+    border-radius: var(--border-radius);
+}
+
+.text-card{
+    margin-top: 18px;
+}
