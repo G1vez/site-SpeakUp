@@ -1,9 +1,9 @@
-function createCardHTML(item) {
+function createCardHTML(item, index) {
   return `
     <div class="card">
       <figure>
         <a href="">
-          <img src="${item.image_url}" alt="${item.title}">
+          <img ${index === 0 ? 'id="square"' : ''} src="${item.image_url}" alt="${item.title}">
         </a>
       </figure>
       <div>
@@ -16,23 +16,23 @@ function createCardHTML(item) {
 const cardsContainer = document.getElementById('cards-container');
 fetch({
   type: 'GET',
-  url: 'http://127.0.0.1:8000/articles/by-category/online-journey/',
+  url: 'http://127.0.0.1:8000/articles/',
   dataType: 'json'
 })
 .then(response => response.json())
 .then(data => {
   cardsContainer.innerHTML = ''; // clear the container
-  data.forEach((item) => {
-    cardsContainer.innerHTML += createCardHTML(item);
+  data.results.forEach((item, index) => {
+    cardsContainer.innerHTML += createCardHTML(item, index);
   });
 })
 .catch(error => {
-  fetch('http://127.0.0.1:5500/locally/articlesByCategoty.json')
+  fetch('http://127.0.0.1:5500/locally/podojg.json')
     .then(response => response.json())
     .then(json => {
       cardsContainer.innerHTML = ''; // clear the container
-      json.forEach((item) => {
-        cardsContainer.innerHTML += createCardHTML(item);
+      json.results.forEach((item, index) => {
+        cardsContainer.innerHTML += createCardHTML(item, index);
       });
     })
 });
