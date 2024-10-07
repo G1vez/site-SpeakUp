@@ -2,12 +2,21 @@ from rest_framework.viewsets import ReadOnlyModelViewSet
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.filters import OrderingFilter
+from rest_framework.pagination import PageNumberPagination
 from journal.models import Article, Category
+from SpeakUp.settings.base import REST_FRAMEWORK
 from journal.api.serializers import (
         ArticleDetailSerializer,
         ArticleListSerializer,
         CategorySerializer
 )
+
+
+PAGE_SIZE = REST_FRAMEWORK.get('PAGE_SIZE')
+
+
+class CustomPagination(PageNumberPagination):
+    page_size = PAGE_SIZE
 
 
 class ArticleViewSet(ReadOnlyModelViewSet):
@@ -19,6 +28,7 @@ class ArticleViewSet(ReadOnlyModelViewSet):
     lookup_field = 'slug'
     filter_backends = [OrderingFilter]
     ordering_fields = ['publish_at',]
+    pagination_class = CustomPagination
 
     def get_serializer_class(self):
         if self.action == 'list':
@@ -38,14 +48,16 @@ class ArticleViewSet(ReadOnlyModelViewSet):
         url_name='list-by-tag'
     )
     def articles_by_tag(self, request, tag_slug=None):
-        articles = (
+        queryset = (
             Article.published
             .filter(tags__slug=tag_slug)
             .select_related('author', 'category')
             .all()
         )
-        serializer = self.get_serializer(articles, many=True)
-        return Response(serializer.data)
+        paginator = self.pagination_class()
+        result_page = paginator.paginate_queryset(queryset, request)
+        serializer = self.get_serializer(result_page, many=True)
+        return paginator.get_paginated_response(serializer.data)
 
     @action(
         detail=False,
@@ -54,14 +66,16 @@ class ArticleViewSet(ReadOnlyModelViewSet):
         url_name='list-by-category'
     )
     def articles_by_category(self, request, category_slug=None):
-        articles = (
+        queryset = (
             Article.published
             .filter(category__slug=category_slug)
             .select_related('author', 'category')
             .all()
         )
-        serializer = self.get_serializer(articles, many=True)
-        return Response(serializer.data)
+        paginator = self.pagination_class()
+        result_page = paginator.paginate_queryset(queryset, request)
+        serializer = self.get_serializer(result_page, many=True)
+        return paginator.get_paginated_response(serializer.data)
 
     def retrieve(self, request, *args, **kwargs):
         article = self.get_object()
