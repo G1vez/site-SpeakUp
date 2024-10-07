@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
     .then(data => {
       const newItems = data.results.map(item => {
         return `
-          <li><a href="./specific_category.html" data-category="${item.slug}">${item.name}</a></li>
+          <li><a href="./specific_category.html?category=${item.slug}" data-category="${item.slug}">${item.name}</a></li>
         `;
       });
       footerList.innerHTML = '';
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(json => {
           const newItems = json.results.map(item => {
             return `
-              <li><a href="./specific_category.html" data-category="${item.slug}">${item.name}</a></li>
+              <li><a href="./specific_category.html?category=${item.slug}" data-category="${item.slug}">${item.name}</a></li>
             `;
           });
           footerList.innerHTML = '';
