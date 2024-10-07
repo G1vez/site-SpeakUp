@@ -52,46 +52,112 @@ function fetchArticles() {
   try {
     const urlParams = new URLSearchParams(window.location.search);
     const category = urlParams.get('category');
+    const categoriesUrl = `http://127.0.0.1:8000/categories/`;
+    const fallbackCategoriesUrl = `http://127.0.0.1:5500/locally/allCategory.json`;
+
+    fetch(categoriesUrl)
+      .then(response => response.json())
+      .then(categoriesData => {
+        const categoriesArray = categoriesData.results;
+        const categoryObject = categoriesArray.find(categoryObject => categoryObject.slug === category);
     
-    const url = `http://127.0.0.1:8000/articles/by-category/${category}/`;
-    const fallbackUrl = `http://127.0.0.1:5500/locally/articlesByCategory_${category}.json`;
-    if (!url) {
-      console.error(`Unknown category: ${category}`);
-      return;
-    }
-    const title = category.charAt(0).toUpperCase() + category.slice(1).replace('-', ' ');
 
-    fetch({
-      type: 'GET',
-      url: url,
-      dataType: 'json'
-    })
-    .then(response => response.json())
-    .then(data => {
-      cardsContainer.innerHTML = ''; // clear the container
-      titleElements.forEach((element) => {
-        element.innerHTML = `Статті з категорії: ${title}`;    
-      });
-      document.title = `Статті з категорії: ${title}`;
-      data.forEach((item) => {
-        cardsContainer.innerHTML += createCardHTML(item);
-      });
-    })
+        if (categoryObject) {
+          const title = categoryObject.name;
+          const url = `http://127.0.0.1:8000/articles/by-category/${category}/`;
+          const fallbackUrl = `http://127.0.0.1:5500/locally/articlesByCategory_${category}.json`;
 
-    .catch(error => {
-      fetch(fallbackUrl)
-        .then(response => response.json())
-        .then(json => {
-          cardsContainer.innerHTML = ''; // clear the container
-          titleElements.forEach((element) => {
-            element.innerHTML = `Статті з категорії: ${title}`;    
+          fetch({
+            type: 'GET',
+            url: url,
+            dataType: 'json'
+          })
+          .then(response => response.json())
+          .then(data => {
+            cardsContainer.innerHTML = '';
+            titleElements.forEach((element) => {
+              element.innerHTML = `Статті з категорії: ${title}`;    
+            });
+            document.title = `Статті з категорії: ${title}`;
+            data.forEach((item) => {
+              cardsContainer.innerHTML += createCardHTML(item);
+            });
+          })
+
+          .catch(error => {
+            console.error(`Error fetching articles:`, error);
+
+            fetch(fallbackUrl)
+              .then(response => response.json())
+              .then(json => {
+                cardsContainer.innerHTML = ''; // clear the container
+                titleElements.forEach((element) => {
+                  element.innerHTML = `Статті з категорії: ${title}`;    
+                });
+                document.title = `Статті з категорії: ${title}`;
+                json.forEach((item) => {
+                  cardsContainer.innerHTML += createCardHTML(item);
+                });
+              });
           });
-          document.title = `Статті з категорії: ${title}`;
-          json.forEach((item) => {
-            cardsContainer.innerHTML += createCardHTML(item);
+        } else {
+          console.error(`Unknown category: ${category}`);
+          return;
+        }
+      })
+
+      .catch(error => {
+        console.error(`Error fetching categories:`, error);
+        fetch(fallbackCategoriesUrl)
+          .then(response => response.json())
+          .then(json => {
+            const categoriesData = json.results;
+            const categoryObject = categoriesData.find(categoryObject => categoryObject.slug === category);
+
+            if (categoryObject) {
+              const title = categoryObject.name;
+              const url = `http://127.0.0.1:8000/articles/by-category/${category}/`;
+              const fallbackUrl = `http://127.0.0.1:5500/locally/articlesByCategory_${category}.json`;
+
+              fetch({
+                type: 'GET',
+                url: url,
+                dataType: 'json'
+              })
+              .then(response => response.json())
+              .then(data => {
+                cardsContainer.innerHTML = '';
+                titleElements.forEach((element) => {
+                  element.innerHTML = `Статті з категорії: ${title}`;    
+                });
+                document.title = `Статті з категорії: ${title}`;
+                data.forEach((item) => {
+                  cardsContainer.innerHTML += createCardHTML(item);
+                });
+              })
+
+              .catch(error => {
+                console.error(`Error fetching articles:`, error);
+
+                fetch(fallbackUrl)
+                  .then(response => response.json())
+                  .then(json => {
+                    cardsContainer.innerHTML = '';
+                    titleElements.forEach((element) => {
+                      element.innerHTML = `Статті з категорії: ${title}`;    
+                    });
+                    document.title = `Статті з категорії: ${title}`;
+                    json.forEach((item) => {
+                      cardsContainer.innerHTML += createCardHTML(item);
+                    });
+                  });
+              });
+            } else {
+              console.error(`Unknown category: ${category}`);
+              return;
+            }
           });
-        });
-    });
+      });
   } catch (error) {
     console.error('Error:', error);
   }
