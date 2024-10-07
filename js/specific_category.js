@@ -53,7 +53,7 @@ function fetchArticles() {
     const urlParams = new URLSearchParams(window.location.search);
     const category = urlParams.get('category');
     const categoriesUrl = `http://127.0.0.1:8000/categories/`;
-    const fallbackCategoriesUrl = `http://127.0.0.1:5500/locally/allCategory.json`;
+    const fallbackCategoriesUrl = `./locally/allCategory.json`;
 
     fetch(categoriesUrl)
       .then(response => response.json())
@@ -65,7 +65,7 @@ function fetchArticles() {
         if (categoryObject) {
           const title = categoryObject.name;
           const url = `http://127.0.0.1:8000/articles/by-category/${category}/`;
-          const fallbackUrl = `http://127.0.0.1:5500/locally/articlesByCategory_${category}.json`;
+          const fallbackUrl = `./locally/articlesByCategory_${category}.json`;
 
           fetch({
             type: 'GET',
@@ -117,7 +117,7 @@ function fetchArticles() {
             if (categoryObject) {
               const title = categoryObject.name;
               const url = `http://127.0.0.1:8000/articles/by-category/${category}/`;
-              const fallbackUrl = `http://127.0.0.1:5500/locally/articlesByCategory_${category}.json`;
+              const fallbackUrl = `./locally/articlesByCategory_${category}.json`;
 
               fetch({
                 type: 'GET',

@@ -27,7 +27,7 @@ fetch({
   });
 })
 .catch(error => {
-  fetch('http://127.0.0.1:5500/locally/podojg.json')
+  fetch('./locally/podojg.json')
     .then(response => response.json())
     .then(json => {
       cardsContainer.innerHTML = ''; // clear the container
