@@ -14,16 +14,12 @@ function createCardHTML(item, index) {
   `;
 }
 const cardsContainer = document.getElementById('cards-container');
-fetch({
-  type: 'GET',
-  url: 'http://127.0.0.1:8000/articles/',
-  dataType: 'json'
-})
-.then(response => response.json())
-.then(data => {
-  cardsContainer.innerHTML = ''; // clear the container
-  data.results.forEach((item, index) => {
-    cardsContainer.innerHTML += createCardHTML(item, index);
+fetch('http://127.0.0.1:8000/articles/')
+  .then(response => response.json())
+  .then(data => {
+    cardsContainer.innerHTML = ''; // clear the container
+    data.results.forEach((item, index) => {
+      cardsContainer.innerHTML += createCardHTML(item, index);
   });
 })
 .catch(error => {

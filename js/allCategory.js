@@ -1,31 +1,30 @@
 function createSubmenuHTML(item) {
   return `
-    <li><a href="./specific_category.html" data-category="${item.slug}">${item.name}</a></li>
+    <li><a href="./specific_category.html?category=${item.slug}" data-category="${item.slug}">${item.name}</a></li>
   `;
 }
-const specialCategories = document.querySelector('.submenu #special-categories');
-fetch({
-  type: 'GET',
-  url: 'http://127.0.0.1:8000/categories/',
-  dataType: 'json'
-})
-.then(response => response.json())
-.then(data => {
-  specialCategories.innerHTML = ''; // clear the container
-  data.results.forEach((item) => {
-    specialCategories.innerHTML += createSubmenuHTML(item);
-  });
-})
-.catch(error => {
-  fetch('http://127.0.0.1:5500/locally/allCategory.json')
+
+window.onload = function() {
+  const specialCategories = document.getElementById('special-categories');
+  fetch('http://127.0.0.1:8000/categories/')
     .then(response => response.json())
-    .then(json => {
+    .then(data => {
       specialCategories.innerHTML = ''; // clear the container
-      json.results.forEach((item) => {
+      data.results.forEach((item) => {
         specialCategories.innerHTML += createSubmenuHTML(item);
       });
     })
-});
+    .catch(error => {
+      fetch('http://127.0.0.1:5500/locally/allCategory.json')
+        .then(response => response.json())
+        .then(json => {
+          specialCategories.innerHTML = ''; // clear the container
+          json.results.forEach((item) => {
+            specialCategories.innerHTML += createSubmenuHTML(item);
+          });
+        });
+    });
+};
 
 document.addEventListener('DOMContentLoaded', function() {
   const footerList = document.querySelector('.footer-list');

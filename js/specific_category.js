@@ -13,34 +13,11 @@ function createCardHTML(item) {
     </div>
   `;
 }
-//   const categoryLinks = footerList.querySelectorAll('li a');
 
-//   categoryLinks.forEach((link) => {
-//     const item = {};
-//     item.slug = link.getAttribute('data-category');
-//     item.name = link.textContent;
+if (!location.search) { // перенаправлення з null категоріїї на головну
+  window.location.href = './index.html';
+}
 
-//     const title = item.name;
-//     link.setAttribute('title', title);
-
-//     fetch('allCategory.json')
-//       .then(response => response.json())
-//       .then(data => {
-//         const category = data.find(category => category.slug === item.slug);
-//         if (category) {
-//           const url = category.url;
-//           link.href = url;
-
-//           link.addEventListener('click', (event) => {
-//             event.preventDefault();
-//             fetchArticles(item.slug);
-//           });
-//         }
-//       });
-//   });
-// });
-
-const categoryLinks = document.querySelectorAll('[data-category]');
 const titleElements = document.querySelectorAll('#title, #title2');
 const cardsContainer = document.getElementById('cards-container');
 
@@ -67,11 +44,7 @@ function fetchArticles() {
           const url = `http://127.0.0.1:8000/articles/by-category/${category}/`;
           const fallbackUrl = `./locally/articlesByCategory_${category}.json`;
 
-          fetch({
-            type: 'GET',
-            url: url,
-            dataType: 'json'
-          })
+          fetch(url)
           .then(response => response.json())
           .then(data => {
             cardsContainer.innerHTML = '';
@@ -119,12 +92,9 @@ function fetchArticles() {
               const url = `http://127.0.0.1:8000/articles/by-category/${category}/`;
               const fallbackUrl = `./locally/articlesByCategory_${category}.json`;
 
-              fetch({
-                type: 'GET',
-                url: url,
-                dataType: 'json'
-              })
+              fetch(url)
               .then(response => response.json())
+
               .then(data => {
                 cardsContainer.innerHTML = '';
                 titleElements.forEach((element) => {

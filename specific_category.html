@@ -18,9 +18,12 @@
         <h2 id="title2"></h2>
         <div id="cards-container"></div>
     </section>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-      $('#header').load('header.html');
-    </script>
+        fetch('header.html')
+          .then(response => response.text())
+          .then(html => {
+            document.getElementById('header').innerHTML = html;
+          });
+      </script>
 </body>
 </html>
