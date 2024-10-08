@@ -15,7 +15,7 @@ window.onload = function() {
       });
     })
     .catch(error => {
-      fetch('http://127.0.0.1:5500/locally/allCategory.json')
+      fetch('./locally/allCategory.json')
         .then(response => response.json())
         .then(json => {
           specialCategories.innerHTML = ''; // clear the container
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
       `;
     })
     .catch(error => {
-      fetch('http://127.0.0.1:5500/locally/allCategory.json')
+      fetch('./locally/allCategory.json')
         .then(response => response.json())
         .then(json => {
           const newItems = json.results.map(item => {

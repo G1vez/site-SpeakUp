@@ -19,11 +19,22 @@
         <div id="cards-container"></div>
     </section>
     <script>
-        fetch('header.html')
-          .then(response => response.text())
-          .then(html => {
+        async function loadHeader() {
+          try {
+            const response = await fetch('header.html');
+            const html = await response.text();
             document.getElementById('header').innerHTML = html;
-          });
+            // Load the script after the header HTML has been injected
+            const script = document.createElement('script');
+            script.src = './js/allCategory.js';
+            script.defer = true;
+            document.getElementById('header').appendChild(script);
+          } catch (error) {
+            console.error('Error loading header.html:', error);
+          }
+        }
+    
+        loadHeader();
       </script>
 </body>
 </html>
