@@ -2,19 +2,19 @@ function createCardHTML(item, index) {
   return `
     <div class="card">
       <figure>
-        <a href="">
+        <a href="${item.detail_url}">
           <img ${index === 0 ? 'id="square"' : ''} src="${item.image_url}" alt="${item.title}">
         </a>
       </figure>
       <div>
-        <a href="" class="article-text black">${item.title}</a>
+        <a href="${item.detail_url}" class="article-text black">${item.title}</a>
         <div class="gray text-card">${item.intro}</div>
       </div>
     </div>
   `;
 }
 const cardsContainer = document.getElementById('cards-container');
-fetch('http://127.0.0.1:8000/articles/')
+fetch('./articles/')
   .then(response => response.json())
   .then(data => {
     cardsContainer.innerHTML = ''; // clear the container
@@ -23,7 +23,7 @@ fetch('http://127.0.0.1:8000/articles/')
   });
 })
 .catch(error => {
-  fetch('./locally/podojg.json')
+  fetch('./articles/articleList.json')
     .then(response => response.json())
     .then(json => {
       cardsContainer.innerHTML = ''; // clear the container

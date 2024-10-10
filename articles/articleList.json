@@ -9,7 +9,7 @@
             "intro": "Тут інтро",
             "views": 2,
             "publish_at": "2024-09-20T17:10:46+03:00",
-            "detail_url": "http://26.90.204.187:8081/articles/podorozh-do-yerivanu/"
+            "detail_url": "./articles/podorozh-do-yerivanu/"
         },
         {
             "title": "Подорож до Єривану",
@@ -17,7 +17,7 @@
             "intro": "Тут інтро",
             "views": 2,
             "publish_at": "2024-09-20T17:10:46+03:00",
-            "detail_url": "http://26.90.204.187:8081/articles/podorozh-do-yerivanu/"
+            "detail_url": "./articles/podorozh-do-yerivanu/"
         },
         {
             "title": "Подорож до Єривану",
@@ -25,7 +25,7 @@
             "intro": "Тут інтро",
             "views": 2,
             "publish_at": "2024-09-20T17:10:46+03:00",
-            "detail_url": "http://26.90.204.187:8081/articles/podorozh-do-yerivanu/"
+            "detail_url": "./articles/podorozh-do-yerivanu/"
         }
     ]
 }
