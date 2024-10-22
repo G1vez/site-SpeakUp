@@ -14,7 +14,7 @@ function createCardHTML(item, index) {
   `;
 }
 const cardsContainer = document.getElementById('cards-container');
-fetch('./articles/')
+fetch('https://speakup.in.ua/api/articles/')
   .then(response => response.json())
   .then(data => {
     cardsContainer.innerHTML = ''; // clear the container
@@ -23,7 +23,7 @@ fetch('./articles/')
   });
 })
 .catch(error => {
-  fetch('./articles/articleList.json')
+  fetch('https://speakup.in.ua/api/articles/')
     .then(response => response.json())
     .then(json => {
       cardsContainer.innerHTML = ''; // clear the container

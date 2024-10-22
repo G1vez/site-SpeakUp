@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./img/favicon.ico"/>
+    <link href="https://fonts.googleapis.com/css?family=Cookie:regular&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./css/global.css">
+    <link rel="stylesheet" href="./css/header.css">
+    <link rel="stylesheet" href="./css/article.css">
+    <script defer src="./js/allCategory.js"></script>
+    <script defer src="./js/single-article.js"></script>
+    <title>Конкретна стаття</title>
+</head>
+<body>
+    <div id="header"></div>
+    <section style="margin-top: 178px; text-align: center;">
+        <p class="subtitle" id="category_name"></p>
+        <h1 id="title" style="margin: 16px;"></h1>
+        <div id="info-box">
+            <img id="avatar" src="" alt="">
+            <div id="text">
+              <p id="autor"></p>
+              <p id="time"></p>
+            </div>
+        </div>
+        <hr class="grey" noshade, size="1">
+        <img id="image_url" src="" alt="">
+        <div id="body" style="margin-bottom: 237px;"></div>
+    </section>
+    <section>
+        <h3 style="margin-bottom: 1rem;">Інші статті</h3>
+        <hr noshade style="color: var(--color-brown-400); margin-bottom: 21px;">
+        <div id="cards-container"></div>
+    </section>
+    <script>
+        async function loadHeader() {
+          try {
+            const response = await fetch('./header.html');
+            const html = await response.text();
+            document.getElementById('header').innerHTML = html;
+            // Load the script after the header HTML has been injected
+            const script = document.createElement('script');
+            script.src = './js/allCategory.js';
+            script.defer = true;
+            document.getElementById('header').appendChild(script);
+          } catch (error) {
+            console.error('Error loading header.html:', error);
+          }
+        }
+    
+        loadHeader();
+    </script>
+  </body>
+</html>

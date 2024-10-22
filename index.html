@@ -131,7 +131,7 @@
   <script>
     async function loadHeader() {
       try {
-        const response = await fetch('header.html');
+        const response = await fetch('./header.html');
         const html = await response.text();
         document.getElementById('header').innerHTML = html;
         // Load the script after the header HTML has been injected
