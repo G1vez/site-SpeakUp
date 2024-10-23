@@ -1,0 +1,109 @@
+header  {
+  background-color:  var(--color-menu);
+  padding-top:  2rem;
+  padding-bottom:  2rem;
+  margin:  auto;
+}
+header a{
+  text-decoration: none;
+}
+.nav  {
+  display:  flex;
+  justify-content:  space-around;
+}
+
+.nav-header  {
+  display:  flex;
+  justify-content:  space-between;
+  align-items:  center;
+  list-style:  none;
+}
+
+.lang-switcher  {
+  margin:  4px;  /*  8/2,  бо  space-between*/
+}
+
+.nav-list  {
+  list-style:  none;
+  display:  flex;
+}
+
+.nav-list  a{
+  padding:  var(--spacing-medium);
+  color:  var(--color-black);
+}
+
+.nav-toggle  {
+  display:  none;/*Приховати  кнопку  на  великих  екранах  */
+  border:  none;
+  cursor:  pointer;
+  background:  none;
+}
+
+.submenu-toggle  {
+  margin-left:  -17px;
+  margin-right:  11px;
+  border:  none;
+  background:  none;
+}
+
+.submenu  {
+  position:  absolute;
+  list-style:  none;
+  background-color:  #EEE4DB;
+  padding:  13px;
+  border-radius:  16px;
+  margin-top:  16px;
+  margin-left:  5px;
+  display:  none;
+  transform:  translateX(var(--spacing-small));
+}
+
+.submenu  li:not(:last-child)  {
+  margin-bottom:  8px;
+}
+
+.submenu  li  a  {
+  padding:  0px;
+}
+
+.submenu-item:hover  .submenu  {display:  block;}
+
+@media only screen and (max-width: 775px) {
+  .nav-list {
+    display: none;
+  }
+  .nav-list .lang-switcher {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 40px; /* відстань від кнопки nav-toggle */
+  }
+  .nav-toggle{
+    display: block;
+  } 
+  .nav-header.open .nav-list {
+    display: block; /* показати меню при відкритті */
+  }
+  .nav-toggle:focus + .nav-list {
+    display: block; /* показати меню при фокусі на кнопці */
+  }
+
+  .nav-container {
+    position: relative; /* relative positioning for the container */
+  }  
+  .nav-list {
+    position: absolute;
+    top: 100%;
+    background-color: var(--color-beige-400);
+    padding: 15px;
+    display: none;
+  }
+  .nav-list a{
+    padding-bottom: 20px;
+  }
+  
+  .nav-list.open {
+    display: block; /* show the menu when the toggle button is clicked */
+  }
+}
