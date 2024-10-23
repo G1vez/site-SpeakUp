@@ -1,15 +1,14 @@
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import fetch from 'node-fetch';
 
 const app = express();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Middleware для обслуговування статичних файлів з папки src/pages
-app.use('/pages', express.static(path.join(__dirname, '/src/pages/')));
 
-// Middleware для обробки JSON
+app.use('/pages', express.static(path.join(__dirname, '/src/pages/')));
 app.use(express.json());
 
 app.get('/', (req, res) => {
@@ -21,10 +20,7 @@ app.get('/home', (req, res) => {
 });
 
 
-// Глобальна змінна для зберігання категорій
 let categories = [];
-
-// Функція для отримання категорій
 async function fetchCategories() {
     try {
         const response = await fetch('https://speakup.in.ua/api/categories/');
@@ -38,24 +34,45 @@ async function fetchCategories() {
     }
 }
 
-// Виклик функції для отримання категорій
 fetchCategories();
-
-// Маршрут для категорій
 app.get('/categories/:categoryName', (req, res) => {
     const categoryName = req.params.categoryName;
-
-    // Знаходимо категорію за слагом
     const category = categories.find(category => category.slug === categoryName);
 
     if (category) {
         res.sendFile(path.join(__dirname, 'public', 'specific-category.html'));
     } else {
-        res.status(404).send('Категорія не знайдена'); // Обробка для невідомих категорій
+        res.status(404).send('Категорія не знайдена');
     }
 });
 
-// Запуск сервера
+
+app.get('/articles/:slug', async (req, res) => {
+    const slug = req.params.slug;
+    let articles = [];
+    try {
+        const response = await fetch('https://speakup.in.ua/api/articles/');
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        const data = await response.json();
+        articles = data.results;
+    } catch (error) {
+        console.error('There has been a problem with your fetch operation:', error);
+        return res.status(500).send('Внутрішня помилка сервера');
+    }
+
+
+    const article = articles.find(article => article.detail_url.split('/').slice(-2, -1)[0] === slug);
+
+    if (article) {
+        res.sendFile(path.join(__dirname, 'public', 'article.html'));
+    } else {
+        res.status(404).send('Стаття не знайдена');
+    }
+});
+
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
