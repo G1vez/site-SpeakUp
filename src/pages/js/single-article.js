@@ -65,9 +65,11 @@ fetch(apiUrl)
     return response.json();
   })
   .then(data => {
+    document.title = data.title;
+
     articleContainer.innerHTML = createArticleHTML(data);
   })
   .catch(error => {
     console.error('Error fetching articles:', error);
     articleContainer.innerHTML = '<p>Статтю не знайдено.</p>';
-});
+  });
