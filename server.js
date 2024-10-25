@@ -27,15 +27,29 @@ const getHeader = () => {
     });
 };
 
-// Функція для вставки заголовка в HTML
-const injectHeader = async (filePath) => {
+const footerPath = path.join(__dirname, 'src/pages/footer.html');
+
+const getFooter = () => {
+    return new Promise((resolve, reject) => {
+        fs.readFile(footerPath, 'utf-8', (err, data) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(data);
+            }
+        });
+    });
+};
+
+const injectHeaderAndFooter = async (filePath) => {
     const header = await getHeader();
+    const footer = await getFooter();
     return new Promise((resolve, reject) => {
         fs.readFile(filePath, 'utf-8', (err, content) => {
             if (err) {
                 reject(err);
             } else {
-                const modifiedContent = content.replace('<main>', `${header}<main>`);
+                const modifiedContent = content.replace('<main>', `${header}<main>`).replace('</body>', `${footer}</body>`);
                 resolve(modifiedContent);
             }
         });
@@ -44,7 +58,7 @@ const injectHeader = async (filePath) => {
 
 app.get('/', async (req, res) => {
     try {
-        const htmlContent = await injectHeader(path.join(__dirname, '/public/index.html'));
+        const htmlContent = await injectHeaderAndFooter(path.join(__dirname, '/public/index.html'));
         res.send(htmlContent);
     } catch (err) {
         res.status(500).send('Помилка при читанні головної сторінки');
@@ -53,7 +67,7 @@ app.get('/', async (req, res) => {
 
 app.get('/home', async (req, res) => {
     try {
-        const htmlContent = await injectHeader(path.join(__dirname, '/public/index.html'));
+        const htmlContent = await injectHeaderAndFooter(path.join(__dirname, '/public/index.html'));
         res.send(htmlContent);
     } catch (err) {
         res.status(500).send('Помилка при читанні головної сторінки');
@@ -82,7 +96,7 @@ app.get('/categories/:categoryName', async (req, res) => {
 
     if (category) {
         try {
-            const htmlContent = await injectHeader(path.join(__dirname, 'public', 'specific-category.html'));
+            const htmlContent = await injectHeaderAndFooter(path.join(__dirname, 'public', 'specific-category.html'));
             res.send(htmlContent);
         } catch (err) {
             res.status(500).send('Помилка при читанні сторінки категорії');
@@ -111,7 +125,7 @@ app.get('/articles/:slug', async (req, res) => {
 
     if (article) {
         try {
-            const htmlContent = await injectHeader(path.join(__dirname, 'public', 'article.html'));
+            const htmlContent = await injectHeaderAndFooter(path.join(__dirname, 'public', 'article.html'));
             res.send(htmlContent);
         } catch (err) {
             res.status(500).send('Помилка при читанні статті');

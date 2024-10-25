@@ -2,8 +2,8 @@ header  {
   background-color:  var(--color-menu);
   padding-top:  2rem;
   padding-bottom:  2rem;
-  margin:  auto;
 }
+
 header a{
   text-decoration: none;
 }
