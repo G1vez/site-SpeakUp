@@ -14,28 +14,11 @@
     <title class="title"></title>
 </head>
 <body>
-    <div id="header"></div>
+  <main>
     <section style="padding-left: 12.291667%; /* 177px/1440 */  padding-right: 12.291667%;   margin-top: 89px;">
         <h2 class="title"></h2>
         <div id="cards-container"></div>
     </section>
-    <script>
-        async function loadHeader() {
-          try {
-            const response = await fetch('/pages/header.html');
-            const html = await response.text();
-            document.getElementById('header').innerHTML = html;
-            // Load the script after the header HTML has been injected
-            const script = document.createElement('script');
-            script.src = '/pages/js/allCategory.js';
-            script.defer = true;
-            document.getElementById('header').appendChild(script);
-          } catch (error) {
-            console.error('Error loading header.html:', error);
-          }
-        }
-    
-        loadHeader();
-      </script>
+  </main>
 </body>
 </html>
