@@ -15,11 +15,8 @@ main {
 .nav-footer {
     display: flex;
     justify-content: space-between;
-    /* gap: 20px; */
     align-items: center;
-    vertical-align: middle;
     padding-left: 12.291667%;
-    /* 177px/1440 */
     padding-right: 12.291667%;
     background-color: var(--color-menu);
     height: 282px;
@@ -29,15 +26,10 @@ main {
     grid-column: 1;
 }
 
-#logo-end {
-    margin-bottom: 21px;
-}
-
 .social-icons {
     display: flex;
     justify-content: center;
     align-items: center;
-    vertical-align: middle;
     gap: 54px;
 }
 

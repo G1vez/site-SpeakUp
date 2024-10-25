@@ -194,49 +194,6 @@ hr {
   padding-right: 12.291667%;
 }
 
-.nav-footer {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  /* gap: 20px; */
-  align-items: center;
-  padding-left: 12.291667%; /* 177px/1440 */
-  padding-right: 12.291667%;
-  background-color: var(--color-menu);
-  height: 282px;
-}
-
-.logo-text {
-  grid-column: 1;
-}
-#logo-end{
-  margin-bottom: 21px;
-}
-.social-icons {
-  grid-column: 2;
-  margin-top: -350px;
-}
-.social-icon{
-  margin: 28px;
-}
-
-.footer-list {
-  grid-column: 3;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  margin: 25px;
-  padding: 0;
-  list-style: none;
-}
-
-.footer-list li {
-  margin-bottom: 20px;
-}
-
-footer a{  
-  color: var(--color-black);
-}
-
 /* Add this to make the lightbox container take up the full screen on mobile devices in landscape orientation */
 @media only screen and (max-width: 768px) and (orientation: landscape) {
   .lightbox-container {
@@ -293,27 +250,6 @@ footer a{
 
   /*  ---------------------------------- Все для малих екранів --------------736---------------*/
 @media only screen and (max-width: 775px) {
-  .nav-list {
-    display: none;
-  }
-  .nav-list .lang-switcher {
-    display: block;
-    position: absolute;
-    top: 0;
-    right: 40px; /* відстань від кнопки nav-toggle */
-  }
-  .nav-toggle{
-    display: block;
-  } 
-  .nav-header.open .nav-list {
-    display: block; /* показати меню при відкритті */
-  }
-  .nav-toggle:focus + .nav-list {
-    display: block; /* показати меню при фокусі на кнопці */
-  }
-  .footer-list{
-    display: none;
-  }
   .container {
     padding-left: 0;
   }
@@ -331,22 +267,7 @@ footer a{
     margin: 20px auto; /* add some margin to the top and bottom */
     width: 98vw;
   }
-  .social-icon{
-    margin: 5px;
-  }
   .container {
     padding-left: 0;
-  }
-}
-@media only screen and (max-width: 1020px) {
-  .footer-list{
-    display: none;
-  }
-  .nav-footer {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-  }
-  .social-icons {
-    margin-top: 0;
   }
 }
