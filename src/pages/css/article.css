@@ -33,13 +33,16 @@ section{
     margin-bottom: 8px;
 }
 
-#image_url{
+#image_url {
     justify-content: center;
     border-radius: 16px;
     object-fit: cover;
     vertical-align: middle;
-    width: 430px;
-    margin: 50px;
+    width: 100%;
+    max-width: 430px;
+    height: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
 
 #cards-container {
