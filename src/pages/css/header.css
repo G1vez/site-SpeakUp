@@ -33,7 +33,7 @@ header a{
   color:  var(--color-black);
 }
 
-.nav-toggle  {
+#nav-toggle  {
   display:  none;/*Приховати  кнопку  на  великих  екранах  */
   border:  none;
   cursor:  pointer;
@@ -47,7 +47,7 @@ header a{
   background:  none;
 }
 
-.submenu  {
+#submenu  {
   position:  absolute;
   list-style:  none;
   background-color:  #EEE4DB;
@@ -59,15 +59,15 @@ header a{
   transform:  translateX(var(--spacing-small));
 }
 
-.submenu  li:not(:last-child)  {
+#submenu  li:not(:last-child)  {
   margin-bottom:  8px;
 }
 
-.submenu  li  a  {
+#submenu  li  a  {
   padding:  0px;
 }
 
-.submenu-item:hover  .submenu  {display:  block;}
+.submenu-item:hover  #submenu  {display:  block;}
 
 @media only screen and (max-width: 775px) {
   .nav-list {
@@ -79,14 +79,11 @@ header a{
     top: 0;
     right: 40px; /* відстань від кнопки nav-toggle */
   }
-  .nav-toggle{
+  #nav-toggle{
     display: block;
   } 
   .nav-header.open .nav-list {
     display: block; /* показати меню при відкритті */
-  }
-  .nav-toggle:focus + .nav-list {
-    display: block; /* показати меню при фокусі на кнопці */
   }
 
   .nav-container {
@@ -103,7 +100,61 @@ header a{
     padding-bottom: 20px;
   }
   
-  .nav-list.open {
-    display: block; /* show the menu when the toggle button is clicked */
+}
+.overlay {
+  height: 100%;
+  width: 100%;
+  display: none;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0, 0.9);
+}
+
+.overlay-content {
+  position: relative;
+  top: 25%;
+  width: 100%;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.overlay a {
+  padding: 8px;
+  text-decoration: none;
+  font-size: 36px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.overlay a:hover, .overlay a:focus {
+  color: #f1f1f1;
+}
+
+.overlay .closebtn {
+  position: absolute;
+  top: 20px;
+  right: 45px;
+  font-size: 60px;
+}
+
+@media screen and (max-height: 450px) {
+  .overlay a {font-size: 20px}
+  .overlay .closebtn {
+  font-size: 40px;
+  top: 15px;
+  right: 35px;
   }
+}
+.submenu-item2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.submenu-item2 a {
+  margin-right: 10px;
 }

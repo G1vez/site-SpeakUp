@@ -5,21 +5,28 @@ function createSubmenuHTML(item) {
 }
 
 window.onload = function() {
-  const specialCategories = document.getElementById('special-categories');
+  const specialCategoriesList = document.querySelectorAll('.special-categories'); // Отримуємо всі елементи з класом 'special-categories'
+
+  // Функція для оновлення категорій
+  const updateCategories = (categoriesContainer, data) => {
+    categoriesContainer.innerHTML = ''; // очищаємо контейнер
+    data.results.forEach((item) => {
+      categoriesContainer.innerHTML += createSubmenuHTML(item);
+    });
+  };
+
   fetchCategories()
     .then(data => {
-      specialCategories.innerHTML = ''; // очищаємо контейнер
-      data.results.forEach((item) => {
-        specialCategories.innerHTML += createSubmenuHTML(item);
+      specialCategoriesList.forEach((specialCategories) => {
+        updateCategories(specialCategories, data); // Оновлюємо категорії для кожного елемента
       });
     })
     .catch(error => {
       console.error('Помилка при отриманні категорій:', error);
       fetchLocalCategories()
         .then(json => {
-          specialCategories.innerHTML = ''; // очищаємо контейнер
-          json.results.forEach((item) => {
-            specialCategories.innerHTML += createSubmenuHTML(item);
+          specialCategoriesList.forEach((specialCategories) => {
+            updateCategories(specialCategories, json); // Оновлюємо локальні категорії для кожного елемента
           });
         })
         .catch(localError => {
@@ -57,4 +64,13 @@ function fetchCategories() {
       }
       return response.json();
     });
+}
+
+
+function openNav() {
+  document.getElementById("myNav").style.display = "block";
+}
+
+function closeNav() {
+  document.getElementById("myNav").style.display = "none";
 }
