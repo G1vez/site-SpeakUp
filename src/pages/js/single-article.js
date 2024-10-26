@@ -55,7 +55,7 @@ function createArticleHTML(item) {
         <img id="avatar" src="" alt="${item.author}">
         <div id="text">
           <p>Автор: ${item.author}</p>
-          <p>Час на читання: ${readingTime} хв</p>
+          <p>Час читання: ${readingTime} хв</p>
         </div>
     </div>
     <hr class="grey" noshade size="1">
