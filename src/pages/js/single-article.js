@@ -36,10 +36,18 @@ const path = urlObj.pathname;
 const segments = path.split('/');
 const slug = segments.pop(); // Отримуємо slug
 
-// Формуємо URL для API
+
 const apiUrl = `https://speakup.in.ua/api/articles/${slug}/`;
 
+function calculateReadingTime(text) {
+  const words = text.trim().split(/\s+/).length;
+  const wordsPerMinute = 200; // або 250
+  const minutes = words / wordsPerMinute;
+  return Math.ceil(minutes);
+}
+
 function createArticleHTML(item) {
+  const readingTime = calculateReadingTime(item.body);
   return `
     <p class="subtitle">${item.category_name}</p>
     <h1 id="title" style="margin: 16px;">${item.title}</h1>
@@ -47,7 +55,7 @@ function createArticleHTML(item) {
         <img id="avatar" src="" alt="${item.author}">
         <div id="text">
           <p>Автор: ${item.author}</p>
-          <p>Час на читання:</p>
+          <p>Час на читання: ${readingTime} хв</p>
         </div>
     </div>
     <hr class="grey" noshade size="1">
