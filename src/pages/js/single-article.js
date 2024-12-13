@@ -56,6 +56,7 @@ function createArticleHTML(item) {
         <div id="text">
           <p>Автор: ${item.author}</p>
           <p>Час читання: ${readingTime} хв</p>
+          <p>Кількість переглядів: ${item.views}</p>
         </div>
     </div>
     <hr class="grey" noshade size="1">
@@ -81,3 +82,4 @@ fetch(apiUrl)
     console.error('Error fetching articles:', error);
     articleContainer.innerHTML = '<p>Статтю не знайдено.</p>';
   });
+
