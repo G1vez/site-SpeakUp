@@ -31,6 +31,7 @@ main {
     justify-content: center;
     align-items: center;
     gap: 54px;
+    /* padding-left: 10px; */
 }
 
 .footer-list {
@@ -56,17 +57,16 @@ footer a {
 }
 
 .nav-footer {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    justify-content: space-between;
+    height: 200px;
 }
 }
 
-@media only screen and (max-width: 775px) {
-.footer-list {
-    display: none;
-
-}
-.social-icons {
-    gap: 15px;
+@media only screen and (max-width: 579px) {
+.nav-footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 }
