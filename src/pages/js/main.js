@@ -143,3 +143,34 @@ closeBtn.addEventListener('click', () => {
     tooltip.style.display = 'none';
   }, 300);
 });
+
+const ArticleOT = document.getElementById('ArticleOT');
+fetch("https://speakup.in.ua/api/articles/by-category/onlajn-podorozh/")
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.json();
+  })
+  .then(data => {
+    const firstArticle = data.results[0];
+    document.title = firstArticle.title;
+    ArticleOT.innerHTML = createArticleOTHTML(firstArticle);
+  })
+  .catch(error => {
+    console.error('There was a problem with the fetch operation:', error);
+  });
+
+function createArticleOTHTML(firstArticle) {
+  return `
+    <h2>Онлайн-подорож</h2>
+    <hr>
+    <div class="online-travel card">
+      <img style="height: auto;" src="${firstArticle.image_url}" alt="Зображеня статті">
+      <div>
+        <p class="article-text">${firstArticle.title}</p>
+        <p class="gray">${firstArticle.intro}</p>
+      </div>
+    </div>
+  `;
+}
