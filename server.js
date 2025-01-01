@@ -135,6 +135,31 @@ app.get('/articles/:slug', async (req, res) => {
     }
 });
 
+
+app.get('/tags/:slug', async (req, res) => {
+    const slug = req.params.slug;
+    let Tags = [];
+    try {
+        const response = await fetch(`https://speakup.in.ua/api/articles/by-tag/${slug}`);
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        const data = await response.json();
+        Tags = data.results;
+        
+    } catch (error) {
+        console.error('There has been a problem with your fetch operation:', error);
+        return res.status(500).send('Внутрішня помилка сервера');
+    }
+
+    try {
+        const htmlContent = await injectHeaderAndFooter(path.join(__dirname, 'public', 'tag.html'));
+        res.send(htmlContent);
+    } catch (err) {
+        res.status(500).send('Помилка при читанні статті');
+    }
+});
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);

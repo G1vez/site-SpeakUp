@@ -54,7 +54,7 @@ function createArticleHTML(item) {
     <div id="info-box">
         <img id="avatar" src="" alt="${item.author}">
         <div id="text">
-          <p>Автор: ${item.author}</p>
+          <p>Автор: ${item.author_name}</p>
           <p>Час читання: ${readingTime} хв</p>
           <p>Кількість переглядів: ${item.views}</p>
         </div>
@@ -63,7 +63,11 @@ function createArticleHTML(item) {
     <img id="image_url" src="${item.image_url}" alt="">
     <div id="body" style="margin-bottom: 237px;">${item.body}
       <div style="text-align: left; margin-top: 15px;">
-        ${item.tags.map(tag => `<a href="${item.articles_url}" style="margin-right: 10px;">${tag.name}</a>`).join('')}
+      ${item.tags.map(tag => {
+        const tagUrlParts = tag.articles_url.split('/');
+        const lastPart = tagUrlParts[tagUrlParts.length - 2]; // Отримуємо передостанній елемент
+        return `<a href="/tags/${lastPart}/" style="margin-right: 10px;">${tag.name}</a>`;
+      }).join('')}
       </div>
     </div>
   `;
