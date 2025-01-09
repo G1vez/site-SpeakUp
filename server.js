@@ -138,7 +138,12 @@ app.get('/categories/:categoryName', async (req, res) => {
             res.status(500).send('Помилка при читанні сторінки категорії');
         }
     } else {
-        res.status(404).send('Категорія не знайдена');
+        try {
+            const htmlContent = await injectHeaderAndFooter(path.join(__dirname, '/public/404.html'));
+            res.status(404).send(htmlContent);
+        } catch (err) {
+            res.status(500).send('Помилка при читанні сторінки 404');
+        }
     }
 });
 
@@ -167,7 +172,12 @@ app.get('/articles/:slug', async (req, res) => {
             res.status(500).send('Помилка при читанні статті');
         }
     } else {
-        res.status(404).send('Стаття не знайдена');
+        try {
+            const htmlContent = await injectHeaderAndFooter(path.join(__dirname, '/public/404.html'));
+            res.status(404).send(htmlContent);
+        } catch (err) {
+            res.status(500).send('Помилка при читанні сторінки 404');
+        }
     }
 });
 
@@ -193,6 +203,16 @@ app.get('/tags/:slug', async (req, res) => {
         res.send(htmlContent);
     } catch (err) {
         res.status(500).send('Помилка при читанні статті');
+    }
+});
+
+// Обробка помилки 404
+app.use(async (req, res, next) => {
+    try {
+        const htmlContent = await injectHeaderAndFooter(path.join(__dirname, '/public/404.html'));
+        res.status(404).send(htmlContent);
+    } catch (err) {
+        res.status(500).send('Помилка при читанні сторінки 404');
     }
 });
 

@@ -1,0 +1,40 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+main {
+    display: flex;
+    justify-content: start;
+    height: 100vh;
+    flex-direction: column;
+}
+section{
+    padding-left: 12.291667%; /* 177px/1440 */  
+    padding-right: 12.291667%;
+}
+.error-container h1 {
+    font-size: 6rem;
+    margin: 0;
+    font-family: 'Cookie', cursive;
+}
+.error-container p {
+    font-size: 18px;
+    margin: 20px 0;
+}
+.error-container button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: var(--color-brown-800);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.error-container a {
+    text-decoration: none;
+    color: white;
+}
