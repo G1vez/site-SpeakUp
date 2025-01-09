@@ -74,6 +74,33 @@ app.get('/home', async (req, res) => {
     }
 });
 
+app.get('/about', async (req, res) => {
+    try {
+        const htmlContent = await injectHeaderAndFooter(path.join(__dirname, '/public/about.html'));
+        res.send(htmlContent);
+    } catch (err) {
+        res.status(500).send('Помилка при читанні сторінки про нас');
+    }
+});
+
+app.get('/stories', async (req, res) => {
+    try {
+        const htmlContent = await injectHeaderAndFooter(path.join(__dirname, '/public/stories.html'));
+        res.send(htmlContent);
+    } catch (err) {
+        res.status(500).send('Помилка при читанні сторінки для історій');
+    }
+});
+
+app.get('/useful-links', async (req, res) => {
+    try {
+        const htmlContent = await injectHeaderAndFooter(path.join(__dirname, '/public/useful-links.html'));
+        res.send(htmlContent);
+    } catch (err) {
+        res.status(500).send('Помилка при читанні сторінки для корисних посилань');
+    }
+});
+
 let categories = [];
 async function fetchCategories() {
     try {

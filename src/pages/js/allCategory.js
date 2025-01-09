@@ -44,10 +44,10 @@ document.addEventListener('DOMContentLoaded', function() {
       });
       footerList.innerHTML = '';
       footerList.innerHTML += `
-        <li class=""><a href="">Про нас</a></li>
-        <li class=""><a href="">Історії</a></li>
+        <li><a href="/about">Про нас</a></li>
+        <li><a href="/stories">Історії</a></li>
         ${newItems.join('')}
-        <li class=""><a href="">Корисні посилання</a></li>
+        <li><a href="/useful-links">Корисні посилання</a></li>
       `;
     })
     .catch(error => {

@@ -47,6 +47,11 @@ function calculateReadingTime(text) {
 }
 
 function createArticleHTML(item) {
+  const metaAuthor = document.createElement('meta');
+  metaAuthor.name = "author";
+  metaAuthor.content = item.author_name;
+  document.head.appendChild(metaAuthor);
+
   const readingTime = calculateReadingTime(item.body);
   return `
     <p class="subtitle">${item.category_name}</p>
