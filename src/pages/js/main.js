@@ -153,6 +153,7 @@ fetch("https://speakup.in.ua/api/articles/by-category/onlajn-podorozh/")
     return response.json();
   })
   .then(data => {
+    data.results.sort((a, b) => new Date(b.publish_at) - new Date(a.publish_at));
     const firstArticle = data.results[0];
     ArticleOT.innerHTML = createArticleOTHTML(firstArticle);
   })
