@@ -101,6 +101,15 @@ app.get('/useful-links', async (req, res) => {
     }
 });
 
+app.get('/articles', async (req, res) => {
+    try {
+        const htmlContent = await injectHeaderAndFooter(path.join(__dirname, '/public/articles.html'));
+        res.send(htmlContent);
+    } catch (err) {
+        res.status(500).send('Помилка при читанні сторінки для корисних посилань');
+    }
+});
+
 let categories = [];
 async function fetchCategories() {
     try {
