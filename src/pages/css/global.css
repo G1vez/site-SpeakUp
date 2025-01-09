@@ -36,6 +36,7 @@ body {
   --color-white: #ffffff;
   --color-black: #000000;
   --color-gray: #5E5E5E;
+  --color-blue: #214A9C;
    
 }
 
@@ -82,6 +83,9 @@ h3 {
 }
 .blue{
   color: #214A9C;
+}
+.blue a:visited{
+  color: var(--color-blue);
 }
 .fw-500{
   font-weight: 500;

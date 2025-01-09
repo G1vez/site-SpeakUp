@@ -26,19 +26,6 @@ function createCardHTML(item) {
   `;
 }
 
-const cardsContainer = document.getElementById('cards-container');
-fetch('https://speakup.in.ua/api/articles/by-category/${slug}/')
-  .then(response => response.json())
-  .then(data => {
-    cardsContainer.innerHTML = '';
-    data.results.forEach((item) => {
-      cardsContainer.innerHTML += createCardHTML(item);
-    });
-  })
-  .catch(error => {
-    console.error('Error fetching articles:', error);
-  });
-
 // Виконуємо запит до API
 fetch(apiUrl)
   .then(response => {
