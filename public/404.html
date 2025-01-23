@@ -28,5 +28,24 @@
             <div id="cards-container"></div>
         </section>
     </main>
+    <script>
+        // Додаємо слухача подій для прокрутки після генерації карток
+        function setupScroll() {
+            const cardsContainer = document.getElementById('cards-container');
+
+            cardsContainer.addEventListener('wheel', (event) => {
+                event.preventDefault(); // Запобігаємо стандартній прокрутці сторінки
+                cardsContainer.scrollBy({
+                    left: event.deltaY * 0.5, // Зменшуємо швидкість прокрутки
+                    behavior: 'smooth' // Додаємо плавність прокрутки
+                });
+            });
+        }
+
+        // Викликаємо setupScroll після генерації карток
+        document.addEventListener('DOMContentLoaded', () => {
+            setupScroll();
+        });
+    </script>
 </body>
 </html>

@@ -39,6 +39,14 @@ fetch('https://speakup.in.ua/api/articles/')
     console.error('Error fetching articles:', error);
   });
 
+cardsContainer.addEventListener('wheel', (event) => {
+    event.preventDefault(); // Запобігаємо стандартній прокрутці сторінки
+    cardsContainer.scrollBy({
+        left: event.deltaY, // Прокручуємо вліво або вправо в залежності від прокрутки
+        behavior: 'smooth' // Додаємо плавність прокрутки
+    });
+});
+
 // Витягуємо slug з URL браузера
 const url = window.location.href;
 const urlObj = new URL(url);
