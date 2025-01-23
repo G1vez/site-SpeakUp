@@ -38,3 +38,41 @@ section{
     text-decoration: none;
     color: white;
 }
+
+#cards-container {
+    display: flex; /* Змінюємо на flex для горизонтального розташування */
+    overflow-x: auto; /* Додаємо горизонтальну прокрутку */
+    gap: 20px; /* Відстань між картками */
+    margin-bottom: 190px;
+    scroll-snap-type: x mandatory; /* Додаємо snap для плавної прокрутки */
+}
+
+#cards-container a {
+    text-decoration: none;
+}
+
+.card {
+    flex: 0 0 auto; /* Задаємо карткам фіксовану ширину */
+    width: min(325px, 80%); /* Ширина картки */
+    scroll-snap-align: start; /* Вирівнюємо картки при прокрутці */
+}
+
+.card figure {
+    margin: 0;
+    padding-bottom: 15px;
+}
+
+#square {
+    aspect-ratio: 1/1;
+}
+
+.card img {
+    width: 100%;
+    height: 190px;
+    object-fit: cover;
+    border-radius: var(--border-radius);
+}
+
+.text-card {
+    margin-bottom: 6px;
+}

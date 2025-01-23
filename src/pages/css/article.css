@@ -1,12 +1,13 @@
-*{
+* {
     margin: 0;
 }
-section{
+
+section {
     padding-left: 12.291667%; /* 177px/1440 */  
     padding-right: 12.291667%;
 }
 
-#info-box{
+#info-box {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -16,11 +17,11 @@ section{
     gap: 20px;
 }
 
-#text p{
+#text p {
     text-align: start;
 }
 
-#text #autor{
+#text #autor {
     margin-bottom: 8px;
 }
 
@@ -37,21 +38,32 @@ section{
 }
 
 #cards-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px;
+    display: flex; /* Змінюємо на flex для горизонтального розташування */
+    overflow-x: auto; /* Додаємо горизонтальну прокрутку */
+    gap: 20px; /* Відстань між картками */
     margin-bottom: 190px;
+    scroll-snap-type: x mandatory; /* Додаємо snap для плавної прокрутки */
 }
-#cards-container a{
+
+#cards-container a {
     text-decoration: none;
 }
+
+.card {
+    flex: 0 0 auto; /* Задаємо карткам фіксовану ширину */
+    width: min(325px, 80%); /* Ширина картки */
+    scroll-snap-align: start; /* Вирівнюємо картки при прокрутці */
+}
+
 .card figure {
     margin: 0;
     padding-bottom: 15px;
 }
+
 #square {
     aspect-ratio: 1/1;
 }
+
 .card img {
     width: 100%;
     height: 190px;
@@ -59,6 +71,6 @@ section{
     border-radius: var(--border-radius);
 }
 
-.text-card{
+.text-card {
     margin-bottom: 6px;
 }
