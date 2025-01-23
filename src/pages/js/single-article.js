@@ -1,5 +1,9 @@
 // Отримуємо поточну мову
-const lang = localStorage.getItem('language') || 'uk'; // Отримуємо мову з localStorage
+const lang = localStorage.getItem('language') || 'uk-UA'; // Отримуємо мову з localStorage
+
+function getShortLang(lang) {
+  return lang.split('-')[0]; // Отримуємо короткий код мови
+}
 
 function createCardHTML(item) {
   const slug = item.detail_url.split('/').slice(-2, -1)[0]; // Отримуємо slug статті
@@ -7,12 +11,12 @@ function createCardHTML(item) {
   return `
     <div class="card">
       <figure>
-        <a href="/${lang}/articles/${slug}"> <!-- Додаємо мову до URL -->
+        <a href="/${getShortLang(lang)}/articles/${slug}"> <!-- Додаємо мову до URL -->
           <img src="${item.image_url}" alt="${item.title}">
         </a>
       </figure>
       <div>
-        <a href="/${lang}/articles/${slug}" class="article-text black"> <!-- Додаємо мову до URL -->
+        <a href="/${getShortLang(lang)}/articles/${slug}" class="article-text black"> <!-- Додаємо мову до URL -->
           ${item.title}
         </a>
         <div class="gray text-card">${item.intro}</div>
@@ -87,7 +91,7 @@ function createArticleHTML(item) {
       ${item.tags.map(tag => {
         const tagUrlParts = tag.articles_url.split('/');
         const lastPart = tagUrlParts[tagUrlParts.length - 2]; // Отримуємо передостанній елемент
-        return `<a href="/${lang}/tags/${lastPart}/" style="margin-right: 10px;">${tag.name}</a>`; // Додаємо мову до URL тегів
+        return `<a href="/${getShortLang(lang)}/tags/${lastPart}/" style="margin-right: 10px;">${tag.name}</a>`; // Додаємо мову до URL тегів
       }).join('')}
       </div>
     </div>

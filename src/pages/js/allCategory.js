@@ -1,6 +1,10 @@
+function getShortLang(lang) {
+  return lang.split('-')[0]; // Отримуємо короткий код мови
+}
+
 function createSubmenuHTML(item, lang) {
   return `
-    <li><a href="/${lang}/categories/${item.slug}" data-category="${item.slug}">${item.name}</a></li>
+    <li><a href="/${getShortLang(lang)}/categories/${item.slug}" data-category="${item.slug}">${item.name}</a></li>
   `;
 }
 
@@ -18,7 +22,7 @@ window.onload = function() {
     categoriesContainer.innerHTML = ''; // очищаємо контейнер
     data.results.forEach((item) => {
           // Отримуємо поточну мову
-    const lang = localStorage.getItem('language') || 'uk';
+    const lang = localStorage.getItem('language') || 'uk-UA';
       categoriesContainer.innerHTML += createSubmenuHTML(item, lang);
     });
   };
@@ -70,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function() {
           `;
 
           // Оновлюємо посилання у футері після вставки HTML
-          const currentLang = localStorage.getItem('language') || 'uk'; // Отримуємо поточну мову
+          const currentLang = localStorage.getItem('language') || 'uk-UA'; // Отримуємо поточну мову
           updateFooterLinks(currentLang);
 
           // Оновлюємо контент футера

@@ -1,7 +1,11 @@
 const apiUrl = `https://speakup.in.ua/api/articles/`;
 
+function getShortLang(lang) {
+  return lang.split('-')[0]; // Отримуємо короткий код мови
+}
+
 // Отримуємо поточну мову
-const lang = localStorage.getItem('language') || 'uk'; // Отримуємо мову з localStorage
+const lang = localStorage.getItem('language') || 'uk-UA'; // Отримуємо мову з localStorage
 
 function createCardHTML(item) {
   const slug = item.detail_url.split('/').slice(-2, -1)[0]; // Отримуємо slug статті
@@ -9,12 +13,12 @@ function createCardHTML(item) {
   return `
     <div class="card">
       <figure>
-        <a href="/${lang}/articles/${slug}"> <!-- Додаємо мову до URL -->
+        <a href="/${getShortLang(lang)}/articles/${slug}"> <!-- Додаємо мову до URL -->
           <img src="${item.image_url}" alt="${item.title}">
         </a>
       </figure>
       <div>
-        <a href="/${lang}/articles/${slug}" class="article-text black"> <!-- Додаємо мову до URL -->
+        <a href="/${getShortLang(lang)}/articles/${slug}" class="article-text black"> <!-- Додаємо мову до URL -->
           ${item.title}
         </a>
         <div class="gray text-card">${item.intro}</div>

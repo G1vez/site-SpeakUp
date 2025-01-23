@@ -16,7 +16,6 @@ app.use(cookieParser());
 app.use(bodyParser.json()); // Для обробки JSON-т bodies
 app.use('/pages', express.static(path.join(__dirname, '/src/pages/')));
 app.use('/locales', express.static(path.join(__dirname, 'locales')));
-app.use(express.json()); // Виклик одного разу
 
 // Шляхи до заголовка та підвалу
 const headerPath = path.join(__dirname, 'src/pages/header.html');
@@ -159,6 +158,7 @@ async function fetchCategories() {
         categories = data.results;
     } catch (error) {
         console.error('There has been a problem with your fetch operation:', error);
+        categories = [];
     }
 }
 
@@ -213,7 +213,7 @@ app.get('/:lang/articles/:slug', async (req, res) => {
         return res.status(500).send('Внутрішня помилка сервера');
     }
 
-    const article = articles.find (article => article.detail_url.split('/').slice(-2, -1)[0] === slug);
+    const article = articles.find(article => article.detail_url.split('/').slice(-2, -1)[0] === slug);
 
     if (article) {
         try {
@@ -237,6 +237,15 @@ app.get('/:lang/articles/:slug', async (req, res) => {
 app.get('/:lang/tags/:slug', async (req, res) => {
     const lang = req.params.lang; 
     const slug = req.params.slug; 
+
+    if (!validLangs.includes(lang)) {
+        return handle404(req, res); // Викликаємо обробник 404
+    }
+
+    if (!slug) {
+        return res.status(400).send('Tag slug is required'); // Перевірка наявності slug
+    }
+
     let Tags = [];
 
     if (!validLangs.includes(lang)) {
@@ -266,6 +275,9 @@ app.get('/:lang/tags/:slug', async (req, res) => {
 
 app.post('/set-language', (req, res) => {
     const { language } = req.body; // Отримуємо мову з тіла запиту
+    if (!language) {
+        return res.status(400).send('Language is required'); // Перевірка наявності мови
+    }
     res.cookie('language', language, { 
         maxAge: 7 * 24 * 60 * 60 * 1000, 
         httpOnly: true, 
@@ -279,7 +291,7 @@ app.post('/set-language', (req, res) => {
 const handle404 = async (req, res) => {
     try {
         // Отримуємо мову з кукі
-        let currentLang = req.cookies.language || 'uk'; // Встановлюємо українську за замовчуванням
+        let currentLang = req.cookies.language || 'uk-UA'; // Встановлюємо українську за замовчуванням
 
         // Додаємо префікс мови до URL, якщо його немає
         if (!req.path.startsWith('/uk/') && !req.path.startsWith('/en/')) {

@@ -144,21 +144,25 @@ fetch("https://speakup.in.ua/api/articles/by-category/onlajn-podorozh/")
     const firstArticle = data.results[0];
 
     // Отримуємо поточну мову
-    const lang = localStorage.getItem('language') || 'uk'; 
+    const lang = localStorage.getItem('language') || 'uk-UA'; 
 
     // Викликаємо функцію для створення HTML
     ArticleOT.innerHTML = createArticleOTHTML(firstArticle, lang);
   })
   .catch(error => {
     console.error('There was a problem with the fetch operation:', error);
-  });
+});
+
+function getShortLang(lang) {
+    return lang.split('-')[0]; // Отримуємо короткий код мови
+}
 
 function createArticleOTHTML(firstArticle, lang) {
     const slug = firstArticle.detail_url.split('/').slice(-2, -1)[0];
     return `
-          <a href="/${lang}/articles/${slug}"><img style="height: auto;" src="${firstArticle.image_url}" alt="${firstArticle.title}"></a>
+          <a href="/${getShortLang(lang)}/articles/${slug}"><img style="height: auto;" src="${firstArticle.image_url}" alt="${firstArticle.title}"></a>
           <div>
-              <a href="/${lang}/articles/${slug}"><p class="article-text black" style="margin:0">${firstArticle.title}</p></a>
+              <a href="/${getShortLang(lang)}/articles/${slug}"><p class="article-text black" style="margin:0">${firstArticle.title}</p></a>
               <p class="gray">${firstArticle.intro}</p>
           </div>
     `;

@@ -1,6 +1,6 @@
 // Функція для оновлення стилів перемикача мови
 function updateLanguageSwitcher() {
-    const currentLang = localStorage.getItem('language') || 'uk'; // Визначаємо мову з localStorage або за замовчуванням 'uk'
+    const currentLang = localStorage.getItem('language') || 'uk-UA'; // Визначаємо мову з localStorage або за замовчуванням 'uk'
     document.documentElement.lang = currentLang; // Оновлюємо атрибут lang у тегу <html>    
     document.querySelectorAll('.lang-switcher').forEach(link => {
         if (link.getAttribute('data-lang') === currentLang) {
@@ -13,10 +13,14 @@ function updateLanguageSwitcher() {
     });
 }
 
+function getShortLang(lang) {
+    return lang.split('-')[0]; // Отримуємо короткий код мови
+}
+
 // Функція для завантаження мови
 async function loadLanguage(lang) {
     try {
-        const response = await fetch(`/locales/${lang}.json`);
+        const response = await fetch(`/locales/${getShortLang(lang)}.json`);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -38,104 +42,31 @@ function updateContent(dictionary) {
     });
 }
 
-// Функція для оновлення посилань у секції
 function updateSectionLinks(lang) {
     const sectionLinks = document.querySelectorAll('section a'); // Знаходимо всі посилання в секції
     sectionLinks.forEach(link => {
         const href = link.getAttribute('href');
         if (href && !href.startsWith('http')) { // Переконуємося, що це не зовнішнє посилання
-            // Додаємо мову до URL, якщо її немає
+            // Додаємо короткий код мови до URL, якщо його немає
             if (!href.startsWith('/uk/') && !href.startsWith('/en/')) {
-                link.setAttribute('href', `/${lang}${href}`);
+                link.setAttribute('href', `/${getShortLang(lang)}${href}`);
             }
         }
     });
 }
 
-// Оновлюємо ініціалізацію мови
+// Оновлюємо ініціал ізацію мови
 function initializeLanguage() {
     // Перевіряємо, чи є URL кореневим
     if (window.location.pathname === '/') {
-        localStorage.setItem('language', 'uk'); // Зберігаємо українську мову в localStorage
+        localStorage.setItem('language', 'uk-UA'); // Зберігаємо українську мову в localStorage
         window.location.href = '/uk/'; // Перенаправляємо на /uk/
         return; // Виходимо з функції, щоб не виконувати подальший код
     }
 
     // Визначаємо мову з URL або з localStorage
-    const pathLang = window.location.pathname.startsWith('/uk/') ? 'uk' : 'en';
-    const currentLang = localStorage.getItem('language') || 'uk'; // За замовчуванням 'uk'
-
-    // Оновлюємо localStorage, якщо мова визначена з URL
-    if (currentLang !== pathLang) {
-        localStorage.setItem('language', pathLang);
-    }
-
-    document.documentElement.lang = currentLang; // Встановлюємо lang при завантаженні
-    loadLanguage(currentLang); // Завантажуємо мову при завантаженні сторінки
-    updateLanguageSwitcher(); // Оновлюємо стилі перемикача мови
-
-    // Оновлюємо посилання в навігації
-    updateNavLinks(currentLang);
-    updateFooterLinks(currentLang);
-    updateSectionLinks(currentLang); // Оновлюємо посилання в секції
-}
-
-// Функція для оновлення посилань у навігації
-function updateNavLinks(lang) {
-    const links = document.querySelectorAll('nav a'); // Знаходимо всі посилання в навігації
-    links.forEach(link => {
-        const href = link.getAttribute('href');
-        if (href && !href.startsWith('http')) { // Переконуємося, що це не зовнішнє посилання
-            // Додаємо мову до URL, якщо її немає
-            if (!href.startsWith('/uk/') && !href.startsWith('/en/')) {
-                link.setAttribute('href', `/${lang}${href}`);
-            }
-        }
-    });
-}
-
-
-// Функція для оновлення посилань у футері
-function updateFooterLinks(lang) {
-    const footerLinks = document.querySelectorAll('.nav-footer a'); // Знаходимо всі посилання у футері
-    footerLinks.forEach(link => {
-        const href = link.getAttribute('href');
-        if (href && !href.startsWith('http')) { // Переконуємося, що це не зовнішнє посилання
-            // Додаємо мову до URL, якщо її немає
-            if (!href.startsWith('/uk/') && !href.startsWith('/en/')) {
-                link.setAttribute('href', `/${lang}${href}`);
-            }
-        }
-    });
-}
-
-// Функція для передачі мови з localStorage в кукі
-function transferLanguageToCookies() {
-    const language = localStorage.getItem('language'); // Отримуємо мову з localStorage
-    if (language) {
-        // Надсилаємо запит на сервер для встановлення кукі
-        fetch('/set-language', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ language: language }), // Передаємо мову на сервер
-        });
-    }
-}
-
-// Оновлюємо ініціалізацію мови
-function initializeLanguage() {
-    // Перевіряємо, чи є URL кореневим
-    if (window.location.pathname === '/') {
-        localStorage.setItem('language', 'uk'); // Зберігаємо українську мову в localStorage
-        window.location.href = '/uk/'; // Перенаправляємо на /uk/
-        return; // Виходимо з функції, щоб не виконувати подальший код
-    }
-
-    // Визначаємо мову з URL або з localStorage
-    const pathLang = window.location.pathname.startsWith('/uk/') ? 'uk' : 'en';
-    let currentLang = localStorage.getItem('language') || 'uk'; // За замовчуванням 'uk'
+    const pathLang = window.location.pathname.startsWith('/uk/') ? 'uk-UA' : 'en-US';
+    let currentLang = localStorage.getItem('language') || 'uk-UA'; // За замовчуванням 'uk'
 
     // Оновлюємо localStorage, якщо мова визначена з URL
     if (currentLang !== pathLang) {
@@ -154,6 +85,49 @@ function initializeLanguage() {
     updateSectionLinks(currentLang); // Оновлюємо посилання в секції
 }
 
+// Функція для оновлення посилань у навігації
+function updateNavLinks(lang) {
+    const links = document.querySelectorAll('nav a'); // Знаходимо всі посилання в навігації
+    links.forEach(link => {
+        const href = link.getAttribute('href');
+        if (href && !href.startsWith('http')) { // Переконуємося, що це не зовнішнє посилання
+            // Додаємо короткий код мови до URL, якщо його немає
+            if (!href.startsWith('/uk/') && !href.startsWith('/en/')) {
+                link.setAttribute('href', `/${getShortLang(lang)}${href}`);
+            }
+        }
+    });
+}
+
+// Функція для оновлення посилань у футері
+function updateFooterLinks(lang) {
+    const footerLinks = document.querySelectorAll('.nav-footer a'); // Знаходимо всі посилання у футері
+    footerLinks.forEach(link => {
+        const href = link.getAttribute('href');
+        if (href && !href.startsWith('http')) { // Переконуємося, що це не зовнішнє посилання
+            // Додаємо короткий код мови до URL, якщо його немає
+            if (!href.startsWith('/uk/') && !href.startsWith('/en/')) {
+                link.setAttribute('href', `/${getShortLang(lang)}${href}`);
+            }
+        }
+    });
+}
+
+// Функція для передачі мови з localStorage в кукі
+function transferLanguageToCookies() {
+    const language = localStorage.getItem('language'); // Отримуємо мову з localStorage
+    if (language) {
+        // Надсилаємо запит на сервер для встановлення кукі
+        fetch('/set-language', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ language: language }), // Передаємо мову на сервер
+        }).catch(error => console.error('Error transferring language to cookies:', error));
+    }
+}
+
 // Додаємо обробник подій для перемикача мови
 document.querySelectorAll('.lang-switcher').forEach(link => {
     link.addEventListener('click', function(event) {
@@ -161,7 +135,7 @@ document.querySelectorAll('.lang-switcher').forEach(link => {
 
         // Отримуємо мову з атрибута data-lang
         const lang = this.getAttribute('data-lang');
-        const currentLang = localStorage.getItem('language') || 'uk'; // Отримуємо поточну мову
+        const currentLang = localStorage.getItem('language') || 'uk-UA'; // Отримуємо поточну мову
 
         // Якщо мова вже обрана, нічого не робимо
         if (lang === currentLang) {
@@ -181,11 +155,11 @@ document.querySelectorAll('.lang-switcher').forEach(link => {
 
         // Перевіряємо, чи є в URL індикатор мови
         if (currentPath.startsWith('/uk/')) {
-            newPath = currentPath.replace('/uk/', `/${lang}/`);
+            newPath = currentPath.replace('/uk/', `/${getShortLang(lang)}/`);
         } else if (currentPath.startsWith('/en/')) {
-            newPath = currentPath.replace('/en/', `/${lang}/`);
+            newPath = currentPath.replace('/en/', `/${getShortLang(lang)}/`);
         } else {
-            newPath = `/${lang}${currentPath}`;
+            newPath = `/${getShortLang(lang)}${currentPath}`;
         }
 
         // Перенаправляємо на нову URL

@@ -1,3 +1,7 @@
+function getShortLang(lang) {
+  return lang.split('-')[0]; // Отримуємо короткий код мови
+}
+
 function createCardHTML(item, index, lang) {
   // Отримуємо slug статті з URL
   const slug = item.detail_url.split('/').slice(-2, -1)[0]; // Припускаємо, що slug знаходиться перед останнім слешем
@@ -5,12 +9,12 @@ function createCardHTML(item, index, lang) {
   return `
     <div class="card">
       <figure>
-        <a href="/${lang}/articles/${slug}">
+        <a href="/${getShortLang(lang)}/articles/${slug}">
           <img ${index === 0 ? 'id="square"' : ''} src="${item.image_url}" alt="${item.title}">
         </a>
       </figure>
       <div>
-        <a href="/${lang}/articles/${slug}" class="article-text black">${item.title}</a>
+        <a href="/${getShortLang(lang)}/articles/${slug}" class="article-text black">${item.title}</a>
         <div class="gray text-card">${item.intro}</div>
       </div>
     </div>
@@ -18,7 +22,7 @@ function createCardHTML(item, index, lang) {
 }
 
 const cardsContainer = document.getElementById('cards-container');
-const lang = localStorage.getItem('language') || 'uk'; // Отримуємо поточну мову
+const lang = localStorage.getItem('language') || 'uk-UA'; // Отримуємо поточну мову
 
 fetch('https://speakup.in.ua/api/articles/')
   .then(response => response.json())
