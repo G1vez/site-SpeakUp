@@ -129,22 +129,8 @@ document.addEventListener('click', (e) => {
   }
 });
 
-const tooltip = document.querySelector('.tooltip');
-const closeBtn = document.querySelector('.close-btn');
-
-setTimeout(() => {
-  tooltip.classList.add('show');
-}, 1000); // show tooltip after 1 second
-
-closeBtn.addEventListener('click', () => {
-  tooltip.style.opacity = 0;
-  tooltip.style.transform = 'scale(0)';
-  setTimeout(() => {
-    tooltip.style.display = 'none';
-  }, 300);
-});
-
 const ArticleOT = document.getElementById('ArticleOT');
+
 fetch("https://speakup.in.ua/api/articles/by-category/onlajn-podorozh/")
   .then(response => {
     if (!response.ok) {
@@ -153,25 +139,27 @@ fetch("https://speakup.in.ua/api/articles/by-category/onlajn-podorozh/")
     return response.json();
   })
   .then(data => {
+    // Сортуємо статті за датою публікації
     data.results.sort((a, b) => new Date(b.publish_at) - new Date(a.publish_at));
     const firstArticle = data.results[0];
-    ArticleOT.innerHTML = createArticleOTHTML(firstArticle);
+
+    // Отримуємо поточну мову
+    const lang = localStorage.getItem('language') || 'uk'; 
+
+    // Викликаємо функцію для створення HTML
+    ArticleOT.innerHTML = createArticleOTHTML(firstArticle, lang);
   })
   .catch(error => {
     console.error('There was a problem with the fetch operation:', error);
   });
 
-function createArticleOTHTML(firstArticle) {
-  const slug = firstArticle.detail_url.split('/').slice(-2, -1)[0];
-  return `
-    <h2>Онлайн-подорож</h2>
-    <hr>
-    <div class="online-travel card">
-      <a href="/articles/${slug}"><img style="height: auto;" src="${firstArticle.image_url}" alt="${firstArticle.title}"></a>
-      <div>
-        <a href="/articles/${slug}"><p class="article-text black" style="margin:0">${firstArticle.title}</p></a>
-        <p class="gray">${firstArticle.intro}</p>
-      </div>
-    </div>
-  `;
+function createArticleOTHTML(firstArticle, lang) {
+    const slug = firstArticle.detail_url.split('/').slice(-2, -1)[0];
+    return `
+          <a href="/${lang}/articles/${slug}"><img style="height: auto;" src="${firstArticle.image_url}" alt="${firstArticle.title}"></a>
+          <div>
+              <a href="/${lang}/articles/${slug}"><p class="article-text black" style="margin:0">${firstArticle.title}</p></a>
+              <p class="gray">${firstArticle.intro}</p>
+          </div>
+    `;
 }

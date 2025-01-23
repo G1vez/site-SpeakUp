@@ -16,15 +16,6 @@ section{
     gap: 20px;
 }
 
-#avatar{
-    width: 72px;
-    height: 72px;
-    border-radius: 50%;
-    aspect-ratio: 1/1;
-    object-fit: cover;
-    vertical-align: middle;
-}
-
 #text p{
     text-align: start;
 }

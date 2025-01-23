@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="/pages/css/cards.css">
     <link rel="stylesheet" href="/pages/css/404.css">
     <script defer src="/pages/js/allCategory.js"></script>
+    <script defer src="/pages/js/lang-switch.js"></script>
     <script defer src="/pages/js/articles.js"></script>
     <title>Сторінка не знайдена - 404</title>
 </head>
@@ -19,11 +20,11 @@
     <main>
         <section class="error-container" style="margin-top: 178px;">
             <h1>404</h1>
-            <p>На жаль, сторінка, яку ви шукаєте, не знайдена.</p>
-            <button><a href="/home">Повернутися на головну</a></button>
+            <p class="content" data-key="page_not_found"></p>
+            <button><a href="/home" class="content" data-key="back-to-home"></a></button>
         </section>
         <section style="margin-top: 80px; margin-bottom: 80px;">
-            <h3 style="margin-bottom: 1rem;">Популярні статті</h3>
+            <h3 style="margin-bottom: 1rem;" class="content" data-key="popular-articles"></h3>
             <hr noshade style="color: var(--color-brown-400); margin-bottom: 21px;">
             <div id="cards-container"></div>
         </section>

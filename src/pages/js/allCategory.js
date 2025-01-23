@@ -1,4 +1,10 @@
-function createSubmenuHTML(item) {
+function createSubmenuHTML(item, lang) {
+  return `
+    <li><a href="/${lang}/categories/${item.slug}" data-category="${item.slug}">${item.name}</a></li>
+  `;
+}
+
+function createSubmenuHTML2(item) {
   return `
     <li><a href="/categories/${item.slug}" data-category="${item.slug}">${item.name}</a></li>
   `;
@@ -11,7 +17,9 @@ window.onload = function() {
   const updateCategories = (categoriesContainer, data) => {
     categoriesContainer.innerHTML = ''; // очищаємо контейнер
     data.results.forEach((item) => {
-      categoriesContainer.innerHTML += createSubmenuHTML(item);
+          // Отримуємо поточну мову
+    const lang = localStorage.getItem('language') || 'uk';
+      categoriesContainer.innerHTML += createSubmenuHTML(item, lang);
     });
   };
 
@@ -35,26 +43,6 @@ window.onload = function() {
     });
 };
 
-document.addEventListener('DOMContentLoaded', function() {
-  const footerList = document.querySelector('.footer-list');
-  fetchCategories()
-    .then(data => {
-      const newItems = data.results.map(item => {
-        return createSubmenuHTML(item);
-      });
-      footerList.innerHTML = '';
-      footerList.innerHTML += `
-        <li><a href="/about">Про нас</a></li>
-        <li><a href="/stories">Історії</a></li>
-        ${newItems.join('')}
-        <li><a href="/useful-links">Корисні посилання</a></li>
-      `;
-    })
-    .catch(error => {
-      console.error('Помилка при отриманні категорій:', error);
-    });
-});
-
 // Helper functions
 function fetchCategories() {
   return fetch('https://speakup.in.ua/api/categories/')
@@ -65,6 +53,36 @@ function fetchCategories() {
       return response.json();
     });
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+  const footerList = document.querySelector('.footer-list');
+  fetchCategories()
+      .then(data => {
+          const newItems = data.results.map(item => {
+              return createSubmenuHTML2(item);
+          });
+          footerList.innerHTML = ''; // Очищаємо футер
+          footerList.innerHTML += `
+              <li><a href="/about" class="content" data-key="about"></a></li>
+              <li><a href="/stories" class="content" data-key="stories">Історії</a></li>
+              ${newItems.join('')}
+              <li><a href="/useful-links" class="content" data-key="useful_links"></a></li>
+          `;
+
+          // Оновлюємо посилання у футері після вставки HTML
+          const currentLang = localStorage.getItem('language') || 'uk'; // Отримуємо поточну мову
+          updateFooterLinks(currentLang);
+
+          // Оновлюємо контент футера
+          const dictionary = {}; // Отримайте словник для поточної мови
+          loadLanguage(currentLang).then(dict => {
+              updateContent(dictionary); // Оновлюємо контент
+          });
+      })
+      .catch(error => {
+          console.error('Помилка при отриманні категорій:', error);
+      });
+});
 
 
 function openNav() {
