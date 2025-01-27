@@ -294,15 +294,17 @@ app.post('/set-language', (req, res) => {
 // Обробка помилки 404
 const handle404 = async (req, res) => {
     try {
-        // Отримуємо мову з кукі
-        let currentLang = req.cookies.language || 'uk-UA'; // Встановлюємо українську за замовчуванням
+        let shortLang = req.cookies.language || 'uk-UA'; // Встановлюємо українську за замовчуванням
 
-        // Додаємо префікс мови до URL, якщо його немає
+        const currentLang = shortLang === 'uk-UA' ? 'uk' : 'en'; // Визначаємо повний код мови
+
+        // Перевіряємо, чи вже є префікс мови в URL
+        const langPrefix = `/${currentLang}`;
         if (!req.path.startsWith('/uk/') && !req.path.startsWith('/en/')) {
-            return res.redirect(`/${currentLang}${req.path}`); // Додаємо префікс мови до URL
+            return res.redirect(`${langPrefix}${req.path}`);
         }
 
-        // Якщо URL вже містить 'uk' або 'en', просто відправляємо 404 сторінку
+        // Якщо URL вже містить префікс мови, просто відправляємо 404 сторінку
         const htmlContent = await injectHeaderAndFooter(path.join(__dirname, '/public/404.html'));
         res.status(404).send(htmlContent);
     } catch (err) {
