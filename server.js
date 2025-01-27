@@ -115,15 +115,19 @@ app.get('/:lang/stories', async (req, res) => {
     }
 });
 
-app.get('/:lang/useful-links', async (req, res) => {
-    const lang = req.params.lang;
-
-    if (!validLangs.includes(lang)) {
-        return handle404(req, res); // Викликаємо обробник 404
-    }
-
+app.get('/uk/useful-links', async (req, res) => {
     try {
         const htmlContent = await injectHeaderAndFooter(path.join(__dirname, `/public/useful-links.html`));
+        res.send(htmlContent);
+    } catch (err) {
+        console.error('Error rendering useful links page:', err);
+        res.status(500).send('Помилка при читанні сторінки для корисних посилань');
+    }
+});
+
+app.get('/en/useful-links', async (req, res) => {
+    try {
+        const htmlContent = await injectHeaderAndFooter(path.join(__dirname, `/public/useful-links_en.html`));
         res.send(htmlContent);
     } catch (err) {
         console.error('Error rendering useful links page:', err);
