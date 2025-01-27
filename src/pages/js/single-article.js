@@ -5,6 +5,15 @@ function getShortLang(lang) {
   return lang.split('-')[0]; // Отримуємо короткий код мови
 }
 
+// Витягуємо slug з URL браузера
+const url = window.location.href;
+const urlObj = new URL(url);
+const path = urlObj.pathname;
+const segments = path.split('/');
+const slug = segments.pop(); // Отримуємо slug
+
+const apiUrl = `https://speakup.in.ua/api/articles/${slug}/`;
+
 function createCardHTML(item) {
   const slug = item.detail_url.split('/').slice(-2, -1)[0]; // Отримуємо slug статті
 
@@ -36,7 +45,7 @@ async function fetchArticles(language) {
       }
     });
     if (!response.ok) {
-      throw new Error('Network response was not ok');
+      throw new Error(`HTTP error! status: ${response.status}`);
     }
     const data = await response.json();
     cardsContainer.innerHTML = ''; // Очищаємо контейнер перед додаванням нових карток
@@ -58,22 +67,18 @@ cardsContainer.addEventListener('wheel', (event) => {
     });
 });
 
-// Витягуємо slug з URL браузера
-const url = window.location.href;
-const urlObj = new URL(url);
-const path = urlObj.pathname;
-const segments = path.split('/');
-const slug = segments.pop(); // Отримуємо slug
-
-const apiUrl = `https://speakup.in.ua/api/articles/${slug}/`;
-
 function calculateReadingTime(text) {
-  const words = text.trim().split(/\s+/).length;
+  const plainText = text.replace(/<[^>]*>/g, ' ').trim();
+  const words = plainText.split(/\s+/).filter(word => word.length > 0).length; // Підрахунок слів
   const wordsPerMinute = 200; // або 250
+  if (words === 0) {
+    return 0; // Якщо слів немає, повертаємо 0
+  }
   const minutes = words / wordsPerMinute;
   return Math.ceil(minutes);
 }
 
+const articleContainer = document.getElementById('article');
 function createArticleHTML(item) {
   const metaAuthor = document.createElement('meta');
   metaAuthor.name = "author";
@@ -81,6 +86,32 @@ function createArticleHTML(item) {
   document.head.appendChild(metaAuthor);
 
   const readingTime = calculateReadingTime(item.body);
+  
+  // Підрахунок слів у body
+  const plainText = item.body.replace(/<[^>]*>/g, ' ').trim();
+  const words = plainText.split(/\s+/).filter(word => word.length > 0).length;
+
+  // Якщо слів немає, відображаємо повідомлення
+  if (words === 0) {
+    return `
+      <p class="subtitle">${item.category_name}</p>
+      <h1 id="title" style="margin: 16px;">${item.title}</h1>
+      <div id="info-box">
+          <div id="text">
+            <div style="display: flex;"><p class="content" data-key="autor" style="margin-right: 10px;"></p><label>${item.author_name}</label></div>
+            <div style="display: flex;"><p class="content" data-key="time-reader" style="margin-right: 10px;">></p><label style="margin-right: 5px;">${readingTime}</label><p class="content" data-key="min"></p></div>
+            <div style="display: flex;"><p class="content" data-key="number-views" style="margin-right: 10px;"></p><label>${item.views}</label></div>
+          </div>
+      </div>
+      <hr class="grey" noshade size="1">
+      <img id="image_url" src="${item.image_url}" alt="">
+      <div id="body" style="margin-bottom: 237px;">
+        <p class="content" data-key="articles-text-is-empty"></p>
+      </div>
+    `;
+  }
+
+  // Якщо слова є, відображаємо статтю
   return `
     <p class="subtitle">${item.category_name}</p>
     <h1 id="title" style="margin: 16px;">${item.title}</h1>
@@ -105,7 +136,6 @@ function createArticleHTML(item) {
   `;
 }
 
-const articleContainer = document.getElementById('article');
 async function fetchArticle(language) {
   try {
     const response = await fetch(apiUrl, {
