@@ -16,7 +16,10 @@ async function loadArticles(language) {
     
     const data = await response.json();
     cardsContainer.innerHTML = ''; // очищаємо контейнер
-    data.results.forEach((item, index) => {
+
+    // Обмежуємо кількість карток до 3
+    const maxCards = 3;
+    data.results.slice(0, maxCards).forEach((item, index) => {
       cardsContainer.innerHTML += createCardHTML(item, index, lang); // Передаємо мову у функцію
     });
   } catch (error) {
