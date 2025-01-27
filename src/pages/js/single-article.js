@@ -85,6 +85,11 @@ function createArticleHTML(item) {
   metaAuthor.content = item.author_name;
   document.head.appendChild(metaAuthor);
 
+  const metaTitle = document.createElement('meta');
+  metaTitle.name = "title";
+  metaTitle.content = item.title;
+  document.head.appendChild(metaTitle);
+
   const readingTime = calculateReadingTime(item.body);
   
   // Підрахунок слів у body

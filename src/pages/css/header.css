@@ -23,6 +23,10 @@ header a{
   margin:  4px;  /*  8/2,  бо  space-between*/
 }
 
+.lang-switcher-container{
+  margin-left: 13px;
+}
+
 .nav-list  {
   list-style:  none;
   display:  flex;
