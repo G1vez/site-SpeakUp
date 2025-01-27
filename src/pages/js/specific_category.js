@@ -34,15 +34,20 @@ function createCardHTML(item) {
     `;
 }
 
-// Виконуємо запит до API статей
-fetch(apiUrl)
-    .then(response => {
+async function fetchArticles(language) {
+    try {
+        const response = await fetch(apiUrl, {
+            method: 'GET',
+            headers: {
+                'Accept-Language': language
+            }
+        });
+
         if (!response.ok) {
-            throw new Error('Network response was not ok');
+            console.error('Помилка при отриманні карток:', response.statusText);
+            return;
         }
-        return response.json();
-    })
-    .then(data => {
+        const data = await response.json();
         const articles = data.results; // Витягуємо масив статей з поля results
         const container = document.getElementById('cards-container'); // Змінити на ваш контейнер
         container.innerHTML = ''; // Очищаємо контейнер перед додаванням нових карток
@@ -50,32 +55,38 @@ fetch(apiUrl)
             const cardHTML = createCardHTML(item);
             container.innerHTML += cardHTML; // Додаємо картки в контейнер
         });
-    })
-    .catch(error => {
+    } catch (error) {
         console.error('There was a problem with the fetch operation:', error);
-    });
+    }
+}
+fetchArticles(lang);
 
-// Формуємо URL для запиту до API категорій
-const categoriesApiUrl = 'https://speakup.in.ua/api/categories/';
+// Функція для отримання категорій
+async function fetchCategories(language) {
+    try {
+        const response = await fetch('https://speakup.in.ua/api/categories/', {
+            method: 'GET',
+            headers: {
+                'Accept-Language': language
+            }
+        });
 
-// Виконуємо запит до API категорій
-fetch(categoriesApiUrl)
-    .then(response => {
         if (!response.ok) {
-            throw new Error('Network response was not ok');
+            console.error('Помилка при отриманні категорій:', response.statusText);
+            return;
         }
-        return response.json();
-    })
-    .then(data => {
+
+        const data = await response.json();
         const category = data.results.find(item => item.slug === slug); // Знаходимо категорію за slug
+
         if (category) {
-            // Вставляємо назву категорії в h1 та в е лемент з класом "title"
             document.querySelector('h2').innerText = category.name;
             document.querySelector('.title').innerText = category.name;
         } else {
             console.error('Категорію не знайдено');
         }
-    })
-    .catch(error => {
+    } catch (error) {
         console.error('There was a problem with the fetch operation:', error);
-});
+    }
+}
+fetchCategories(lang);

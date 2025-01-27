@@ -21,13 +21,13 @@ window.onload = function() {
   const updateCategories = (categoriesContainer, data) => {
     categoriesContainer.innerHTML = ''; // очищаємо контейнер
     data.results.forEach((item) => {
-          // Отримуємо поточну мову
-    const lang = localStorage.getItem('language') || 'uk-UA';
+      const lang = localStorage.getItem('language') || 'uk-UA'; // Отримуємо поточну мову
       categoriesContainer.innerHTML += createSubmenuHTML(item, lang);
     });
   };
 
-  fetchCategories()
+  const lang = localStorage.getItem('language') || 'uk-UA'; // Отримуємо мову з localStorage
+  fetchCategories(lang) // Додаємо lang як аргумент
     .then(data => {
       specialCategoriesList.forEach((specialCategories) => {
         updateCategories(specialCategories, data); // Оновлюємо категорії для кожного елемента
@@ -48,19 +48,28 @@ window.onload = function() {
 };
 
 // Helper functions
-function fetchCategories() {
-  return fetch('https://speakup.in.ua/api/categories/')
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      return response.json();
-    });
+async function fetchCategories(language) {
+  const response = await fetch('https://speakup.in.ua/api/categories/', {
+    method: 'GET',
+    headers: {
+        'Accept-Language': language
+    }
+  });
+  if (!response.ok) {
+    throw new Error('Network response was not ok');
+  }
+  return await response.json();
 }
 
 document.addEventListener('DOMContentLoaded', function() {
   const footerList = document.querySelector('.footer-list');
-  fetchCategories()
+  if (!footerList) {
+    console.error('Footer list not found');
+    return; // Виходимо, якщо футер не знайдено
+  }
+
+  const currentLang = localStorage.getItem('language') || 'uk-UA'; // Отримуємо поточну мову
+  fetchCategories(currentLang) // Додаємо currentLang як аргумент
       .then(data => {
           const newItems = data.results.map(item => {
               return createSubmenuHTML2(item);
@@ -87,7 +96,6 @@ document.addEventListener('DOMContentLoaded', function() {
           console.error('Помилка при отриманні категорій:', error);
       });
 });
-
 
 function openNav() {
   document.getElementById("myNav").style.display = "block";

@@ -129,40 +129,47 @@ document.addEventListener('click', (e) => {
   }
 });
 
-const ArticleOT = document.getElementById('ArticleOT');
 
-fetch("https://speakup.in.ua/api/articles/by-category/onlajn-podorozh/")
-  .then(response => {
+
+const ArticleOT = document.getElementById('ArticleOT');
+const language = localStorage.getItem('language') || 'uk-UA'; // Отримуємо поточну мову
+
+async function fetchAndDisplayArticle(language) {
+  try {
+    const response = await fetch("https://speakup.in.ua/api/articles/by-category/onlajn-podorozh/", {
+      method: 'GET',
+      headers: {
+          'Accept-Language': language
+      }
+    });
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }
-    return response.json();
-  })
-  .then(data => {
+    const data = await response.json();
+    
     // Сортуємо статті за датою публікації
     data.results.sort((a, b) => new Date(b.publish_at) - new Date(a.publish_at));
     const firstArticle = data.results[0];
 
-    // Отримуємо поточну мову
-    const lang = localStorage.getItem('language') || 'uk-UA'; 
-
     // Викликаємо функцію для створення HTML
-    ArticleOT.innerHTML = createArticleOTHTML(firstArticle, lang);
-  })
-  .catch(error => {
+    ArticleOT.innerHTML = createArticleOTHTML(firstArticle, language);
+  } catch (error) {
     console.error('There was a problem with the fetch operation:', error);
-});
-
-function getShortLang(lang) {
-    return lang.split('-')[0]; // Отримуємо короткий код мови
+  }
 }
 
-function createArticleOTHTML(firstArticle, lang) {
+fetchAndDisplayArticle(language);
+
+function getShortLang(language) {
+    return language.split('-')[0]; // Отримуємо короткий код мови
+}
+
+function createArticleOTHTML(firstArticle, language) {
     const slug = firstArticle.detail_url.split('/').slice(-2, -1)[0];
     return `
-          <a href="/${getShortLang(lang)}/articles/${slug}"><img style="height: auto;" src="${firstArticle.image_url}" alt="${firstArticle.title}"></a>
+          <a href="/${getShortLang(language)}/articles/${slug}"><img style="height: auto;" src="${firstArticle.image_url}" alt="${firstArticle.title}"></a>
           <div>
-              <a href="/${getShortLang(lang)}/articles/${slug}"><p class="article-text black" style="margin:0">${firstArticle.title}</p></a>
+              <a href="/${getShortLang(language)}/articles/${slug}"><p class="article-text black" style="margin:0">${firstArticle.title}</p></a>
               <p class="gray">${firstArticle.intro}</p>
           </div>
     `;

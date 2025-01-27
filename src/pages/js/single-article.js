@@ -26,22 +26,29 @@ function createCardHTML(item) {
 }
 
 const cardsContainer = document.getElementById('cards-container');
-fetch('https://speakup.in.ua/api/articles/')
-  .then(response => {
+
+async function fetchArticles(language) {
+  try {
+    const response = await fetch('https://speakup.in.ua/api/articles/', {
+      method: 'GET',
+      headers: {
+          'Accept-Language': language
+      }
+    });
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }
-    return response.json();
-  })
-  .then(data => {
+    const data = await response.json();
     cardsContainer.innerHTML = ''; // Очищаємо контейнер перед додаванням нових карток
     data.results.forEach((item) => {
       cardsContainer.innerHTML += createCardHTML(item); // Додаємо картки в контейнер
     });
-  })
-  .catch(error => {
+  } catch (error) {
     console.error('Error fetching articles:', error);
-  });
+  }
+}
+
+fetchArticles(lang);
 
 cardsContainer.addEventListener('wheel', (event) => {
     event.preventDefault(); // Запобігаємо стандартній прокрутці сторінки
@@ -99,19 +106,24 @@ function createArticleHTML(item) {
 }
 
 const articleContainer = document.getElementById('article');
-fetch(apiUrl)
-  .then(response => {
+async function fetchArticle(language) {
+  try {
+    const response = await fetch(apiUrl, {
+      method: 'GET',
+      headers: {
+          'Accept-Language': language
+      }
+    });
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
-    return response.json();
-  })
-  .then(data => {
+    const data = await response.json();
     document.title = data.title;
-
     articleContainer.innerHTML = createArticleHTML(data); // Додаємо статтю в контейнер
-  })
-  .catch(error => {
+  } catch (error) {
     console.error('Error fetching articles:', error);
     articleContainer.innerHTML = '<p class="content" data-key="article_not_found"></p>';
-  });
+  }
+}
+
+fetchArticle(lang);
