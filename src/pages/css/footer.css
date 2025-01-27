@@ -5,7 +5,7 @@
 body {
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    min-height: 100vh; /* для великих екранів, щоб футер прилип до кінця сторінки */
 }
 
 main {
@@ -31,14 +31,12 @@ main {
     justify-content: center;
     align-items: center;
     gap: 54px;
-    /* padding-left: 10px; */
 }
 
 .footer-list {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    margin: 25px;
     padding: 0;
     list-style: none;
 }
@@ -46,6 +44,10 @@ main {
 .footer-list li {
     margin-bottom: 20px;
 }
+
+.footer-list li:last-child  {
+    margin:  0;
+  }
 
 footer a {
     color: var(--color-black);
