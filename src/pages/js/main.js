@@ -174,3 +174,36 @@ function createArticleOTHTML(firstArticle, language) {
           </div>
     `;
 }
+
+// Helper functions
+async function fetchCategories(language) {
+  const response = await fetch('https://speakup.in.ua/api/categories/', {
+    method: 'GET',
+    headers: {
+        'Accept-Language': language
+    }
+  });
+  if (!response.ok) {
+    throw new Error('Network response was not ok');
+  }
+  return await response.json();
+}
+
+const slug = 'onlajn-podorozh';
+
+async function updateContent() {
+  const language = localStorage.getItem('language') || 'uk-UA'; // Отримуємо поточну мову
+  const data = await fetchCategories(language);
+  
+  const category = data.results.find(item => item.slug === slug);
+  
+  if (category) {
+    const elements = document.querySelectorAll('#online_travel'); // Використовуємо querySelectorAll для отримання колекції елементів
+    elements.forEach(element => {
+      element.innerHTML = category.name; // Використовуємо innerHTML для збереження HTML-тегів
+    });
+  }
+}
+
+// Викликаємо функцію для оновлення контенту
+updateContent();
