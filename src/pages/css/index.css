@@ -22,10 +22,8 @@ body a{
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  align-items: center; /* add this to center vertically */
-  max-width: 1000px; /* add this to set a maximum width */
-  /* margin: 40px auto; */
-  padding-left: 12.291667%;
+  align-items: center;
+  padding-left: var(--spacing-sides);
 }
 .subtitle {
   font-size: var(--font-size-subtitle);
