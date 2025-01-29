@@ -21,6 +21,7 @@ body {
   --spacing-small: 2.5px;
   --spacing-medium: 15px;
   --border-radius: 16px;
+  --spacing-sides: 12.291667%;
 
   --color-background: var(--color-beige-100); /* background color */
   --color-menu: var(--color-beige-400); /* primary color */

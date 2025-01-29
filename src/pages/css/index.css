@@ -22,10 +22,8 @@ body a{
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  align-items: center; /* add this to center vertically */
-  max-width: 1000px; /* add this to set a maximum width */
-  /* margin: 40px auto; */
-  padding-left: 12.291667%;
+  align-items: center;
+  
 }
 .subtitle {
   font-size: var(--font-size-subtitle);
@@ -190,8 +188,8 @@ hr {
   margin-top: 125px;
   display: grid;
   grid-template-rows: repeat(2, 1fr);
-  padding-left: 12.291667%; /* 177px/1440 */
-  padding-right: 12.291667%;
+  padding-left: var(--spacing-sides); /* 177px/1440 */
+  padding-right: var(--spacing-sides);
   text-align: center;
 }
 

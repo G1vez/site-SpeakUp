@@ -16,8 +16,8 @@ main {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-left: 12.291667%;
-    padding-right: 12.291667%;
+    padding-left: var(--spacing-sides);;
+    padding-right: var(--spacing-sides);;
     background-color: var(--color-menu);
     height: 282px;
 }
