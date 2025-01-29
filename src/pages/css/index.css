@@ -188,7 +188,7 @@ hr {
   margin-top: 125px;
   display: grid;
   grid-template-rows: repeat(2, 1fr);
-  padding-left: var(--spacing-sides); /* 177px/1440 */
+  padding-left: var(--spacing-sides);
   padding-right: var(--spacing-sides);
   text-align: center;
 }
