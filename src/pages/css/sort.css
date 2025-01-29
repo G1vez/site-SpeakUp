@@ -1,0 +1,32 @@
+.sort {
+    display: flex;
+    justify-content: space-between; /* Вирівнює елементи по краях */
+    align-items: center; /* Вирівнює елементи по вертикалі */
+    flex-wrap: wrap; /* Дозволяє елементам переноситися на новий ряд */
+    margin-bottom: 20px;
+}
+
+/* Стилі для заголовка */
+.sort h3 {
+    flex: 1; /* Дозволяє заголовку займати доступний простір */
+    margin: 0; /* Прибирає стандартні відступи */
+}
+
+/* Стилі для спадного меню з ID */
+#sort-options {
+    width: 150px; /* Ширина спадного меню */
+    padding: 10px; /* Внутрішній відступ */
+    font-size: 16px; /* Розмір шрифту */
+    border: 1px solid #ccc; /* Сірий контур */
+    border-radius: 4px; /* Закруглені кути */
+    background-color: #fff; /* Білий фон */
+    cursor: pointer; /* Курсор при наведенні */
+    transition: border-color 0.3s, background-color 0.3s; /* Анімація зміни кольору контуру та фону */
+}
+
+/* Стилі для опцій у спадному меню */
+#sort-options option {
+    padding: 10px; /* Внутрішній відступ для опцій */
+    background-color: #fff; /* Білий фон для опцій */
+    color: #333; /* Темний колір тексту */
+}

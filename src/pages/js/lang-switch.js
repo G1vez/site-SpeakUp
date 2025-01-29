@@ -128,7 +128,7 @@ function transferLanguageToCookies() {
     }
 }
 
-// Додаємо обробник подій для перемикача мови
+// Переключення мови
 document.querySelectorAll('.lang-switcher').forEach(link => {
     link.addEventListener('click', function(event) {
         event.preventDefault(); // Запобігаємо переходу за посиланням
@@ -146,14 +146,12 @@ document.querySelectorAll('.lang-switcher').forEach(link => {
         localStorage.setItem('language', lang);
         transferLanguageToCookies(); // Передаємо нову мову в кукі
 
-        // Оновлюємо атрибут lang у тегу <html>
-        document.documentElement.lang = lang; // Змінюємо lang на нову мову
-
         // Формуємо нову URL
         const currentPath = window.location.pathname; // Оголошуємо currentPath тут
+        const currentParams = new URLSearchParams(window.location.search); // Отримуємо поточні параметри URL
         let newPath;
 
-        // Перевіряємо, чи є в URL індикатор мови
+        // Додаємо параметри до нової URL
         if (currentPath.startsWith('/uk/')) {
             newPath = currentPath.replace('/uk/', `/${getShortLang(lang)}/`);
         } else if (currentPath.startsWith('/en/')) {
@@ -161,6 +159,9 @@ document.querySelectorAll('.lang-switcher').forEach(link => {
         } else {
             newPath = `/${getShortLang(lang)}${currentPath}`;
         }
+
+        // Додаємо параметри до нової URL
+        newPath += `?${currentParams.toString()}`; // Додаємо параметри до нової URL
 
         // Перенаправляємо на нову URL
         window.location.assign(newPath); // Оновлюємо сторінку з новою мовою
