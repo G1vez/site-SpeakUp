@@ -160,8 +160,10 @@ document.querySelectorAll('.lang-switcher').forEach(link => {
             newPath = `/${getShortLang(lang)}${currentPath}`;
         }
 
-        // Додаємо параметри до нової URL
-        newPath += `?${currentParams.toString()}`; // Додаємо параметри до нової URL
+        // Додаємо параметри до нової URL, якщо вони не пусті
+        if (currentParams.toString()) {
+            newPath += `?${currentParams.toString()}`; // Додаємо параметри до нової URL
+        }
 
         // Перенаправляємо на нову URL
         window.location.assign(newPath); // Оновлюємо сторінку з новою мовою
