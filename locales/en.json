@@ -9,7 +9,7 @@
     "view_all_articles": "View all articles...",
     "your-stories": "Your stories,<br>our pages!",
     "useful_links": "Useful links",
-    "country-week": "It's Italy Week!<a href=\"/categories/onlajn-podorozh\"><br><span style=\"text-decoration: underline;\" class=\"blue\">Check out the new articles</span></a><button class=\"close-btn\">×</button>",
+    "country-week": "It's Italy Week!<a href=\"/en/categories/onlajn-podorozh?sort=newest\"><br><span style=\"text-decoration: underline;\" class=\"blue\">Check out the new articles</span></a><button class=\"close-btn\">×</button>",
     "articles": "Articles",
     "back-to-home": "Back to Home",
     "popular-articles": "Popular Articles",

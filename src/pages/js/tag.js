@@ -39,14 +39,18 @@ function createCardHTML(item) {
   `;
 }
 
-fetch(apiUrl)
-  .then(response => {
+async function fetchArticles(language) {
+  try {
+    const response = await fetch(apiUrl, {
+      method: 'GET',
+      headers: {
+          'Accept-Language': language
+      }
+    });
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }
-    return response.json();
-  })
-  .then(data => {
+    const data = await response.json();
     const articles = data.results; // Витягуємо масив статей з поля results
     const container = document.getElementById('cards-container'); // Змінити на ваш контейнер
     container.innerHTML = ''; // Очищаємо контейнер перед додаванням нових карток
@@ -54,10 +58,9 @@ fetch(apiUrl)
       const cardHTML = createCardHTML(item);
       container.innerHTML += cardHTML; // Додаємо картки в контейнер
     });
-  })
-  .catch(error => {
+  } catch (error) {
     console.error('There was a problem with the fetch operation:', error);
-  });
+  }
+}
 
-// Формуємо URL для запиту до API статей (не використовується в даному коді)
-const articleApiUrl = 'https://speakup.in.ua/api/articles/';
+fetchArticles(lang);
