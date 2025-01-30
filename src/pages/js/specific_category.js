@@ -52,6 +52,14 @@ async function fetchArticles(language) {
         const data = await response.json();
         articles = data.results; // Зберігаємо статті в глобальному масиві
         displayArticles(articles); // Відображаємо статті
+
+        // Читаємо параметр 'sort' з URL
+        const urlObj = new URL(window.location.href);
+        const sortParam = urlObj.searchParams.get('sort');
+        if (sortParam) {
+            sortArticles(sortParam); // Сортуємо статті за параметром
+            document.getElementById('sort-options').value = sortParam; // Встановлюємо значення в селекторі
+        }
     } catch (error) {
         console.error('There was a problem with the fetch operation:', error);
     }
@@ -67,11 +75,6 @@ function displayArticles(articles) {
 }
 
 function sortArticles(criteria) {
-    // Оновлюємо URL з параметром
-    const url = new URL(window.location);
-    url.searchParams.set('sort', criteria); // Додаємо або оновлюємо параметр 'sort'
-    window.history.pushState({}, '', url); // Оновлюємо URL без перезавантаження сторінки
-
     let sortedArticles;
     if (criteria === 'popular') {
         sortedArticles = [...articles].sort((a, b) => b.views - a.views); // Сортуємо за кількістю переглядів
@@ -79,7 +82,12 @@ function sortArticles(criteria) {
         sortedArticles = [...articles].sort((a, b) => new Date(b.publish_at) - new Date(a.publish_at)); // Сортуємо за датою публікації
     }
     displayArticles(sortedArticles); // Відображаємо відсортовані статті
-}
+  
+    // Оновлюємо URL з параметром
+    const url = new URL(window.location);
+    url.searchParams.set('sort', criteria); // Додаємо або оновлюємо параметр 'sort'
+    window.history.pushState({}, '', url); // Оновлюємо URL без перезавантаження сторінки
+  }
 
 // Додаємо обробник події для зміни вибору в спадному меню
 document.getElementById('sort-options').addEventListener('change', function() {

@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/pages/css/header.css">
     <link rel="stylesheet" href="/pages/css/footer.css">
     <link rel="stylesheet" href="/pages/css/cards.css">
+    <link rel="stylesheet" href="/pages/css/sort.css">
     <script defer src="/pages/js/tag.js"></script>
     <script defer src="/pages/js/lang-switch.js"></script>
     <script defer src="/pages/js/allCategory.js"></script>
@@ -18,8 +19,17 @@
 <body>
   <main>
     <section style="padding-left: var(--spacing-sides); padding-right: var(--spacing-sides);   margin-top: 89px; margin-bottom: 190px;">
+      <div class="sort">                    
         <h2 class="title"></h2>
-        <div id="cards-container"></div>
+        <div>
+          <label for="sort-options" class="content" data-key="sort-by">Сортувати за:</label>
+          <select id="sort-options" onchange="sortArticles(this.value)">
+              <option value="popular" class="content" data-key="popular">Популярністю</option>
+              <option value="newest" class="content" data-key="newest">Новизною</option>
+          </select>
+        </div>
+      </div>
+      <div id="cards-container"></div>
     </section>
   </main>
 </body>
