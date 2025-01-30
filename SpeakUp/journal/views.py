@@ -3,6 +3,8 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.filters import OrderingFilter
 from rest_framework.pagination import PageNumberPagination
+from django.utils.translation import get_language
+from django.db.models import Q
 from journal.models import Article, Category
 from SpeakUp.settings.base import REST_FRAMEWORK
 from journal.api.serializers import (
@@ -29,6 +31,12 @@ class ArticleViewSet(ReadOnlyModelViewSet):
     filter_backends = [OrderingFilter]
     ordering_fields = ['publish_at',]
     pagination_class = CustomPagination
+
+    def get_queryset(self):
+        lang = get_language()
+        return self.queryset.exclude(
+            Q(**{f"title_{lang}": ""}) | Q(**{f"body_{lang}": ""})
+        )
 
     def get_serializer_class(self):
         if self.action == 'list':
