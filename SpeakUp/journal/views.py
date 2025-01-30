@@ -4,6 +4,7 @@ from rest_framework.response import Response
 from rest_framework.filters import OrderingFilter
 from rest_framework.pagination import PageNumberPagination
 from django.utils.translation import get_language
+from modeltranslation.utils import fallbacks
 from django.db.models import Q
 from journal.models import Article, Category
 from SpeakUp.settings.base import REST_FRAMEWORK
@@ -34,9 +35,12 @@ class ArticleViewSet(ReadOnlyModelViewSet):
 
     def get_queryset(self):
         lang = get_language()
-        return self.queryset.exclude(
-            Q(**{f"title_{lang}": ""}) | Q(**{f"body_{lang}": ""})
-        )
+
+        with fallbacks(False):
+            return self.queryset.exclude(
+                    Q(**{f"title_{lang}__isnull": True}) |
+                    Q(**{f"body_{lang}__isnull": True})
+            )
 
     def get_serializer_class(self):
         if self.action == 'list':
