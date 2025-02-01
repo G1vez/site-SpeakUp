@@ -2,12 +2,15 @@
 const url = window.location.href;
 const urlObj = new URL(url);
 const path = urlObj.pathname;
-const segments = path.split('/');
+const segments = path.split('/').filter(segment => segment); // Фільтруємо пусті сегменти
 const slug = segments.pop(); // Отримуємо slug
 
-// Формуємо URL для API
+const decodedSlug = decodeURIComponent(slug);
+document.querySelector('h2').innerText = decodedSlug;
+document.querySelector('.title').innerText = decodedSlug;
+
+// Отримуємо поточну мову
 const lang = localStorage.getItem('language') || 'uk-UA'; // Отримуємо мову з localStorage
-const apiUrl = `https://speakup.in.ua/api/articles/by-category/${slug}/`;
 
 function getShortLang(lang) {
     return lang.split('-')[0]; // Отримуємо короткий код мови
@@ -36,7 +39,17 @@ function createCardHTML(item) {
 
 let articles = []; // Зберігатимемо статті в масиві
 
-async function fetchArticles(language) {
+async function fetchArticles(language, sort) {
+    let apiUrl;
+
+    if (sort === 'popular') {
+        apiUrl = `https://speakup.in.ua/api/articles/by-category/${slug}/`; // Для популярних статей
+    } else if (sort === 'newest') {
+        apiUrl = `https://speakup.in.ua/api/articles/by-category/${slug}/?ordering=-publish_at`; // Для найновіших статей
+    } else {
+        apiUrl = `https://speakup.in.ua/api/articles/by-category/${slug}/`; // За замовчуванням
+    }
+
     try {
         const response = await fetch(apiUrl, {
             method: 'GET',
@@ -49,17 +62,10 @@ async function fetchArticles(language) {
             console.error('Помилка при отриманні карток:', response.statusText);
             return;
         }
+
         const data = await response.json();
         articles = data.results; // Зберігаємо статті в глобальному масиві
         displayArticles(articles); // Відображаємо статті
-
-        // Читаємо параметр 'sort' з URL
-        const urlObj = new URL(window.location.href);
-        const sortParam = urlObj.searchParams.get('sort');
-        if (sortParam) {
-            sortArticles(sortParam); // Сортуємо статті за параметром
-            document.getElementById('sort-options').value = sortParam; // Встановлюємо значення в селекторі
-        }
     } catch (error) {
         console.error('There was a problem with the fetch operation:', error);
     }
@@ -74,28 +80,20 @@ function displayArticles(articles) {
     });
 }
 
-function sortArticles(criteria) {
-    let sortedArticles;
-    if (criteria === 'popular') {
-        sortedArticles = [...articles].sort((a, b) => b.views - a.views); // Сортуємо за кількістю переглядів
-    } else if (criteria === 'newest') {
-        sortedArticles = [...articles].sort((a, b) => new Date(b.publish_at) - new Date(a.publish_at)); // Сортуємо за датою публікації
-    }
-    displayArticles(sortedArticles); // Відображаємо відсортовані статті
-  
-    // Оновлюємо URL з параметром
-    const url = new URL(window.location);
-    url.searchParams.set('sort', criteria); // Додаємо або оновлюємо параметр 'sort'
-    window.history.pushState({}, '', url); // Оновлюємо URL без перезавантаження сторінки
-  }
-
 // Додаємо обробник події для зміни вибору в спадному меню
 document.getElementById('sort-options').addEventListener('change', function() {
-    sortArticles(this.value); // Викликаємо функцію сортування з вибраним значенням
+    const selectedSort = this.value; // Отримуємо вибране значення
+    fetchArticles(lang, selectedSort); // Викликаємо функцію для отримання статей з новим параметром сортування
+
+    // Оновлюємо URL з параметром
+    const url = new URL(window.location);
+    url.searchParams.set('sort', selectedSort); // Додаємо або оновлюємо параметр 'sort'
+    window.history.pushState({}, '', url); // Оновлюємо URL без перезавантаження сторінки
 });
 
-// Викликаємо функцію для отримання статей
-fetchArticles(lang);
+// Читаємо параметр 'sort' з URL і викликаємо функцію для отримання статей
+const sortParam = urlObj.searchParams.get('sort') || 'popular'; // За замовчуванням 'popular'
+fetchArticles(lang, sortParam);
 
 // Функція для отримання категорій
 async function fetchCategories(language) {
