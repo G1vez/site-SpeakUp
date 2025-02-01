@@ -38,16 +38,18 @@ function createCardHTML(item) {
 }
 
 let articles = []; // Зберігатимемо статті в масиві
+let currentPage = 1; // Номер поточної сторінки
+const limit = 15; // Кількість статей на запит
 
 async function fetchArticles(language, sort) {
   let apiUrl;
 
   if (sort === 'popular') {
-    apiUrl = `https://speakup.in.ua/api/articles/by-tag/${slug}/`; // Для популярних статей
+    apiUrl = `https://speakup.in.ua/api/articles/by-tag/${slug}/?page=${currentPage}&limit=${limit}`; // Для популярних статей
   } else if (sort === 'newest') {
-    apiUrl = `https://speakup.in.ua/api/articles/by-tag/${slug}/?ordering=-publish_at`; // Для найновіших статей
+    apiUrl = `https://speakup.in.ua/api/articles/by-tag/${slug}/?ordering=-publish_at&page=${currentPage}&limit=${limit}`; // Для найновіших статей
   } else {
-    apiUrl = `https://speakup.in.ua/api/articles/by-tag/${slug}/`; // За замовчуванням
+    apiUrl = `https://speakup.in.ua/api/articles/by-tag/${slug}/?page=${currentPage}&limit=${limit}`; // За замовчуванням
   }
 
   try {
@@ -65,6 +67,7 @@ async function fetchArticles(language, sort) {
     const data = await response.json();
     articles = data.results; // Зберігаємо статті в глобальному масиві
     displayArticles(articles); // Відображаємо статті
+    updateLoadMoreButton(data.count); // Оновлюємо видимість кнопки "Завантажити ще"
   } catch (error) {
     console.error('There was a problem with the fetch operation:', error);
   }
@@ -72,22 +75,41 @@ async function fetchArticles(language, sort) {
 
 function displayArticles(articles) {
   const container = document.getElementById('cards-container'); // Змінити на ваш контейнер
-  container.innerHTML = ''; // Очищаємо контейнер перед додаванням нових карток
   articles.forEach(item => {
     const cardHTML = createCardHTML(item);
     container.innerHTML += cardHTML; // Додаємо картки в контейнер
   });
 }
 
+function updateLoadMoreButton(totalArticles) {
+  const loadMoreButton = document.getElementById('load-more-button');
+  const totalLoadedArticles = currentPage * limit;
+
+  // Якщо завантажено всіх статей, ховаємо кнопку
+  if (totalLoadedArticles >= totalArticles) {
+    loadMoreButton.style.display = 'none'; // Сховати кнопку
+  } else {
+    loadMoreButton.style.display = 'block'; // Показати кнопку
+  }
+}
+
 // Додаємо обробник події для зміни вибору в спадному меню
 document.getElementById('sort-options').addEventListener('change', function() {
   const selectedSort = this.value; // Отримуємо вибране значення
+  currentPage = 1; // Скидаємо номер сторінки при зміні сортування
+  document.getElementById('cards-container').innerHTML = ''; // Очищаємо контейнер
   fetchArticles(lang, selectedSort); // Викликаємо функцію для отримання статей з новим параметром сортування
 
   // Оновлюємо URL з параметром
   const url = new URL(window.location);
   url.searchParams.set('sort', selectedSort); // Додаємо або оновлюємо параметр 'sort'
   window.history.pushState({}, '', url); // Оновлюємо URL без перезавантаження сторінки
+});
+
+// Додаємо обробник події для кнопки "Завантажити ще"
+document.getElementById('load-more-button').addEventListener('click', function() {
+  currentPage++; // Збільшуємо номер сторінки
+  fetchArticles(lang, document.getElementById('sort-options').value); // Отримуємо наступну порцію статей
 });
 
 // Читаємо параметр 'sort' з URL і викликаємо функцію для отримання статей
