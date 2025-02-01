@@ -60,15 +60,12 @@ class ArticleViewSet(ReadOnlyModelViewSet):
         url_name='list-by-tag'
     )
     def articles_by_tag(self, request, tag_slug=None):
-        queryset = (
-            Article.published
-            .filter(tags__slug=tag_slug)
-            .select_related('author', 'category')
-            .all()
-        )
+        queryset = self.get_queryset().filter(tags__slug=tag_slug)
+
         paginator = self.pagination_class()
         result_page = paginator.paginate_queryset(queryset, request)
         serializer = self.get_serializer(result_page, many=True)
+
         return paginator.get_paginated_response(serializer.data)
 
     @action(
@@ -78,15 +75,12 @@ class ArticleViewSet(ReadOnlyModelViewSet):
         url_name='list-by-category'
     )
     def articles_by_category(self, request, category_slug=None):
-        queryset = (
-            Article.published
-            .filter(category__slug=category_slug)
-            .select_related('author', 'category')
-            .all()
-        )
+        queryset = self.get_queryset().filter(category__slug=category_slug)
+
         paginator = self.pagination_class()
         result_page = paginator.paginate_queryset(queryset, request)
         serializer = self.get_serializer(result_page, many=True)
+
         return paginator.get_paginated_response(serializer.data)
 
     def retrieve(self, request, *args, **kwargs):

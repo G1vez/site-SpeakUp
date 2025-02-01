@@ -50,6 +50,7 @@ class ArticleDetailSerializer(TaggitSerializer, serializers.ModelSerializer):
                 'image_url',
                 'author_name',
                 'category_name',
+                'intro',
                 'body',
                 'tags',
                 'views',
