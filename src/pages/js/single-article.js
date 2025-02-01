@@ -90,6 +90,11 @@ function createArticleHTML(item) {
   metaTitle.content = item.title;
   document.head.appendChild(metaTitle);
 
+  const metaIntro = document.createElement('meta');
+  metaIntro.name = "intro";
+  metaIntro.content = item.intro;
+  document.head.appendChild(metaIntro);
+
   const readingTime = calculateReadingTime(item.body);
   
   // Підрахунок слів у body
