@@ -42,6 +42,12 @@ class ArticleViewSet(ReadOnlyModelViewSet):
                     Q(**{f"body_{lang}__isnull": True})
             )
 
+    def get_ordering(self):
+        ordering = self.request.query_params.get('ordering', None)
+        if ordering:
+            return ordering.split(',')
+        return ['publish_at']
+
     def get_serializer_class(self):
         if self.action == 'list':
             return ArticleListSerializer
@@ -60,7 +66,11 @@ class ArticleViewSet(ReadOnlyModelViewSet):
         url_name='list-by-tag'
     )
     def articles_by_tag(self, request, tag_slug=None):
-        queryset = self.get_queryset().filter(tags__slug=tag_slug)
+        queryset = (
+            self.get_queryset()
+            .filter(tags__slug=tag_slug)
+            .order_by(*self.get_ordering())
+        )
 
         paginator = self.pagination_class()
         result_page = paginator.paginate_queryset(queryset, request)
@@ -75,7 +85,11 @@ class ArticleViewSet(ReadOnlyModelViewSet):
         url_name='list-by-category'
     )
     def articles_by_category(self, request, category_slug=None):
-        queryset = self.get_queryset().filter(category__slug=category_slug)
+        queryset = (
+            self.get_queryset()
+            .filter(category__slug=category_slug)
+            .order_by(*self.get_ordering())
+        )
 
         paginator = self.pagination_class()
         result_page = paginator.paginate_queryset(queryset, request)
