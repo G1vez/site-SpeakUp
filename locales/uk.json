@@ -9,7 +9,7 @@
     "view_all_articles": "Переглянути всі статті...",
     "your-stories": "Ваші історії,<br>наші сторінки!",
     "useful_links": "Корисні посилання",
-    "country-week": "Це тиждень Італії!<a href=\"/categories/onlajn-podorozh\"><br><span style=\"text-decoration: underline;\" class=\"blue\">Перегляньте нові статті</span></a><button class=\"close-btn\">×</button>",
+    "country-week": "Це тиждень Італії!<a href=\"/uk/categories/onlajn-podorozh?sort=newest\"><br><span style=\"text-decoration: underline;\" class=\"blue\">Перегляньте нові статті</span></a><button class=\"close-btn\">×</button>",
     "articles": "Статті",
     "back-to-home": "Повернутися на головну",
     "popular-articles": "Популярні статті",

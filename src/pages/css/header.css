@@ -9,9 +9,7 @@ header a{
 }
 .nav  {
   display:  flex;
-  justify-content:  space-between;
-  padding-left: var(--spacing-sides);
-  padding-right: var(--spacing-sides);
+  justify-content:  space-around;
 }
 
 .nav-header  {

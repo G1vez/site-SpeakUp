@@ -8,11 +8,13 @@
         <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic&display=swap" rel="stylesheet" />
         <link rel="stylesheet" href="/pages/css/reset.css">
         <link rel="stylesheet" href="/pages/css/global.css">
+        <link rel="stylesheet" href="/pages/css/tooltip.css">
         <link rel="stylesheet" href="/pages/css/header.css">
         <link rel="stylesheet" href="/pages/css/sort.css">
         <link rel="stylesheet" href="/pages/css/footer.css">
         <link rel="stylesheet" href="/pages/css/cards.css">
         <script defer src="/pages/js/articles.js"></script>
+        <script defer src="/pages/js/tooltip.js"></script>
         <script defer src="/pages/js/allCategory.js"></script>
         <script defer src="/pages/js/lang-switch.js"></script>
         <title class="content" data-key="all-articles"></title>
@@ -32,6 +34,10 @@
                 </div>
                 <div id="cards-container" class="scrollable"></div>
             </section>
+            <div class="tooltip">
+                <div class="content" data-key="country-week"></div>
+                <button class="close-btn">×</button>
+            </div> 
         </main>
     </body>
 </html>
