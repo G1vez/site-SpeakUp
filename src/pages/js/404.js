@@ -1,5 +1,7 @@
 const apiUrl = `https://speakup.in.ua/api/articles/`;
 
+let currentPage = 1; // Номер поточної сторінки
+
 function getShortLang(lang) {
   return lang.split('-')[0]; // Отримуємо короткий код мови
 }
@@ -29,27 +31,49 @@ function createCardHTML(item) {
 
 async function fetchArticles(language) {
   try {
-      const response = await fetch(apiUrl, {
-          method: 'GET',
-          headers: {
-              'Accept-Language': language
-          }
-      });
-
-      if (!response.ok) {
-          console.error('Помилка при отриманні карток:', response.statusText);
-          return;
+    const response = await fetch(`${apiUrl}?page=${currentPage}`, {
+      method: 'GET',
+      headers: {
+        'Accept-Language': language
       }
-      const data = await response.json();
-      const articles = data.results; // Витягуємо масив статей з поля results
-      const container = document.getElementById('cards-container'); // Змінити на ваш контейнер
-      container.innerHTML = ''; // Очищаємо контейнер перед додаванням нових карток
-      articles.forEach(item => {
-          const cardHTML = createCardHTML(item);
-          container.innerHTML += cardHTML; // Додаємо картки в контейнер
-      });
+    });
+
+    if (!response.ok) {
+      console.error('Помилка при отриманні карток:', response.statusText);
+      return;
+    }
+
+    const data = await response.json();
+    const articles = data.results; // Витягуємо масив статей з поля results
+    const container = document.getElementById('cards-container'); // Змінити на ваш контейнер
+
+    // Додаємо нові статті до контейнера
+    articles.forEach(item => {
+      const cardHTML = createCardHTML(item);
+      container.innerHTML += cardHTML; // Додаємо картки в контейнер
+    });
   } catch (error) {
-      console.error('There was a problem with the fetch operation:', error);
+    console.error('There was a problem with the fetch operation:', error);
   }
 }
+
+// Функція для обробки горизонтального гортання
+function handleScroll() {
+  const container = document.getElementById('cards-container');
+  const scrollLeft = container.scrollLeft; // Поточна горизонтальна прокрутка
+  const scrollWidth = container.scrollWidth; // Загальна ширина контейнера
+  const clientWidth = container.clientWidth; // Ширина видимої частини контейнера
+
+  // Перевіряємо, чи досягнуто правого краю контейнера
+  if (scrollLeft + clientWidth >= scrollWidth) {
+    currentPage++; // Збільшуємо номер сторінки
+    fetchArticles(lang); // Завантажуємо нові статті
+  }
+}
+
+// Додаємо обробник події для горизонтального гортання
+const container = document.getElementById('cards-container');
+container.addEventListener('scroll', handleScroll);
+
+// Завантажуємо першу порцію статей
 fetchArticles(lang);

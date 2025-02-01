@@ -14,6 +14,8 @@ const slug = segments.pop(); // Отримуємо slug
 
 const apiUrl = `https://speakup.in.ua/api/articles/${slug}/`;
 
+let currentPage = 1; // Номер поточної сторінки
+
 function createCardHTML(item) {
   const slug = item.detail_url.split('/').slice(-2, -1)[0]; // Отримуємо slug статті
 
@@ -38,7 +40,7 @@ const cardsContainer = document.getElementById('cards-container');
 
 async function fetchArticles(language) {
   try {
-    const response = await fetch('https://speakup.in.ua/api/articles/', {
+    const response = await fetch(`https://speakup.in.ua/api/articles/?page=${currentPage}`, {
       method: 'GET',
       headers: {
           'Accept-Language': language
@@ -48,7 +50,6 @@ async function fetchArticles(language) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     const data = await response.json();
-    cardsContainer.innerHTML = ''; // Очищаємо контейнер перед додаванням нових карток
     data.results.forEach((item) => {
       cardsContainer.innerHTML += createCardHTML(item); // Додаємо картки в контейнер
     });
@@ -57,6 +58,23 @@ async function fetchArticles(language) {
   }
 }
 
+// Функція для обробки горизонтального гортання
+function handleScroll() {
+  const scrollLeft = cardsContainer.scrollLeft; // Поточна горизонтальна прокрутка
+  const scrollWidth = cardsContainer.scrollWidth; // Загальна ширина контейнера
+  const clientWidth = cardsContainer.clientWidth; // Ширина видимої частини контейнера
+
+  // Перевіряємо, чи досягнуто правого краю контейнера
+  if (scrollLeft + clientWidth >= scrollWidth) {
+    currentPage++; // Збільшуємо номер сторінки
+    fetchArticles(lang); // Завантажуємо нові статті
+  }
+}
+
+// Додаємо обробник події для горизонтального гортання
+cardsContainer.addEventListener('scroll', handleScroll);
+
+// Завантажуємо першу порцію статей
 fetchArticles(lang);
 
 cardsContainer.addEventListener('wheel', (event) => {

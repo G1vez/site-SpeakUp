@@ -221,7 +221,7 @@ app.get('/:lang/articles/:slug', async (req, res) => {
 
     if (article) {
         try {
-            const htmlContent = await injectHeaderAndFooter(path.join(__dirname, 'public', 'article.html'));
+            const htmlContent = await injectHeaderAndFooter(path.join(__dirname, 'public', 'single-article.html'));
             res.send(htmlContent);
         } catch (err) {
             console.error('Error rendering article page:', err);
