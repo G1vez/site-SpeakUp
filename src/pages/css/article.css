@@ -3,15 +3,18 @@
 }
 
 section {
-    padding-left: 12.291667%; /* 177px/1440 */  
-    padding-right: 12.291667%;
+    padding-left: var(--spacing-sides); /* 177px/1440 */  
+    padding-right: var(--spacing-sides);
+}
+
+#body *{
+    background-color: var(--color-beige-100) !important;
 }
 
 #info-box {
     display: flex;
     justify-content: center;
     align-items: center;
-    vertical-align: middle;
     margin-bottom: 50px;
     margin-top: 16px;
     gap: 20px;

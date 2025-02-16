@@ -10,7 +10,7 @@ body {
   --font-family-logo: 'Cookie', cursive;
 
   --font-size-logo: 48px;
-  --font-size-h1: 56px;
+  --font-size-h1: 42px;
   --font-size-h2: 48px;
   --font-size-h3: 32px;
   --font-size-subtitle: 24px;
@@ -44,12 +44,10 @@ body {
 h1 {
   font-size: var(--font-size-h1);
   font-weight: 600;
-  line-height: 68.26px;
 }
 h2 {
   font-size: var(--font-size-h2);
   font-weight: 500;
-  line-height: 58.51px;
 }
 h3 {
   font-size: var(--font-size-h3);
