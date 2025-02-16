@@ -9,6 +9,8 @@ section {
 
 #body *{
     background-color: var(--color-beige-100) !important;
+    font-size: var(--font-size-content) !important;
+    font-family: var(--font-family-primary) !important;
 }
 
 #info-box {
